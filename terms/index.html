@@ -1,0 +1,200 @@
+<!-- FlexChallenge — Terms of Service page -->
+<!-- Paste this entire block into a GHL Custom HTML element on the /terms page -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<div class="fc-legal">
+    <style>
+        .fc-legal {
+            --bg: #F2EFE7;
+            --surface: #FBF9F4;
+            --card: #FBF9F4;
+            --border: rgba(22, 21, 15, 0.25);
+            --text: #16150F;
+            --muted: #55524A;
+            --accent: #C2410C;
+            --grad: linear-gradient(#E8541D, #E8541D);
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            width: 100%;
+            min-height: 100vh;
+            padding: 0 0 80px;
+        }
+
+        .fc-legal * { box-sizing: border-box; }
+        .fc-legal a { color: var(--accent); text-decoration: none; }
+        .fc-legal a:hover { text-decoration: underline; }
+
+        .fc-legal .legal-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 28px 24px 0;
+        }
+
+        .fc-legal .legal-nav .brand {
+            font-weight: 700;
+            font-size: 17px;
+            color: var(--text);
+            letter-spacing: -0.02em;
+        }
+
+        .fc-legal .legal-nav .nav-links { display: flex; gap: 20px; font-size: 14px; }
+        .fc-legal .legal-nav .nav-links a { color: var(--muted); }
+        .fc-legal .legal-nav .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+        .fc-legal .legal-wrap {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 56px 24px 0;
+        }
+
+        .fc-legal .eyebrow {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            background: var(--grad);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 12px;
+        }
+
+        .fc-legal h1 {
+            font-size: clamp(32px, 5vw, 44px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin: 0 0 8px;
+        }
+
+        .fc-legal .effective { color: var(--muted); font-size: 14px; margin-bottom: 36px; }
+
+        .fc-legal h2 {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin: 44px 0 12px;
+        }
+
+        .fc-legal p, .fc-legal li { color: #3E3B33; font-size: 16px; }
+        .fc-legal ul { padding-left: 22px; margin: 12px 0; }
+        .fc-legal li { margin-bottom: 8px; }
+        .fc-legal strong { color: var(--text); }
+
+        .fc-legal .legal-footer {
+            max-width: 760px;
+            margin: 64px auto 0;
+            padding: 28px 24px 0;
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px 24px;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .fc-legal .legal-footer a { color: var(--muted); }
+        .fc-legal .legal-footer a:hover { color: var(--text); }
+
+        @media (max-width: 540px) {
+            .fc-legal .legal-nav { flex-direction: column; gap: 12px; }
+        }
+    </style>
+
+    <nav class="legal-nav">
+        <a href="/" class="brand">FlexChallenge</a>
+        <div class="nav-links">
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
+            <a href="/faq">FAQ</a>
+        </div>
+    </nav>
+
+    <div class="legal-wrap">
+        <span class="eyebrow">Legal</span>
+        <h1>Terms of Service</h1>
+        <p class="effective">Effective date: June 11, 2026</p>
+
+        <p>Welcome to FlexChallenge! These terms are intentionally short and readable. By using the app, you agree to them — so please give them a quick read.</p>
+
+        <h2>1. Acceptance of These Terms</h2>
+        <p>By downloading, installing, or using FlexChallenge ("the app"), you agree to these Terms of Service. If you don't agree, please don't use the app.</p>
+
+        <h2>2. License to Use the App</h2>
+        <p>We grant you a personal, non-exclusive, non-transferable, revocable license to use FlexChallenge on Apple devices that you own or control, in accordance with these terms and Apple's App Store rules. You may not copy, modify, reverse-engineer, resell, or redistribute the app except where the law expressly allows it.</p>
+
+        <h2>3. Your Content Is Yours</h2>
+        <p>Everything you create in FlexChallenge — challenges, photos, videos, voice notes, daily notes, and all other data — belongs to you. All of it is stored locally on your device; we never receive, access, or claim any rights to it. You're responsible for backing it up (the app includes a built-in export feature for exactly this).</p>
+
+        <h2>4. Fitness &amp; Medical Disclaimer</h2>
+        <p>FlexChallenge is a habit and challenge tracker. <strong>It is not medical advice, and it is not a substitute for professional medical guidance.</strong></p>
+        <ul>
+            <li>Consult a physician before starting any fitness program, especially if you have a medical condition, are pregnant, or haven't exercised in a while.</li>
+            <li>Stop exercising and seek medical attention if you feel pain, dizziness, or discomfort.</li>
+            <li>You participate in any fitness activity tracked with this app at your own risk, and you assume full responsibility for any injuries or health consequences.</li>
+            <li>Step counts and other tracked metrics are estimates provided by your device and may not be perfectly accurate.</li>
+        </ul>
+
+        <h2>5. Acceptable Use</h2>
+        <p>Use the app lawfully and sensibly. Don't:</p>
+        <ul>
+            <li>Use the app for any unlawful purpose</li>
+            <li>Attempt to interfere with, exploit, or reverse-engineer the app</li>
+            <li>Use the app in a way that could harm yourself or others (see the disclaimer above — listen to your body)</li>
+        </ul>
+
+        <h2>6. Pricing and Subscriptions</h2>
+        <p><strong>FlexChallenge is currently free</strong>, with full access to all features. No purchase is required.</p>
+        <p>We may introduce optional auto-renewable subscriptions in the future. <strong>If and when subscriptions are offered</strong>, the following will apply:</p>
+        <ul>
+            <li>Pricing and subscription options (such as monthly or annual plans) will be clearly displayed in the app before any purchase.</li>
+            <li>Payment is charged to your Apple Account at confirmation of purchase, processed entirely by Apple through the App Store.</li>
+            <li>Subscriptions automatically renew unless cancelled at least 24 hours before the end of the current period. Your account is charged for renewal within 24 hours prior to the end of the current period.</li>
+            <li>You can manage or cancel subscriptions at any time in your iOS Settings: <strong>Settings → [your name] → Subscriptions</strong>. Cancelling stops future renewals; you keep access through the end of the paid period.</li>
+            <li>Refunds are handled by Apple under App Store policies, not by us directly.</li>
+            <li>Any free trial, if offered, converts to a paid subscription unless cancelled before the trial ends.</li>
+        </ul>
+        <p>Nothing about a future subscription will change our privacy practices: your data stays on your device.</p>
+
+        <h2>7. Disclaimer of Warranties</h2>
+        <p>The app is provided <strong>"as is" and "as available"</strong>, without warranties of any kind, express or implied, including warranties of merchantability, fitness for a particular purpose, and non-infringement. We don't guarantee the app will be error-free, uninterrupted, or that tracked data (like step counts) will be accurate.</p>
+
+        <h2>8. Limitation of Liability</h2>
+        <p>To the maximum extent permitted by law, we are not liable for any indirect, incidental, special, consequential, or punitive damages — including lost data, lost profits, or personal injury — arising from your use of (or inability to use) the app. Where liability cannot be excluded, our total liability is limited to the amount you paid for the app in the twelve months before the claim (which, while the app is free, is zero).</p>
+        <p>Some jurisdictions don't allow certain limitations, so parts of this section may not apply to you.</p>
+
+        <h2>9. Your Data, Backups, and Deletion</h2>
+        <p>Because all data is stored on your device, you are responsible for safeguarding it. Use the in-app backup export before deleting the app or switching devices — deleting the app permanently removes all app data from your device, and we cannot recover it for you (we never had a copy).</p>
+
+        <h2>10. Apple's Standard EULA</h2>
+        <p>Where these terms do not say otherwise, Apple's standard <strong>Licensed Application End User License Agreement (EULA)</strong> applies to your use of FlexChallenge: <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">apple.com/legal/internet-services/itunes/dev/stdeula</a>. Apple is not a party to these terms and is not responsible for the app or its content, but Apple and its subsidiaries are third-party beneficiaries of these terms and may enforce them.</p>
+
+        <h2>11. Governing Law</h2>
+        <p>These terms are governed by the laws of the State of Arizona, United States, without regard to conflict-of-law principles.</p>
+
+        <h2>12. Changes to These Terms</h2>
+        <p>We may update these terms from time to time. When we do, we'll update the effective date above and, for material changes, give notice in the app or in App Store release notes. Continued use of the app after changes take effect means you accept the updated terms.</p>
+
+        <h2>13. Contact</h2>
+        <p>Questions about these terms? Email <a href="mailto:support@flexchallenge.app">support@flexchallenge.app</a>.</p>
+    </div>
+
+    <footer class="legal-footer">
+        <span>© 2026 FlexChallenge</span>
+        <span>
+            <a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp;
+            <a href="/terms">Terms of Service</a> &nbsp;·&nbsp;
+            <a href="/faq">FAQ</a>
+        </span>
+    </footer>
+</div>

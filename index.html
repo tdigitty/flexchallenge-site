@@ -1,0 +1,863 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0}</style><style>
+/* FlexChallenge V5 - Editorial Poster Edition */
+/* Cream paper, ink type, logo-blue accent, volt buttons. Archivo Black + IBM Plex Mono. */
+
+.fc5 {
+    --paper: #F2EFE7;
+    --paper-deep: #E9E4D7;
+    --ink: #16150F;
+    --ink-soft: #4A4840;
+    --blue: #0A72CD;
+    --blue-soft: #5FB0F2;
+    --volt: #C8F222;
+    --rule: rgba(22, 21, 15, 0.85);
+    --rule-soft: rgba(22, 21, 15, 0.18);
+
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Archivo', 'Helvetica Neue', sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* paper grain */
+.fc5::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.fc5 * { box-sizing: border-box; }
+.fc5 a { color: inherit; text-decoration: none; }
+.fc5 img { max-width: 100%; display: block; }
+.fc5 h1, .fc5 h2, .fc5 h3 {
+    font-family: 'Archivo Black', 'Archivo', sans-serif;
+    font-weight: 400;
+    margin: 0;
+}
+.fc5 em { font-style: normal; color: var(--blue); }
+
+/* ---------- shared atoms ---------- */
+
+.fc5 .kicker {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+}
+.fc5 .kicker .sq { width: 12px; height: 12px; background: var(--blue); flex: none; }
+.fc5 .kicker-light { color: var(--paper); justify-content: center; }
+.fc5 .kicker-light .sq { background: var(--volt); }
+
+.fc5 .sec-index {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+}
+
+.fc5 .btn-ink,
+.fc5 .btn-volt {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 14px 26px;
+    border: 2px solid var(--ink);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+.fc5 .btn-ink { background: var(--ink); color: var(--paper); }
+.fc5 .btn-ink:hover { background: var(--blue); border-color: var(--blue); color: #fff; }
+.fc5 .btn-volt {
+    background: var(--volt);
+    border-color: var(--ink);
+    color: var(--ink);
+    box-shadow: 6px 6px 0 var(--ink);
+}
+.fc5 .btn-volt:hover { transform: translate(-2px, -2px); box-shadow: 9px 9px 0 var(--ink); }
+.fc5 .btn-volt:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+.fc5 .btn-big { font-size: 17px; padding: 20px 38px; }
+
+.fc5 .cta-note {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 14px;
+}
+
+/* device frames */
+.fc5 .device {
+    background: #1d1d20;
+    border-radius: 56px;
+    padding: 12px;
+    box-shadow: 18px 18px 0 rgba(22, 21, 15, 0.9);
+    max-width: 340px;
+}
+.fc5 .device img { border-radius: 46px; }
+.fc5 .tilt-r { transform: rotate(3deg); }
+.fc5 .tilt-l { transform: rotate(-3deg); }
+
+/* reveal on scroll */
+.fc5 .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+.fc5 .reveal.in-view { opacity: 1; transform: translateY(0); }
+.fc5 .reveal.in-view.tilt-keep-r { transform: rotate(3deg); }
+
+/* ---------- top bar ---------- */
+
+.fc5 .fc5-topbar {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 22px 40px;
+    border-bottom: 3px solid var(--rule);
+}
+.fc5 .brand {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 19px;
+    letter-spacing: 0.04em;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+.fc5 .brand-logo {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    border: 2px solid var(--ink);
+}
+.fc5 .brand-dot { color: var(--blue); }
+.fc5 .topnav { display: flex; gap: 28px; }
+.fc5 .topnav a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 2px;
+}
+.fc5 .topnav a:hover { border-color: var(--blue); }
+
+/* ---------- hero ---------- */
+
+.fc5 .hero {
+    position: relative;
+    z-index: 1;
+    padding: 90px 40px 70px;
+    overflow: hidden;
+}
+.fc5 .hero-watermark {
+    position: absolute;
+    top: -60px;
+    right: -40px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(280px, 38vw, 560px);
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(22, 21, 15, 0.14);
+    z-index: 0;
+    user-select: none;
+}
+.fc5 .hero-grid {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 48px;
+    align-items: center;
+}
+.fc5 .hero h1 {
+    font-size: clamp(52px, 7.5vw, 104px);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin: 28px 0;
+    text-transform: none;
+}
+.fc5 .lede {
+    font-size: 20px;
+    color: var(--ink-soft);
+    max-width: 480px;
+    margin: 0 0 36px;
+}
+.fc5 .hero-device { position: relative; justify-self: center; }
+.fc5 .hero-device .device { animation: fc5-float 7s ease-in-out infinite; }
+@keyframes fc5-float {
+    0%, 100% { transform: rotate(3deg) translateY(0); }
+    50% { transform: rotate(3deg) translateY(-14px); }
+}
+.fc5 .hero-stamp {
+    position: absolute;
+    left: -54px;
+    bottom: 60px;
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    box-shadow: 8px 8px 0 var(--ink);
+    padding: 14px 20px;
+    text-align: center;
+    transform: rotate(-7deg);
+    font-family: 'IBM Plex Mono', monospace;
+}
+.fc5 .hero-stamp span { display: block; font-size: 11px; letter-spacing: 0.3em; font-weight: 600; }
+.fc5 .hero-stamp strong {
+    display: block;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 54px;
+    line-height: 1.05;
+    color: var(--blue);
+}
+
+/* ---------- ticker ---------- */
+
+.fc5 .ticker {
+    position: relative;
+    z-index: 2;
+    background: var(--ink);
+    color: var(--paper);
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+    overflow: hidden;
+    padding: 14px 0;
+}
+.fc5 .ticker-track {
+    display: flex;
+    gap: 34px;
+    align-items: center;
+    white-space: nowrap;
+    width: max-content;
+    animation: fc5-ticker 26s linear infinite;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+}
+.fc5 .ticker-track i { color: var(--volt); font-style: normal; font-size: 9px; }
+@keyframes fc5-ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* ---------- sections ---------- */
+
+.fc5 .sec {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 96px 40px 80px;
+}
+.fc5 .sec-ruled { border-top: 3px solid var(--rule); border-bottom: 3px solid var(--rule); }
+.fc5 .sec-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--rule-soft);
+    padding-bottom: 16px;
+    margin-bottom: 44px;
+}
+.fc5 .sec-title {
+    font-size: clamp(40px, 5.4vw, 72px);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    margin-bottom: 48px;
+}
+
+/* method */
+.fc5 .method-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 2px solid var(--rule);
+}
+.fc5 .method-card {
+    padding: 36px 30px 44px;
+    border-right: 2px solid var(--rule);
+    transition: background 0.2s ease;
+}
+.fc5 .method-card:last-child { border-right: none; }
+.fc5 .method-card:hover { background: var(--paper-deep); }
+.fc5 .m-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--blue);
+    margin-bottom: 60px;
+}
+.fc5 .method-card h3 { font-size: 24px; margin-bottom: 14px; }
+.fc5 .method-card p { color: var(--ink-soft); margin: 0; font-size: 16px; }
+
+/* spec sheet */
+.fc5 .spec-wrap {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 56px;
+    align-items: center;
+}
+.fc5 .spec-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid var(--rule);
+}
+.fc5 .spec-table td {
+    border-bottom: 2px solid var(--rule-soft);
+    padding: 18px 20px;
+    vertical-align: middle;
+}
+.fc5 .spec-table tr:last-child td { border-bottom: none; }
+.fc5 .spec-table tr { transition: background 0.15s ease; }
+.fc5 .spec-table tr:hover { background: var(--paper-deep); }
+.fc5 .spec-i { width: 56px; font-size: 20px; text-align: center; }
+.fc5 .spec-n {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 17px;
+    width: 150px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+.fc5 .spec-d { color: var(--ink-soft); font-size: 15px; }
+.fc5 .spec-device { justify-self: center; }
+
+/* feature rows */
+.fc5 .feat-row {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 64px;
+    align-items: center;
+}
+.fc5 .feat-row.flip { grid-template-columns: 1.1fr 0.9fr; }
+.fc5 .feat-device { position: relative; justify-self: center; }
+.fc5 .feat-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 300px;
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(22, 21, 15, 0.12);
+    z-index: -1;
+    white-space: nowrap;
+    user-select: none;
+}
+.fc5 .feat-copy .sec-title { margin-bottom: 28px; }
+.fc5 .ruled-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.fc5 .ruled-list li {
+    padding: 14px 0 14px 34px;
+    border-bottom: 2px solid var(--rule-soft);
+    position: relative;
+    color: var(--ink-soft);
+}
+.fc5 .ruled-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--blue);
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+}
+.fc5 .ruled-list li:last-child { border-bottom: none; }
+
+/* templates */
+.fc5 .tpl-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 2px solid var(--rule);
+}
+.fc5 .tpl {
+    padding: 32px 28px 28px;
+    border-right: 2px solid var(--rule);
+    border-bottom: 2px solid var(--rule);
+    position: relative;
+    transition: background 0.2s ease;
+}
+.fc5 .tpl:nth-child(3n) { border-right: none; }
+.fc5 .tpl:nth-last-child(-n+3) { border-bottom: none; }
+.fc5 .tpl:hover { background: var(--paper-deep); }
+.fc5 .tpl h3 { font-size: 21px; margin-bottom: 10px; }
+.fc5 .tpl p { color: var(--ink-soft); font-size: 15px; margin: 0 0 26px; }
+.fc5 .tpl-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: var(--blue);
+}
+.fc5 .tpl-featured { background: var(--ink); color: var(--paper); }
+.fc5 .tpl-featured:hover { background: var(--ink); }
+.fc5 .tpl-featured p { color: rgba(242, 239, 231, 0.7); }
+.fc5 .tpl-featured .tpl-meta { color: var(--volt); }
+.fc5 .tpl-tag {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background: var(--volt);
+    color: var(--ink);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    padding: 6px 12px;
+}
+.fc5 .tpl-custom h3::after { content: " ✏️"; }
+
+/* manifesto */
+.fc5 .manifesto em { color: var(--blue-soft); }
+.fc5 .manifesto {
+    position: relative;
+    z-index: 1;
+    background: var(--ink);
+    color: var(--paper);
+    text-align: center;
+    padding: 110px 40px;
+}
+.fc5 .manifesto h2 {
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin: 26px auto 26px;
+    max-width: 900px;
+}
+.fc5 .manifesto p {
+    max-width: 620px;
+    margin: 0 auto;
+    color: rgba(242, 239, 231, 0.75);
+    font-size: 18px;
+}
+.fc5 .manifesto a { color: var(--volt); border-bottom: 2px solid var(--volt); }
+
+/* download */
+.fc5 .download {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 130px 40px 120px;
+    overflow: hidden;
+}
+.fc5 .dl-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(160px, 24vw, 360px);
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(22, 21, 15, 0.1);
+    white-space: nowrap;
+    user-select: none;
+    z-index: 0;
+}
+.fc5 .download h2 {
+    position: relative;
+    font-size: clamp(56px, 8vw, 110px);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 22px;
+}
+.fc5 .dl-sub {
+    position: relative;
+    color: var(--ink-soft);
+    font-size: 19px;
+    margin: 0 0 40px;
+}
+.fc5 .download .btn-volt { position: relative; }
+
+/* footer */
+.fc5 .fc5-footer {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 26px 40px;
+    border-top: 3px solid var(--rule);
+}
+.fc5 .foot-brand {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+.fc5 .foot-brand .brand-logo { width: 26px; height: 26px; border-radius: 6px; }
+.fc5 .foot-brand .cr {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 400;
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-left: 10px;
+}
+.fc5 .foot-links { display: flex; gap: 24px; }
+.fc5 .foot-links a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+}
+.fc5 .foot-links a:hover { color: var(--blue); }
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 960px) {
+    .fc5 .hero-grid { grid-template-columns: 1fr; gap: 64px; }
+    .fc5 .hero-device { margin-top: 10px; }
+    .fc5 .hero-stamp { left: -10px; }
+    .fc5 .method-grid { grid-template-columns: 1fr; }
+    .fc5 .method-card { border-right: none; border-bottom: 2px solid var(--rule); }
+    .fc5 .method-card:last-child { border-bottom: none; }
+    .fc5 .m-num { margin-bottom: 18px; }
+    .fc5 .spec-wrap,
+    .fc5 .feat-row,
+    .fc5 .feat-row.flip { grid-template-columns: 1fr; gap: 48px; }
+    .fc5 .feat-row.flip .feat-copy { order: 1; }
+    .fc5 .feat-row.flip .feat-device { order: 2; }
+    .fc5 .tpl-grid { grid-template-columns: 1fr; }
+    .fc5 .tpl { border-right: none !important; border-bottom: 2px solid var(--rule); }
+    .fc5 .tpl:last-child { border-bottom: none; }
+    .fc5 .tpl:nth-last-child(-n+3) { border-bottom: 2px solid var(--rule); }
+    .fc5 .topnav { display: none; }
+}
+
+@media (max-width: 540px) {
+    .fc5 .fc5-topbar { padding: 18px 22px; }
+    .fc5 .hero { padding: 56px 22px 56px; }
+    .fc5 .sec { padding: 64px 22px 56px; }
+    .fc5 .manifesto, .fc5 .download { padding-left: 22px; padding-right: 22px; }
+    .fc5 .device { max-width: 270px; }
+    .fc5 .hero-stamp strong { font-size: 40px; }
+}
+</style></head><body>
+<!-- FlexChallenge V5 - Editorial Poster Edition -->
+<!-- Paste into a GHL Custom HTML element (body). CSS goes in the page stylesheet, JS in footer code. -->
+<!-- IMAGES: upload dark_tasks.png, dark_calendar.png, dark_stats.png, dark_home.png, light_home.png -->
+<!-- to the GHL media library and replace each src="..." below with the hosted URL. -->
+<!-- APP STORE LINK: replace the hrefs marked TODO-APPSTORE once the listing is live. -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<div class="fc5">
+
+    <!-- Top bar -->
+    <header class="fc5-topbar">
+        <a class="brand" href="/">
+            <img class="brand-logo" src="https://storage.googleapis.com/msgsndr/4d3rWYEWOEeBlYLGRli8/media/694a30de79fc9681eeee174d.png" alt="FlexChallenge logo">
+            FLEXCHALLENGE<span class="brand-dot">.</span>
+        </a>
+        <nav class="topnav">
+            <a href="#method">Method</a>
+            <a href="#tracking">Tracking</a>
+            <a href="#templates">Templates</a>
+            <a href="#privacy">Privacy</a>
+        </nav>
+        <!-- TODO-APPSTORE -->
+        <a href="#download" class="btn-ink">Get the App</a>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-watermark" aria-hidden="true">75</div>
+
+        <div class="hero-grid">
+            <div class="hero-copy">
+                <div class="kicker"><span class="sq"></span>A CHALLENGE TRACKER — NOT A HABIT APP</div>
+                <h1>Goals need a<br><em>finish line.</em></h1>
+                <p class="lede">Habits drift. A challenge has a Day&nbsp;1, a final day, and nothing
+                    vague in between. Pick 30, 60, or 75 days — then show up until it's done.</p>
+
+                <div class="hero-cta">
+                    <!-- TODO-APPSTORE -->
+                    <a href="#download" class="btn-volt">
+                        <svg viewBox="0 0 384 512" width="15" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 46.9 78.1 79.9 78.1 28.3 0 39.6-21.6 68.3-21.6 27.8 0 40 21.3 68.3 21.6 30.6.3 58-30.8 77-59.5 7.1-10.7 15-26.6 20.7-40.4-56.5-7.7-93.5-44.1-93.9-84.2zM277.9 94.7C293.4 75.8 300 48.7 298.6 21 274.6 22 249.7 34 233.1 53.7c-13.8 16.4-23.8 41.5-21 68 28.5 2.1 55.7-9.5 65.8-27z"/></svg>
+                        Download on the App&nbsp;Store
+                    </a>
+                    <span class="cta-note">Free. No account. iOS 17+</span>
+                </div>
+            </div>
+
+            <div class="hero-device reveal">
+                <div class="device tilt-r">
+                    <img src="dark_tasks.png" alt="FlexChallenge daily task list, day 23 of 75">
+                </div>
+                <div class="hero-stamp" aria-hidden="true">
+                    <span>DAY</span><strong>23</strong><span>OF 75</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ticker -->
+    <div class="ticker" aria-hidden="true">
+        <div class="ticker-track">
+            <span>100% FREE</span><i>●</i><span>NO ACCOUNT</span><i>●</i><span>NO ADS</span><i>●</i><span>NO TRACKING</span><i>●</i><span>DATA STAYS ON YOUR DEVICE</span><i>●</i>
+            <span>100% FREE</span><i>●</i><span>NO ACCOUNT</span><i>●</i><span>NO ADS</span><i>●</i><span>NO TRACKING</span><i>●</i><span>DATA STAYS ON YOUR DEVICE</span><i>●</i>
+        </div>
+    </div>
+
+    <!-- Method -->
+    <section class="sec" id="method">
+        <div class="sec-head">
+            <div class="kicker"><span class="sq"></span>THE METHOD</div>
+            <div class="sec-index">01 / 05</div>
+        </div>
+        <h2 class="sec-title">Why challenges work<br>when streaks <em>don't.</em></h2>
+
+        <div class="method-grid">
+            <article class="method-card reveal">
+                <div class="m-num">№1</div>
+                <h3>Intentional action</h3>
+                <p>Every day is a conscious decision to show up. That builds discipline — not just a number on a screen you're afraid to break.</p>
+            </article>
+            <article class="method-card reveal">
+                <div class="m-num">№2</div>
+                <h3>A real end date</h3>
+                <p>30, 60, 75 days — you pick. A finish line makes the commitment concrete and the victory worth something.</p>
+            </article>
+            <article class="method-card reveal">
+                <div class="m-num">№3</div>
+                <h3>Finish, then stack</h3>
+                <p>Complete one challenge, start the next. Some actions become habits. Others evolve into harder challenges.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- Tracking spec sheet -->
+    <section class="sec sec-ruled" id="tracking">
+        <div class="sec-head">
+            <div class="kicker"><span class="sq"></span>ALL-IN-ONE TRACKING</div>
+            <div class="sec-index">02 / 05</div>
+        </div>
+        <h2 class="sec-title">Seven task types.<br><em>One</em> checklist.</h2>
+
+        <div class="spec-wrap">
+            <table class="spec-table reveal">
+                <tbody>
+                    <tr><td class="spec-i">✓</td><td class="spec-n">Standard</td><td class="spec-d">Simple yes / no daily tasks</td></tr>
+                    <tr><td class="spec-i">💧</td><td class="spec-n">Water</td><td class="spec-d">Ounces or glasses with visual progress</td></tr>
+                    <tr><td class="spec-i">№</td><td class="spec-n">Counter</td><td class="spec-d">Reps, pages, minutes, prospects</td></tr>
+                    <tr><td class="spec-i">👟</td><td class="spec-n">Steps</td><td class="spec-d">Auto-synced from Apple Health</td></tr>
+                    <tr><td class="spec-i">📷</td><td class="spec-n">Photo</td><td class="spec-d">Progress pictures, day by day</td></tr>
+                    <tr><td class="spec-i">🎥</td><td class="spec-n">Video</td><td class="spec-d">Form checks and milestones</td></tr>
+                    <tr><td class="spec-i">🎙</td><td class="spec-n">Audio</td><td class="spec-d">Voice notes and daily reflections</td></tr>
+                </tbody>
+            </table>
+
+            <div class="spec-device reveal">
+                <div class="device tilt-l">
+                    <img src="dark_home.png" alt="FlexChallenge dashboard with weekly streak and stats">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature: streaks -->
+    <section class="sec">
+        <div class="sec-head">
+            <div class="kicker"><span class="sq"></span>STREAKS</div>
+            <div class="sec-index">03 / 05</div>
+        </div>
+
+        <div class="feat-row">
+            <div class="feat-device reveal">
+                <div class="device tilt-r">
+                    <img src="dark_calendar.png" alt="Challenge calendar with completed days">
+                </div>
+                <div class="feat-watermark" aria-hidden="true">23</div>
+            </div>
+            <div class="feat-copy">
+                <h2 class="sec-title">Every day<br><em>counts.</em></h2>
+                <ul class="ruled-list">
+                    <li>Full-challenge calendar — every green square earned</li>
+                    <li>Tap any day to see its tasks, notes, photos and voice notes</li>
+                    <li>Custom day-end time, so a 1 a.m. workout still counts</li>
+                    <li>Strict or flexible mode — you set the stakes</li>
+                    <li>Home screen widget keeps today in sight</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature: analytics -->
+    <section class="sec sec-ruled">
+        <div class="sec-head">
+            <div class="kicker"><span class="sq"></span>ANALYTICS</div>
+            <div class="sec-index">04 / 05</div>
+        </div>
+
+        <div class="feat-row flip">
+            <div class="feat-copy">
+                <h2 class="sec-title">Proof you're<br><em>changing.</em></h2>
+                <ul class="ruled-list">
+                    <li>Completion rate, streaks and personal bests</li>
+                    <li>Trend charts across every challenge you run</li>
+                    <li>A media gallery of your whole journey — photos, videos, voice notes</li>
+                    <li>Back up and export everything. It's your data.</li>
+                </ul>
+            </div>
+            <div class="feat-device reveal">
+                <div class="device tilt-l">
+                    <img src="dark_stats.png" alt="Statistics screen, 97 percent completion">
+                </div>
+                <div class="feat-watermark" aria-hidden="true">97%</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Templates -->
+    <section class="sec" id="templates">
+        <div class="sec-head">
+            <div class="kicker"><span class="sq"></span>TEMPLATES</div>
+            <div class="sec-index">05 / 05</div>
+        </div>
+        <h2 class="sec-title">Start with a<br><em>proven plan.</em></h2>
+
+        <div class="tpl-grid">
+            <article class="tpl reveal tpl-featured">
+                <div class="tpl-tag">MOST POPULAR</div>
+                <h3>75 Days: Phase I</h3>
+                <p>The full mental-toughness format. Two workouts, a gallon of water, ten pages, a progress photo, strict diet.</p>
+                <div class="tpl-meta">75 DAYS — 7 TASKS</div>
+            </article>
+            <article class="tpl reveal">
+                <h3>75 Soft</h3>
+                <p>Sustainable consistency. One workout, 64 oz water, healthy meals.</p>
+                <div class="tpl-meta">75 DAYS — 5 TASKS</div>
+            </article>
+            <article class="tpl reveal">
+                <h3>Revenue Growth</h3>
+                <p>Ten prospects a day, content posted, metrics logged.</p>
+                <div class="tpl-meta">30 DAYS — 5 TASKS</div>
+            </article>
+            <article class="tpl reveal">
+                <h3>Mindful Living</h3>
+                <p>Meditation, gratitude, walking, no social media after 8 p.m.</p>
+                <div class="tpl-meta">30 DAYS — 4 TASKS</div>
+            </article>
+            <article class="tpl reveal">
+                <h3>Core 4 Balance</h3>
+                <p>Body, Being, Balance, Business — two tasks in each life area.</p>
+                <div class="tpl-meta">30 DAYS — 8 TASKS</div>
+            </article>
+            <article class="tpl reveal tpl-custom">
+                <h3>Custom</h3>
+                <p>Your tasks, your duration, your rules. Built from scratch in minutes.</p>
+                <div class="tpl-meta">ANY LENGTH — ANY TASKS</div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Privacy manifesto -->
+    <section class="manifesto" id="privacy">
+        <div class="kicker kicker-light"><span class="sq"></span>PRIVATE BY ARCHITECTURE</div>
+        <h2>We can't see your data.<br><em>We never built the servers.</em></h2>
+        <p>No accounts. No analytics. No third-party SDKs. Your challenges, photos and step
+            counts live on your iPhone — backed up only where you choose. Read the
+            <a href="/privacy">privacy policy</a>; it's refreshingly short.</p>
+    </section>
+
+    <!-- Download -->
+    <section class="download" id="download">
+        <div class="dl-watermark" aria-hidden="true">DAY 1</div>
+        <h2>Day 1 is<br><em>today.</em></h2>
+        <p class="dl-sub">Every feature, free. Pick a template and start before the excuse shows up.</p>
+        <!-- TODO-APPSTORE -->
+        <a href="#" class="btn-volt btn-big">
+            <svg viewBox="0 0 384 512" width="18" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 46.9 78.1 79.9 78.1 28.3 0 39.6-21.6 68.3-21.6 27.8 0 40 21.3 68.3 21.6 30.6.3 58-30.8 77-59.5 7.1-10.7 15-26.6 20.7-40.4-56.5-7.7-93.5-44.1-93.9-84.2zM277.9 94.7C293.4 75.8 300 48.7 298.6 21 274.6 22 249.7 34 233.1 53.7c-13.8 16.4-23.8 41.5-21 68 28.5 2.1 55.7-9.5 65.8-27z"/></svg>
+            Download on the App Store
+        </a>
+        <span class="cta-note">iPhone &amp; iPad — iOS 17 or later</span>
+    </section>
+
+    <!-- Footer -->
+    <footer class="fc5-footer">
+        <div class="foot-brand">
+            <img class="brand-logo" src="https://storage.googleapis.com/msgsndr/4d3rWYEWOEeBlYLGRli8/media/694a30de79fc9681eeee174d.png" alt="">
+            FLEXCHALLENGE<span class="brand-dot">.</span> <span class="cr">© 2026</span>
+        </div>
+        <nav class="foot-links">
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
+            <a href="/faq">FAQ</a>
+            <a href="mailto:support@flexchallenge.app">Support</a>
+        </nav>
+    </footer>
+
+</div>
+<script>
+// FlexChallenge V5 - Interactions (paste in GHL footer code)
+(function () {
+    function init() {
+        // Scroll reveal
+        var revealEls = document.querySelectorAll('.fc5 .reveal');
+        if ('IntersectionObserver' in window) {
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px 60px 0px' });
+            revealEls.forEach(function (el) { io.observe(el); });
+
+            // Failsafe
+            setTimeout(function () {
+                revealEls.forEach(function (el) { el.classList.add('in-view'); });
+            }, 1500);
+        } else {
+            revealEls.forEach(function (el) { el.classList.add('in-view'); });
+        }
+
+        // Smooth anchor scroll
+        document.querySelectorAll('.fc5 a[href^="#"]').forEach(function (anchor) {
+            anchor.addEventListener('click', function (e) {
+                var href = this.getAttribute('href');
+                if (!href || href === '#') return;
+                var target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    }
+
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        init();
+    } else {
+        document.addEventListener('DOMContentLoaded', init);
+    }
+})();
+</script>
+</body></html>

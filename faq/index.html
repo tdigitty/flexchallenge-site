@@ -1,0 +1,202 @@
+<!-- FlexChallenge — FAQ page -->
+<!-- Paste this entire block into a GHL Custom HTML element on the /faq page -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<div class="fc-legal">
+    <style>
+        .fc-legal {
+            --bg: #F2EFE7;
+            --surface: #FBF9F4;
+            --card: #FBF9F4;
+            --border: rgba(22, 21, 15, 0.25);
+            --text: #16150F;
+            --muted: #55524A;
+            --accent: #C2410C;
+            --grad: linear-gradient(#E8541D, #E8541D);
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            width: 100%;
+            min-height: 100vh;
+            padding: 0 0 80px;
+        }
+
+        .fc-legal * { box-sizing: border-box; }
+        .fc-legal a { color: var(--accent); text-decoration: none; }
+        .fc-legal a:hover { text-decoration: underline; }
+
+        .fc-legal .legal-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 28px 24px 0;
+        }
+
+        .fc-legal .legal-nav .brand {
+            font-weight: 700;
+            font-size: 17px;
+            color: var(--text);
+            letter-spacing: -0.02em;
+        }
+
+        .fc-legal .legal-nav .nav-links { display: flex; gap: 20px; font-size: 14px; }
+        .fc-legal .legal-nav .nav-links a { color: var(--muted); }
+        .fc-legal .legal-nav .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+        .fc-legal .legal-wrap {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 56px 24px 0;
+        }
+
+        .fc-legal .eyebrow {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            background: var(--grad);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 12px;
+        }
+
+        .fc-legal h1 {
+            font-size: clamp(32px, 5vw, 44px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin: 0 0 36px;
+        }
+
+        .fc-legal .faq-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px 28px;
+            margin-bottom: 16px;
+            border-width: 2px;
+        }
+
+        .fc-legal .faq-item h2 {
+            font-size: 19px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin: 0 0 10px;
+        }
+
+        .fc-legal p, .fc-legal li { color: #3E3B33; font-size: 16px; }
+        .fc-legal .faq-item p:last-child { margin-bottom: 0; }
+        .fc-legal ul { padding-left: 22px; margin: 12px 0; }
+        .fc-legal li { margin-bottom: 8px; }
+        .fc-legal strong { color: var(--text); }
+
+        .fc-legal .legal-footer {
+            max-width: 760px;
+            margin: 64px auto 0;
+            padding: 28px 24px 0;
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px 24px;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .fc-legal .legal-footer a { color: var(--muted); }
+        .fc-legal .legal-footer a:hover { color: var(--text); }
+
+        @media (max-width: 540px) {
+            .fc-legal .legal-nav { flex-direction: column; gap: 12px; }
+        }
+    </style>
+
+    <nav class="legal-nav">
+        <a href="/" class="brand">FlexChallenge</a>
+        <div class="nav-links">
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
+            <a href="/faq">FAQ</a>
+        </div>
+    </nav>
+
+    <div class="legal-wrap">
+        <span class="eyebrow">Support</span>
+        <h1>Frequently Asked Questions</h1>
+
+        <div class="faq-item">
+            <h2>Is FlexChallenge free?</h2>
+            <p>Yes. FlexChallenge is currently free with full access to every feature — no purchases, no paywalls, no ads. If we add optional subscriptions in the future, we'll say so clearly in the app before anything changes.</p>
+        </div>
+
+        <div class="faq-item">
+            <h2>Where is my data stored?</h2>
+            <p>Entirely on your device. Challenges, tasks, photos, videos, voice notes, and step data are all stored locally using Apple's on-device storage. Nothing is uploaded to any server — we don't have servers. There's no cloud sync, no analytics, and no tracking. See our <a href="/privacy">Privacy Policy</a> for the full details.</p>
+        </div>
+
+        <div class="faq-item">
+            <h2>Do I need an account?</h2>
+            <p>No. There's no sign-up, no login, and no account. Download the app and start your first challenge immediately.</p>
+        </div>
+
+        <div class="faq-item">
+            <h2>How do I back up or restore my data?</h2>
+            <p><strong>Back up:</strong> In the app's settings, use the backup/export feature. It creates a JSON file containing your data, which you can save anywhere you like — Files, iCloud Drive, AirDrop to another device, etc.</p>
+            <p><strong>Restore:</strong> Use the restore/import feature and select a backup file you previously saved.</p>
+            <p>Tip: Export a backup before deleting the app or moving to a new device — since your data lives only on your device, we can't recover it for you.</p>
+        </div>
+
+        <div class="faq-item">
+            <h2>How does step tracking work?</h2>
+            <p>When you create a step-based task, FlexChallenge asks for permission to read your step count from Apple Health (and/or your device's built-in pedometer). It reads <strong>steps only</strong> — nothing else — and uses them solely to track progress on your step tasks. Step data never leaves your device. You can revoke access at any time in the Health app or iOS Settings.</p>
+        </div>
+
+        <div class="faq-item">
+            <h2>What is the day-end time, and how do day transitions work?</h2>
+            <p>Each challenge has a configurable day-end time — the moment your "day" rolls over to the next one. Midnight is the default, but night owls can set it later so a 1 a.m. workout still counts for "today."</p>
+            <p>When the day rolls over:</p>
+            <ul>
+                <li>Completed days advance your streak and your challenge progress.</li>
+                <li>Counters (like water intake) reset for the new day.</li>
+                <li>If you're running a <strong>strict-mode</strong> challenge and missed tasks on the previous day, the app prompts you with a choice: <strong>restart</strong> the challenge from day one, or <strong>continue</strong> where you left off.</li>
+            </ul>
+        </div>
+
+        <div class="faq-item">
+            <h2>Why does my widget show old data?</h2>
+            <p>iOS refreshes widgets on its own schedule — roughly every 15 minutes, and sometimes less often to save battery. If your widget looks behind, just open the app; that forces an immediate refresh.</p>
+        </div>
+
+        <div class="faq-item">
+            <h2>How do I delete my data?</h2>
+            <p>Two options:</p>
+            <ul>
+                <li><strong>Delete a single challenge</strong> inside the app — that removes the challenge and all its data.</li>
+                <li><strong>Delete the app</strong> from your device — that removes everything FlexChallenge ever stored.</li>
+            </ul>
+            <p>Because we never receive your data, there's nothing to delete on our end. (Any backup files you exported yourself remain wherever you saved them, under your control.)</p>
+        </div>
+
+        <div class="faq-item">
+            <h2>How do I contact support?</h2>
+            <p>Email us at <a href="mailto:support@flexchallenge.app">support@flexchallenge.app</a>. We read everything and we'll get back to you as quickly as we can.</p>
+        </div>
+    </div>
+
+    <footer class="legal-footer">
+        <span>© 2026 FlexChallenge</span>
+        <span>
+            <a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp;
+            <a href="/terms">Terms of Service</a> &nbsp;·&nbsp;
+            <a href="/faq">FAQ</a>
+        </span>
+    </footer>
+</div>

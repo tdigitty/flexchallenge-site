@@ -1,0 +1,223 @@
+<!-- FlexChallenge — Privacy Policy page -->
+<!-- Paste this entire block into a GHL Custom HTML element on the /privacy page -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<div class="fc-legal">
+    <style>
+        .fc-legal {
+            --bg: #F2EFE7;
+            --surface: #FBF9F4;
+            --card: #FBF9F4;
+            --border: rgba(22, 21, 15, 0.25);
+            --text: #16150F;
+            --muted: #55524A;
+            --accent: #C2410C;
+            --grad: linear-gradient(#E8541D, #E8541D);
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            width: 100%;
+            min-height: 100vh;
+            padding: 0 0 80px;
+        }
+
+        .fc-legal * { box-sizing: border-box; }
+        .fc-legal a { color: var(--accent); text-decoration: none; }
+        .fc-legal a:hover { text-decoration: underline; }
+
+        .fc-legal .legal-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 28px 24px 0;
+        }
+
+        .fc-legal .legal-nav .brand {
+            font-weight: 700;
+            font-size: 17px;
+            color: var(--text);
+            letter-spacing: -0.02em;
+        }
+
+        .fc-legal .legal-nav .nav-links { display: flex; gap: 20px; font-size: 14px; }
+        .fc-legal .legal-nav .nav-links a { color: var(--muted); }
+        .fc-legal .legal-nav .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+        .fc-legal .legal-wrap {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 56px 24px 0;
+        }
+
+        .fc-legal .eyebrow {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            background: var(--grad);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 12px;
+        }
+
+        .fc-legal h1 {
+            font-size: clamp(32px, 5vw, 44px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin: 0 0 8px;
+        }
+
+        .fc-legal .effective { color: var(--muted); font-size: 14px; margin-bottom: 36px; }
+
+        .fc-legal .tldr {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px 28px;
+            margin-bottom: 40px;
+            border-width: 2px;
+        }
+
+        .fc-legal .tldr h2 { margin-top: 0; }
+
+        .fc-legal h2 {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin: 44px 0 12px;
+        }
+
+        .fc-legal p, .fc-legal li { color: #3E3B33; font-size: 16px; }
+        .fc-legal ul { padding-left: 22px; margin: 12px 0; }
+        .fc-legal li { margin-bottom: 8px; }
+        .fc-legal strong { color: var(--text); }
+
+        .fc-legal .legal-footer {
+            max-width: 760px;
+            margin: 64px auto 0;
+            padding: 28px 24px 0;
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px 24px;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .fc-legal .legal-footer a { color: var(--muted); }
+        .fc-legal .legal-footer a:hover { color: var(--text); }
+
+        @media (max-width: 540px) {
+            .fc-legal .legal-nav { flex-direction: column; gap: 12px; }
+        }
+    </style>
+
+    <nav class="legal-nav">
+        <a href="/" class="brand">FlexChallenge</a>
+        <div class="nav-links">
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
+            <a href="/faq">FAQ</a>
+        </div>
+    </nav>
+
+    <div class="legal-wrap">
+        <span class="eyebrow">Legal</span>
+        <h1>Privacy Policy</h1>
+        <p class="effective">Effective date: June 11, 2026</p>
+
+        <div class="tldr">
+            <h2>The Short Version</h2>
+            <p><strong>Your data never leaves your device.</strong> FlexChallenge stores everything — your challenges, tasks, photos, videos, voice notes, and step data — locally on your iPhone or iPad. There are no accounts, no servers, no cloud sync, no analytics, no ads, and no tracking. We can't see your data, and we never will.</p>
+            <p>The rest of this policy explains exactly what that means.</p>
+        </div>
+
+        <h2>Data We Collect</h2>
+        <p><strong>None.</strong> FlexChallenge does not transmit any personal data to us or to anyone else.</p>
+        <ul>
+            <li>No account or sign-up is required, so we never collect your name, email, or any identifier.</li>
+            <li>The app contains no analytics tools, no third-party SDKs, no advertising frameworks, and no tracking of any kind. It is built using only Apple's own frameworks.</li>
+            <li>We do not sell, share, rent, or trade data — there is nothing to sell or share, because nothing is ever sent to us.</li>
+        </ul>
+
+        <h2>Data Stored On Your Device</h2>
+        <p>FlexChallenge keeps the following information locally on your device, using Apple's SwiftData storage:</p>
+        <ul>
+            <li>Your challenges, daily tasks, and completion history</li>
+            <li>Progress photos, videos, and voice notes you create in the app</li>
+            <li>Daily notes you write</li>
+            <li>Step counts (if you enable step tracking)</li>
+            <li>App settings and preferences</li>
+        </ul>
+        <p>This data stays on your device. It is included in your device's encrypted backups (iCloud or computer backups) according to your own iOS backup settings — that's between you and Apple, and we have no access to it.</p>
+
+        <h2>HealthKit</h2>
+        <p>If you create a step-based task, FlexChallenge will ask your permission to read your step count from Apple Health.</p>
+        <p>Here is our explicit commitment regarding HealthKit data:</p>
+        <ul>
+            <li>We read <strong>step count only</strong> — nothing else from Apple Health.</li>
+            <li>Access happens <strong>only with your explicit permission</strong>, which you can revoke at any time in the Health app or iOS Settings.</li>
+            <li>Step data is used <strong>solely</strong> to track your progress on step-based tasks within the app.</li>
+            <li>HealthKit data is <strong>never transmitted off your device</strong>, never stored on any server, and never shared with us or any third party.</li>
+            <li>HealthKit data is <strong>never used for advertising, marketing, or data mining</strong>, and is never sold or disclosed to data brokers, advertisers, or anyone else.</li>
+            <li>FlexChallenge does not write any data to Apple Health.</li>
+        </ul>
+
+        <h2>Motion &amp; Fitness (Pedometer)</h2>
+        <p>With your permission, FlexChallenge may also use your device's built-in pedometer (Apple's Core Motion framework) to count steps. Like HealthKit data, this is processed entirely on your device, used only for step-based task tracking, and never transmitted anywhere.</p>
+
+        <h2>Camera, Microphone, and Photo Library</h2>
+        <p>FlexChallenge asks for camera, microphone, or photo library access only when you use a feature that needs it:</p>
+        <ul>
+            <li><strong>Camera</strong> — to take progress photos and videos</li>
+            <li><strong>Microphone</strong> — to record voice notes</li>
+            <li><strong>Photo library</strong> — to attach existing photos or, if you turn it on, to auto-save your progress photos to your own Photo Library</li>
+        </ul>
+        <p>Everything you capture is stored locally in the app. You can optionally save media to your own Photo Library or export it to the Files app — both are entirely your choice and put the data wherever you decide. Nothing is uploaded anywhere by us.</p>
+
+        <h2>Notifications</h2>
+        <p>FlexChallenge can send you local reminders — like task reminders and day-end reminders. These are scheduled entirely on your device using Apple's local notification system. There are no push notification servers and no remote messaging.</p>
+
+        <h2>Widget and App Group</h2>
+        <p>The FlexChallenge home screen widget displays your challenge progress. To do this, the app and widget share data through an Apple "App Group" container — a private storage area on your device that only FlexChallenge and its widget can access. This sharing happens entirely on-device.</p>
+
+        <h2>Backups and Exports</h2>
+        <p>You can create a backup of your data at any time. Backups are JSON files generated on your device that <strong>you</strong> choose where to save — Files, iCloud Drive, AirDrop, wherever you like. We never receive a copy. Restoring is the same in reverse: you pick a backup file and import it. Both actions only happen when you initiate them.</p>
+
+        <h2>Data Retention and Deletion</h2>
+        <p>You are in full control:</p>
+        <ul>
+            <li><strong>Delete a challenge</strong> in the app to remove that challenge and its data.</li>
+            <li><strong>Delete the app</strong> to remove everything FlexChallenge stored on your device.</li>
+        </ul>
+        <p>Because we hold no copies of your data, there is nothing for us to retain or delete on our end. (Backup files you exported yourself remain wherever you saved them, under your control.)</p>
+
+        <h2>Children</h2>
+        <p>FlexChallenge is not directed at children under 13. That said, because the app collects no data from anyone, no personal information is ever collected from children — or from anyone else.</p>
+
+        <h2>Changes to This Policy</h2>
+        <p>If we ever change how FlexChallenge handles data — for example, if a future feature involves any data leaving your device — we will update this policy and update the effective date at the top. Material changes will be clearly communicated in the app or in App Store release notes before they take effect.</p>
+
+        <h2>Contact</h2>
+        <p>Questions about privacy? Email us at <a href="mailto:support@flexchallenge.app">support@flexchallenge.app</a>. We're happy to explain anything in this policy.</p>
+    </div>
+
+    <footer class="legal-footer">
+        <span>© 2026 FlexChallenge</span>
+        <span>
+            <a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp;
+            <a href="/terms">Terms of Service</a> &nbsp;·&nbsp;
+            <a href="/faq">FAQ</a>
+        </span>
+    </footer>
+</div>
