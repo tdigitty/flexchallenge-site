@@ -1,135 +1,193 @@
-<!-- FlexChallenge — FAQ page -->
-<!-- Paste this entire block into a GHL Custom HTML element on the /faq page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FAQ — FlexChallenge</title>
+<meta name="description" content="Answers about FlexChallenge: pricing, where your data lives, backups, step tracking and support.">
+<meta name="theme-color" content="#0B0B09">
+<link rel="canonical" href="https://flexchallenge.app/faq">
+<meta property="og:title" content="FAQ — FlexChallenge">
+<meta property="og:description" content="Answers about FlexChallenge: pricing, where your data lives, backups, step tracking and support.">
+<meta property="og:url" content="https://flexchallenge.app/faq">
+<meta property="og:type" content="website">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face {
+    font-family: 'Archivo';
+    src: url('/fonts/archivo.woff2') format('woff2-variations'),
+         url('/fonts/archivo.woff2') format('woff2');
+    font-weight: 100 900; font-style: normal; font-display: swap;
+}
+@font-face { font-family: 'IBM Plex Mono'; src: url('/fonts/plexmono-400.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'IBM Plex Mono'; src: url('/fonts/plexmono-500.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'IBM Plex Mono'; src: url('/fonts/plexmono-600.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+</style>
+<style>
+:root {
+    --paper: #F4F1E9;
+    --paper-2: #EAE5D8;
+    --ink: #0B0B09;
+    --blue: #1178DE;
+    --volt: #C8F222;
+    --on-paper: #0B0B09;
+    --on-paper-soft: #56534A;
+    --on-ink: #F4F1E9;
+    --on-ink-soft: rgba(244, 241, 233, 0.62);
+    --rule: rgba(11, 11, 9, 0.16);
+    --rule-ink: rgba(244, 241, 233, 0.16);
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --gut: clamp(20px, 4vw, 40px);
+    --display: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--on-paper);
+    font-family: var(--display);
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+a { color: var(--blue); text-decoration: none; border-bottom: 1px solid rgba(17,120,222,.35); transition: border-color .25s var(--ease); }
+a:hover { border-bottom-color: var(--blue); }
+::selection { background: var(--volt); color: var(--ink); }
 
-<div class="fc-legal">
-    <style>
-        .fc-legal {
-            --bg: #F2EFE7;
-            --surface: #FBF9F4;
-            --card: #FBF9F4;
-            --border: rgba(22, 21, 15, 0.25);
-            --text: #16150F;
-            --muted: #55524A;
-            --accent: #C2410C;
-            --grad: linear-gradient(#E8541D, #E8541D);
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
-            width: 100%;
-            min-height: 100vh;
-            padding: 0 0 80px;
-        }
+/* ---------- nav ---------- */
+.lg-nav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 18px;
+    padding: 14px var(--gut);
+    background: rgba(11,11,9,.9);
+    backdrop-filter: saturate(180%) blur(16px);
+    -webkit-backdrop-filter: saturate(180%) blur(16px);
+    border-bottom: 1px solid var(--rule-ink);
+}
+.lg-nav .brand {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-weight: 900; font-size: 15px; letter-spacing: -0.01em;
+    text-transform: uppercase; color: var(--on-ink); border: 0;
+}
+.lg-nav .brand img { width: 26px; height: 26px; border-radius: 6px; display: block; }
+.lg-nav .brand span { color: var(--volt); }
+.lg-nav .links { display: flex; gap: 22px; }
+.lg-nav .links a {
+    font-family: var(--mono); font-size: 11.5px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--on-ink-soft); border: 0;
+}
+.lg-nav .links a:hover, .lg-nav .links a[aria-current] { color: var(--volt); }
 
-        .fc-legal * { box-sizing: border-box; }
-        .fc-legal a { color: var(--accent); text-decoration: none; }
-        .fc-legal a:hover { text-decoration: underline; }
+/* ---------- page ---------- */
+.lg-wrap { max-width: 760px; margin: 0 auto; padding: clamp(46px, 8vh, 80px) var(--gut) 0; }
 
-        .fc-legal .legal-nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            max-width: 760px;
-            margin: 0 auto;
-            padding: 28px 24px 0;
-        }
+.lg-eyebrow {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--mono); font-size: 11.5px; font-weight: 600;
+    letter-spacing: 0.24em; text-transform: uppercase; color: var(--on-paper-soft);
+}
+.lg-eyebrow::before { content: ""; width: 9px; height: 9px; background: var(--blue); }
 
-        .fc-legal .legal-nav .brand {
-            font-weight: 700;
-            font-size: 17px;
-            color: var(--text);
-            letter-spacing: -0.02em;
-        }
+h1 {
+    font-size: clamp(34px, 5.6vw, 56px);
+    font-weight: 900; letter-spacing: -0.04em; line-height: 1.02;
+    margin: 16px 0 10px; text-wrap: balance;
+}
+.lg-date {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--on-paper-soft);
+    padding-bottom: 26px; border-bottom: 1px solid var(--rule); margin-bottom: 34px;
+}
 
-        .fc-legal .legal-nav .nav-links { display: flex; gap: 20px; font-size: 14px; }
-        .fc-legal .legal-nav .nav-links a { color: var(--muted); }
-        .fc-legal .legal-nav .nav-links a:hover { color: var(--text); text-decoration: none; }
+h2 {
+    font-size: clamp(20px, 2.2vw, 25px);
+    font-weight: 800; letter-spacing: -0.025em; line-height: 1.2;
+    margin: 42px 0 12px;
+}
+h3 { font-size: 18px; font-weight: 800; letter-spacing: -0.02em; margin: 28px 0 8px; }
+p, li { color: #34322C; }
+p { margin: 0 0 16px; }
+ul, ol { margin: 0 0 18px; padding-left: 22px; }
+li { margin-bottom: 8px; }
+strong { font-weight: 700; color: var(--on-paper); }
 
-        .fc-legal .legal-wrap {
-            max-width: 760px;
-            margin: 0 auto;
-            padding: 56px 24px 0;
-        }
+/* callout / short-version block */
+.lg-callout {
+    background: var(--paper-2);
+    border-left: 3px solid var(--blue);
+    padding: 24px 26px;
+    margin: 0 0 34px;
+}
+.lg-callout h2 { margin-top: 0; font-size: 19px; }
+.lg-callout p:last-child { margin-bottom: 0; }
 
-        .fc-legal .eyebrow {
-            display: inline-block;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            background: var(--grad);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 12px;
-        }
+/* FAQ items */
+.faq-item {
+    border-top: 1px solid var(--rule);
+    padding: 24px 0;
+}
+.faq-item:last-of-type { border-bottom: 1px solid var(--rule); }
+.faq-item h2 { margin: 0 0 10px; font-size: 19px; letter-spacing: -0.02em; }
+.faq-item p:last-child { margin-bottom: 0; }
 
-        .fc-legal h1 {
-            font-size: clamp(32px, 5vw, 44px);
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
-            margin: 0 0 36px;
-        }
+/* ---------- footer ---------- */
+.lg-foot {
+    margin-top: clamp(56px, 9vh, 96px);
+    background: var(--ink);
+    color: var(--on-ink-soft);
+    padding: 26px var(--gut);
+}
+.lg-foot-in {
+    max-width: 760px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
+}
+.lg-foot .cr { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; }
+.lg-foot nav { display: flex; gap: 20px; flex-wrap: wrap; }
+.lg-foot a {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--on-ink-soft); border: 0;
+}
+.lg-foot a:hover { color: var(--volt); }
 
-        .fc-legal .faq-item {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 24px 28px;
-            margin-bottom: 16px;
-            border-width: 2px;
-        }
+.lg-back {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--on-paper-soft);
+    border: 0; margin-top: 44px;
+}
+.lg-back:hover { color: var(--blue); }
 
-        .fc-legal .faq-item h2 {
-            font-size: 19px;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin: 0 0 10px;
-        }
+@media (max-width: 560px) {
+    .lg-nav .links { gap: 14px; }
+    .lg-nav .links a { font-size: 10.5px; letter-spacing: 0.1em; }
+    .lg-foot-in { flex-direction: column; align-items: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
 
-        .fc-legal p, .fc-legal li { color: #3E3B33; font-size: 16px; }
-        .fc-legal .faq-item p:last-child { margin-bottom: 0; }
-        .fc-legal ul { padding-left: 22px; margin: 12px 0; }
-        .fc-legal li { margin-bottom: 8px; }
-        .fc-legal strong { color: var(--text); }
-
-        .fc-legal .legal-footer {
-            max-width: 760px;
-            margin: 64px auto 0;
-            padding: 28px 24px 0;
-            border-top: 1px solid var(--border);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px 24px;
-            justify-content: space-between;
-            font-size: 14px;
-            color: var(--muted);
-        }
-
-        .fc-legal .legal-footer a { color: var(--muted); }
-        .fc-legal .legal-footer a:hover { color: var(--text); }
-
-        @media (max-width: 540px) {
-            .fc-legal .legal-nav { flex-direction: column; gap: 12px; }
-        }
-    </style>
-
-    <nav class="legal-nav">
-        <a href="/" class="brand">FlexChallenge</a>
-        <div class="nav-links">
-            <a href="/privacy">Privacy</a>
-            <a href="/terms">Terms</a>
-            <a href="/faq">FAQ</a>
-        </div>
+<header class="lg-nav">
+    <a class="brand" href="/">
+        <img src="https://storage.googleapis.com/msgsndr/4d3rWYEWOEeBlYLGRli8/media/694a30de79fc9681eeee174d.png" alt="" width="26" height="26">
+        FlexChallenge<span>.</span>
+    </a>
+    <nav class="links" aria-label="Legal">
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="/faq" aria-current="page">FAQ</a>
     </nav>
+</header>
 
-    <div class="legal-wrap">
-        <span class="eyebrow">Support</span>
+<main class="lg-wrap">
+<span class="lg-eyebrow">Support</span>
         <h1>Frequently Asked Questions</h1>
 
         <div class="faq-item">
@@ -189,14 +247,20 @@
             <h2>How do I contact support?</h2>
             <p>Email us at <a href="mailto:support@flexchallenge.app">support@flexchallenge.app</a>. We read everything and we'll get back to you as quickly as we can.</p>
         </div>
-    </div>
+<a class="lg-back" href="/">&larr; Back to FlexChallenge</a>
+</main>
 
-    <footer class="legal-footer">
-        <span>© 2026 FlexChallenge</span>
-        <span>
-            <a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp;
-            <a href="/terms">Terms of Service</a> &nbsp;·&nbsp;
+<footer class="lg-foot">
+    <div class="lg-foot-in">
+        <span class="cr">&copy; 2026 FlexChallenge</span>
+        <nav aria-label="Footer">
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
             <a href="/faq">FAQ</a>
-        </span>
-    </footer>
-</div>
+            <a href="mailto:support@flexchallenge.app">Support</a>
+        </nav>
+    </div>
+</footer>
+
+</body>
+</html>

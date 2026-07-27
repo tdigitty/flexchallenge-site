@@ -1,863 +1,3171 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0}</style><style>
-/* FlexChallenge V5 - Editorial Poster Edition */
-/* Cream paper, ink type, logo-blue accent, volt buttons. Archivo Black + IBM Plex Mono. */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FlexChallenge — Do what you said you'd do.</title>
+<meta name="description" content="A challenge tracker for iPhone. Pick 30, 60 or 75 days, set your terms, and keep the record. Free, no account, and your data never leaves your phone.">
+<meta name="theme-color" content="#0B0B09">
+<link rel="canonical" href="https://flexchallenge.app/">
 
-.fc5 {
-    --paper: #F2EFE7;
-    --paper-deep: #E9E4D7;
-    --ink: #16150F;
-    --ink-soft: #4A4840;
-    --blue: #0A72CD;
-    --blue-soft: #5FB0F2;
-    --volt: #C8F222;
-    --rule: rgba(22, 21, 15, 0.85);
-    --rule-soft: rgba(22, 21, 15, 0.18);
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://flexchallenge.app/">
+<meta property="og:title" content="FlexChallenge — Do what you said you'd do.">
+<meta property="og:description" content="A challenge tracker for iPhone. Pick your days, set your terms, keep the record. Free. No account. Nothing leaves your phone.">
+<meta property="og:image" content="https://flexchallenge.app/dark_home.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FlexChallenge — Do what you said you'd do.">
+<meta name="twitter:description" content="A challenge tracker for iPhone. Pick your days, set your terms, keep the record.">
+<meta name="twitter:image" content="https://flexchallenge.app/dark_home.png">
 
-    background: var(--paper);
-    color: var(--ink);
-    font-family: 'Archivo', 'Helvetica Neue', sans-serif;
+<!-- Fonts are self-hosted. No third-party request, nothing for anyone to log. -->
+<link rel="preload" href="/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/plexmono-600.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face {
+    font-family: 'Archivo';
+    src: url('/fonts/archivo.woff2') format('woff2-variations'),
+         url('/fonts/archivo.woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face { font-family: 'IBM Plex Mono'; src: url('/fonts/plexmono-400.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'IBM Plex Mono'; src: url('/fonts/plexmono-500.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'IBM Plex Mono'; src: url('/fonts/plexmono-600.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "FlexChallenge",
+  "applicationCategory": "HealthApplication",
+  "operatingSystem": "iOS 17+",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "A challenge tracker for iPhone. Pick 30, 60 or 75 days, set your terms, and keep the record. No account, no ads, no tracking."
+}
+</script>
+
+<style>
+/* ============================================================
+   FlexChallenge — v6
+   Editorial / product. Cream paper, ink black, volt accent.
+   ============================================================ */
+
+:root {
+    --paper:      #F4F1E9;
+    --paper-2:    #EAE5D8;
+    --paper-3:    #DED8C7;
+    --ink:        #0B0B09;
+    --ink-2:      #15150F;
+    --ink-3:      #23231A;
+    --blue:       #1178DE;
+    --blue-lit:   #4FA6F5;
+    --volt:       #C8F222;
+    --green:      #30D158;
+    --orange:     #FF9F0A;
+    --purple:     #5E5CE6;
+
+    --on-paper:      #0B0B09;
+    --on-paper-soft: #56534A;
+    --on-ink:        #F4F1E9;
+    --on-ink-soft:   rgba(244, 241, 233, 0.62);
+
+    --rule-paper: rgba(11, 11, 9, 0.16);
+    --rule-ink:   rgba(244, 241, 233, 0.16);
+
+    --ease:     cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-io:  cubic-bezier(0.65, 0, 0.35, 1);
+
+    --gut: clamp(20px, 4vw, 56px);
+    --maxw: 1340px;
+
+    --display: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--on-paper);
+    font-family: var(--display);
     font-size: 17px;
     line-height: 1.6;
-    width: 100%;
-    overflow-x: hidden;
-    position: relative;
+    overflow-x: clip;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-synthesis-weight: none;
 }
 
-/* paper grain */
-.fc5::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.5;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
-}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
 
-.fc5 * { box-sizing: border-box; }
-.fc5 a { color: inherit; text-decoration: none; }
-.fc5 img { max-width: 100%; display: block; }
-.fc5 h1, .fc5 h2, .fc5 h3 {
-    font-family: 'Archivo Black', 'Archivo', sans-serif;
-    font-weight: 400;
+h1, h2, h3, h4 {
+    font-weight: 900;
+    letter-spacing: -0.038em;
+    line-height: 0.96;
     margin: 0;
-}
-.fc5 em { font-style: normal; color: var(--blue); }
-
-/* ---------- shared atoms ---------- */
-
-.fc5 .kicker {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-}
-.fc5 .kicker .sq { width: 12px; height: 12px; background: var(--blue); flex: none; }
-.fc5 .kicker-light { color: var(--paper); justify-content: center; }
-.fc5 .kicker-light .sq { background: var(--volt); }
-
-.fc5 .sec-index {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
+    text-wrap: balance;
 }
 
-.fc5 .btn-ink,
-.fc5 .btn-volt {
+::selection { background: var(--volt); color: var(--ink); }
+
+.sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---------- fields ---------- */
+
+.field { position: relative; }
+.field-paper { background: var(--paper); color: var(--on-paper); }
+.field-ink   { background: var(--ink);   color: var(--on-ink); }
+
+.field-ink h1, .field-ink h2, .field-ink h3 { color: var(--on-ink); }
+
+.wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding-left: var(--gut);
+    padding-right: var(--gut);
+    position: relative;
+    z-index: 2;
+}
+
+/* Paper grain. Applied only to cream fields — a global overlay would
+   lift the blacks on every ink section and grey out the phone screens. */
+.grain { display: none; }
+.field-paper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- type atoms ---------- */
+
+.kicker {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 14px 26px;
-    border: 2px solid var(--ink);
-    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
-}
-.fc5 .btn-ink { background: var(--ink); color: var(--paper); }
-.fc5 .btn-ink:hover { background: var(--blue); border-color: var(--blue); color: #fff; }
-.fc5 .btn-volt {
-    background: var(--volt);
-    border-color: var(--ink);
-    color: var(--ink);
-    box-shadow: 6px 6px 0 var(--ink);
-}
-.fc5 .btn-volt:hover { transform: translate(-2px, -2px); box-shadow: 9px 9px 0 var(--ink); }
-.fc5 .btn-volt:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
-.fc5 .btn-big { font-size: 17px; padding: 20px 38px; }
-
-.fc5 .cta-note {
-    display: block;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--mono);
     font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    line-height: 1;
+}
+.kicker::before {
+    content: "";
+    width: 9px; height: 9px;
+    background: var(--blue);
+    flex: none;
+}
+.field-ink .kicker::before { background: var(--volt); }
+.field-ink .kicker { color: var(--on-ink-soft); }
+
+.mono {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.h-xl { font-size: clamp(46px, 8.4vw, 118px); }
+.h-lg { font-size: clamp(38px, 5.6vw, 78px); }
+.h-md { font-size: clamp(30px, 3.6vw, 50px); }
+.h-sm { font-size: clamp(21px, 2vw, 27px); letter-spacing: -0.025em; line-height: 1.1; }
+
+.lede {
+    font-size: clamp(17px, 1.35vw, 21px);
+    line-height: 1.55;
+    color: var(--on-paper-soft);
+    max-width: 52ch;
+    margin: 0;
+}
+.field-ink .lede { color: var(--on-ink-soft); }
+
+em { font-style: normal; color: var(--blue); }
+.field-ink em { color: var(--volt); }
+
+/* ---------- section head ---------- */
+
+.sec-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule-paper);
+    margin-bottom: clamp(32px, 4vw, 56px);
+}
+.field-ink .sec-head { border-color: var(--rule-ink); }
+.sec-head .idx {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    opacity: 0.5;
+    flex: none;
+}
+
+/* ---------- buttons ---------- */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 15px 26px;
+    border: 1.5px solid transparent;
+    border-radius: 2px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: transform 0.28s var(--ease), box-shadow 0.28s var(--ease),
+                background 0.28s var(--ease), color 0.28s var(--ease),
+                border-color 0.28s var(--ease);
+}
+.btn svg { flex: none; }
+
+.btn-volt {
+    background: var(--volt);
+    color: var(--ink);
+    border-color: var(--volt);
+    box-shadow: 0 0 0 rgba(200, 242, 34, 0);
+}
+.btn-volt:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 34px rgba(200, 242, 34, 0.34);
+}
+.btn-volt:active { transform: translateY(0); }
+
+.btn-ghost-ink {
+    background: transparent;
+    color: var(--on-ink);
+    border-color: rgba(244, 241, 233, 0.3);
+}
+.btn-ghost-ink:hover { border-color: var(--on-ink); background: rgba(244,241,233,0.06); }
+
+.btn-ink {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+}
+.btn-ink:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(11,11,9,0.28); }
+
+.btn-lg { font-size: 15px; padding: 20px 36px; }
+
+.cta-note {
+    font-family: var(--mono);
+    font-size: 11.5px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--ink-soft);
-    margin-top: 14px;
+    color: var(--on-paper-soft);
 }
+.field-ink .cta-note { color: var(--on-ink-soft); }
 
-/* device frames */
-.fc5 .device {
-    background: #1d1d20;
-    border-radius: 56px;
-    padding: 12px;
-    box-shadow: 18px 18px 0 rgba(22, 21, 15, 0.9);
-    max-width: 340px;
+/* ============================================================
+   NAV
+   ============================================================ */
+
+.nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 900;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 16px var(--gut);
+    color: var(--on-ink);
+    transition: background 0.4s var(--ease), backdrop-filter 0.4s var(--ease),
+                border-color 0.4s var(--ease), padding 0.4s var(--ease),
+                color 0.4s var(--ease);
+    border-bottom: 1px solid transparent;
 }
-.fc5 .device img { border-radius: 46px; }
-.fc5 .tilt-r { transform: rotate(3deg); }
-.fc5 .tilt-l { transform: rotate(-3deg); }
+.nav.stuck {
+    background: rgba(11, 11, 9, 0.74);
+    backdrop-filter: saturate(180%) blur(18px);
+    -webkit-backdrop-filter: saturate(180%) blur(18px);
+    border-bottom-color: var(--rule-ink);
+    padding-top: 11px;
+    padding-bottom: 11px;
+}
+/* over cream sections the bar inverts, so it never sits as a muddy
+   dark slab on top of paper */
+.nav.on-paper {
+    color: var(--on-paper);
+}
+.nav.on-paper.stuck {
+    background: rgba(244, 241, 233, 0.82);
+    border-bottom-color: var(--rule-paper);
+}
+.nav.on-paper .brand span { color: var(--blue); }
+.nav.on-paper .nav-links a { color: var(--on-paper-soft); }
+.nav.on-paper .nav-links a:hover { color: var(--on-paper); }
+.nav.on-paper .nav-links a::after { background: var(--blue); }
 
-/* reveal on scroll */
-.fc5 .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
-.fc5 .reveal.in-view { opacity: 1; transform: translateY(0); }
-.fc5 .reveal.in-view.tilt-keep-r { transform: rotate(3deg); }
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    font-weight: 900;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+}
+.brand img {
+    width: 30px; height: 30px;
+    border-radius: 7px;
+    background: var(--ink-3);
+}
+.brand span { color: var(--volt); }
 
-/* ---------- top bar ---------- */
-
-.fc5 .fc5-topbar {
+.nav-links { display: flex; gap: 30px; }
+.nav-links a {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--on-ink-soft);
     position: relative;
+    padding: 4px 0;
+    transition: color 0.25s var(--ease);
+}
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 100%; height: 1.5px;
+    background: var(--volt);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s var(--ease);
+}
+.nav-links a:hover { color: var(--on-ink); }
+.nav-links a:hover::after { transform: scaleX(1); }
+
+.nav .btn { padding: 11px 20px; font-size: 12px; }
+
+/* ---------- scroll progress ---------- */
+.progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    width: 100%;
+    transform-origin: left;
+    transform: scaleX(0);
+    background: var(--volt);
+    z-index: 950;
+}
+
+/* ============================================================
+   PHONE — live app UI
+   ============================================================ */
+
+.pv {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    flex: none;
+    /* the container must be an ANCESTOR of the element that reads cqw —
+       an element can never query itself */
+    container-type: inline-size;
+}
+.pv-shell {
+    position: relative;
+    border-radius: 13.5%/6.4%;
+    padding: 2.6%;
+    background: linear-gradient(150deg, #3a3a3c 0%, #101012 32%, #0a0a0b 60%, #2c2c2e 100%);
+    box-shadow:
+        0 2px 4px rgba(0,0,0,.6),
+        0 30px 70px -20px rgba(0,0,0,.75),
+        0 0 0 0.5px rgba(255,255,255,.10) inset;
+}
+.pv-screen {
+    position: relative;
+    aspect-ratio: 1320 / 2868;
+    border-radius: 11.6%/5.4%;
+    overflow: hidden;
+    background: #000;
+    font-size: 4.3cqw;
+    font-family: -apple-system, 'SF Pro Text', 'Archivo', system-ui, sans-serif;
+    color: #fff;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    isolation: isolate;
+}
+@supports not (container-type: inline-size) {
+    .pv-screen { font-size: 14px; }
+}
+.pv-screen::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+        radial-gradient(90% 42% at 12% -4%, rgba(10,132,255,.30) 0%, rgba(10,132,255,0) 62%),
+        radial-gradient(80% 38% at 96% -2%, rgba(48,209,88,.26) 0%, rgba(48,209,88,0) 60%),
+        #000;
+    z-index: 0;
+}
+/* screen gloss */
+.pv-shell::after {
+    content: "";
+    position: absolute; inset: 0;
+    border-radius: 13.5%/6.4%;
+    pointer-events: none;
+    background: linear-gradient(115deg, rgba(255,255,255,.16) 0%, rgba(255,255,255,0) 26%, rgba(255,255,255,0) 72%, rgba(255,255,255,.07) 100%);
+    z-index: 3;
+}
+
+.pv-ui {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0 1.55em;
+}
+
+/* status bar */
+.pv-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 3.4em;
+    padding: 0 0.4em;
+    font-size: 0.82em;
+    font-weight: 700;
+    letter-spacing: 0;
+    flex: none;
+}
+.pv-status .sig { display: flex; align-items: center; gap: 0.35em; }
+.pv-notch {
+    position: absolute;
+    top: 0.75em; left: 50%;
+    transform: translateX(-50%);
+    width: 8.6em; height: 2.05em;
+    background: #000;
+    border-radius: 1.1em;
+    z-index: 4;
+}
+
+/* app header */
+.pv-h {
+    font-size: 1.72em;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin: 0.35em 0 0.1em;
+}
+.pv-sub { font-size: 0.86em; color: #8e8e93; }
+.pv-sub b { color: #0A84FF; font-weight: 500; }
+
+.pv-chiprow { display: flex; justify-content: flex-end; gap: 0.5em; margin-top: 0.2em; }
+.pv-chip {
+    display: inline-flex; align-items: center; gap: 0.4em;
+    height: 2.2em; padding: 0 0.8em;
+    border-radius: 1.1em;
+    background: rgba(120,180,200,.14);
+    border: 1px solid rgba(140,200,220,.22);
+    font-size: 0.8em;
+}
+
+/* cards */
+.pv-card {
+    background: #1c1c1e;
+    border-radius: 0.95em;
+    padding: 0.85em 0.9em;
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+    position: relative;
+}
+.pv-list { display: flex; flex-direction: column; gap: 0.6em; margin-top: 0.75em; }
+
+.pv-ring {
+    width: 2.7em; height: 2.7em;
+    flex: none;
+    position: relative;
+}
+.pv-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); display: block; }
+.pv-ring circle { fill: none; stroke-width: 2.6; }
+.pv-ring .trk { stroke: rgba(255,255,255,.16); }
+.pv-ring .val { stroke: #0A84FF; stroke-linecap: round; transition: stroke-dashoffset .8s var(--ease), stroke .4s ease; }
+.pv-ring.done .val { stroke: #30D158; }
+.pv-ring .tick {
+    position: absolute; inset: 0;
+    display: grid; place-items: center;
+    font-size: 1.05em; color: #fff; font-weight: 700;
+    opacity: 0; transform: scale(.4);
+    transition: opacity .3s var(--ease), transform .45s var(--ease);
+}
+.pv-ring.done { }
+.pv-ring.done .tick { opacity: 1; transform: scale(1); }
+.pv-ring.done::before {
+    content: "";
+    position: absolute; inset: 0;
+    border-radius: 50%;
+    background: #30D158;
+    animation: pv-pop .45s var(--ease) both;
+}
+.pv-ring.done .tick { z-index: 1; }
+@keyframes pv-pop { from { transform: scale(.2); opacity: 0 } to { transform: scale(1); opacity: 1 } }
+
+.pv-body {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.pv-t {
+    font-size: 0.95em;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    position: relative;
+    display: inline-block;
+}
+.pv-t::after {
+    content: "";
+    position: absolute; left: 0; top: 52%;
+    height: 1.5px; width: 100%;
+    background: #8e8e93;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .45s var(--ease);
+}
+.pv-card.done .pv-t { color: #8e8e93; }
+.pv-card.done .pv-t::after { transform: scaleX(1); }
+
+.pv-bar {
+    height: 0.32em;
+    border-radius: 0.2em;
+    background: rgba(255,255,255,.15);
+    margin: 0.42em 0 0.3em;
+    overflow: hidden;
+}
+.pv-bar i {
+    display: block; height: 100%;
+    background: #0A84FF;
+    border-radius: inherit;
+    width: 0%;
+    transition: width 1s var(--ease), background .4s ease;
+}
+.pv-card.done .pv-bar i { background: #30D158; }
+.pv-m { font-size: 0.76em; color: #8e8e93; font-variant-numeric: tabular-nums; }
+
+.pv-tag {
+    display: inline-block;
+    margin-top: 0.4em;
+    font-size: 0.66em;
+    font-weight: 600;
+    padding: 0.24em 0.6em;
+    border-radius: 0.45em;
+}
+.tag-body  { background: rgba(255,69,58,.16);  color: #FF6961; }
+.tag-being { background: rgba(94,92,230,.20);  color: #9B99FF; }
+.tag-biz   { background: rgba(255,159,10,.16); color: #FFB340; }
+.tag-bal   { background: rgba(48,209,88,.16);  color: #5BE07E; }
+
+.pv-act {
+    width: 1.95em; height: 1.95em;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-size: 0.9em;
+    flex: none;
+    background: #0A84FF;
+    color: #fff;
+    font-weight: 700;
+}
+.act-water  { background: #0A84FF; }
+.act-steps  { background: #5E5CE6; }
+.act-photo  { background: #FF9F0A; }
+
+/* bottom tab bar */
+.pv-tabs {
+    position: absolute;
+    left: 50%; bottom: 1.5em;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.2em;
+    padding: 0.45em;
+    border-radius: 1.9em;
+    background: rgba(38,38,40,.82);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    z-index: 3;
+    font-size: 0.92em;
+}
+.pv-tab {
+    display: flex; flex-direction: column; align-items: center; gap: 0.15em;
+    padding: 0.4em 1.15em;
+    border-radius: 1.5em;
+    color: #8e8e93;
+    font-size: 0.66em;
+    font-weight: 600;
+}
+.pv-tab.on { color: #0A84FF; background: rgba(255,255,255,.08); }
+.pv-tab svg { width: 1.6em; height: 1.6em; }
+
+/* fade at bottom so lists run under the tab bar */
+.pv-fade {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    height: 7em;
+    background: linear-gradient(to top, #000 12%, rgba(0,0,0,0));
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* ---------- calendar grid inside phone ---------- */
+.pv-cal {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.36em;
+    margin-top: 0.8em;
+}
+.pv-day {
+    aspect-ratio: 1 / 1.12;
+    border-radius: 0.42em;
+    background: #1c1c1e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.05em;
+    font-size: 0.9em;
+    font-weight: 700;
+    color: #fff;
+    border: 1px solid transparent;
+    transition: background .35s var(--ease), border-color .35s var(--ease), transform .35s var(--ease);
+}
+.pv-day .dd { font-size: 0.5em; font-weight: 500; color: #8e8e93; }
+.pv-day.fill {
+    background: #14401f;
+    border-color: rgba(48,209,88,.5);
+}
+.pv-day.today {
+    background: #0b3564;
+    border-color: #0A84FF;
+    transform: scale(1.06);
+}
+
+/* ---------- stats inside phone ---------- */
+.pv-stat {
+    background: #1c1c1e;
+    border-radius: 1em;
+    padding: 1em;
+    margin-top: 0.8em;
+}
+.pv-stat-top { display: flex; align-items: center; justify-content: space-between; gap: 0.6em; }
+.pv-big {
+    font-size: 2.6em;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+.pv-stat-lbl { font-size: 0.8em; color: #8e8e93; }
+.pv-donut { width: 5em; height: 5em; flex: none; }
+.pv-donut svg { transform: rotate(-90deg); }
+.pv-donut circle { fill: none; stroke-width: 7; }
+.pv-donut .trk { stroke: rgba(255,255,255,.12); }
+.pv-donut .val { stroke: #30D158; stroke-linecap: round; transition: stroke-dashoffset 1.4s var(--ease); }
+
+.pv-kpis {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    margin-top: 0.9em; padding-top: 0.9em;
+    border-top: 1px solid rgba(255,255,255,.1);
+    text-align: center;
+}
+.pv-kpis div + div { border-left: 1px solid rgba(255,255,255,.1); }
+.pv-kpis b { display: block; font-size: 1.2em; font-weight: 800; font-variant-numeric: tabular-nums; }
+.pv-kpis span { font-size: 0.68em; color: #8e8e93; }
+
+.pv-chart {
+    display: flex; align-items: flex-end; gap: 0.42em;
+    height: 7.2em;
+    margin-top: 0.9em;
+}
+.pv-chart i {
+    flex: 1;
+    background: linear-gradient(#4ade80, #22c55e);
+    border-radius: 0.18em 0.18em 0 0;
+    height: 0%;
+    transition: height 0.9s var(--ease);
+}
+
+.pv-seg {
+    display: flex; gap: 0.2em;
+    background: #1c1c1e;
+    border-radius: 1.2em;
+    padding: 0.25em;
+    margin-top: 0.9em;
+    font-size: 0.82em;
+}
+.pv-seg span {
+    flex: 1; text-align: center;
+    padding: 0.4em 0;
+    border-radius: 1em;
+    color: #8e8e93;
+    font-weight: 600;
+}
+.pv-seg span.on { background: #0A84FF; color: #fff; }
+
+/* media gallery inside phone */
+.pv-gal {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.4em;
+    margin-top: 0.8em;
+}
+.pv-gal i {
+    aspect-ratio: 1;
+    border-radius: 0.5em;
+    display: grid;
+    place-items: center;
+    font-style: normal;
+    font-size: 1.1em;
+    background: #1c1c1e;
+    position: relative;
+    overflow: hidden;
+}
+.pv-gal i::after {
+    content: attr(data-d);
+    position: absolute;
+    left: 0.35em; bottom: 0.25em;
+    font-size: 0.5em;
+    font-weight: 700;
+    color: rgba(255,255,255,.8);
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.hero {
+    position: relative;
+    background: var(--ink);
+    color: var(--on-ink);
+    overflow: hidden;
+    padding: clamp(120px, 15vh, 190px) 0 clamp(56px, 7vh, 90px);
+}
+
+/* ambient grid texture — fine graph paper, no DOM, no JS */
+.hero-grid75 {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(to right, rgba(244,241,233,.055) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(244,241,233,.055) 1px, transparent 1px);
+    background-size: 46px 46px;
+    mask-image: radial-gradient(115% 95% at 55% 18%, #000 12%, transparent 76%);
+    -webkit-mask-image: radial-gradient(115% 95% at 55% 18%, #000 12%, transparent 76%);
+}
+/* slow diagonal sweep so the field is alive without being busy */
+.hero-grid75::after {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    background: linear-gradient(104deg,
+        transparent 44%,
+        rgba(200,242,34,.028) 49.4%,
+        rgba(200,242,34,.055) 50%,
+        rgba(200,242,34,.028) 50.6%,
+        transparent 56%);
+    animation: sweep 11s linear infinite;
+}
+@keyframes sweep {
+    from { transform: translateX(-38%); }
+    to   { transform: translateX(38%); }
+}
+
+.hero-glow {
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(90px);
+}
+.hero-glow.g1 {
+    width: 46vw; height: 46vw;
+    right: -8vw; top: -10vw;
+    background: radial-gradient(circle, rgba(17,120,222,.30), transparent 66%);
+}
+.hero-glow.g2 {
+    width: 38vw; height: 38vw;
+    left: -12vw; bottom: -14vw;
+    background: radial-gradient(circle, rgba(200,242,34,.13), transparent 66%);
+}
+
+.hero-in {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
+    gap: clamp(36px, 5vw, 76px);
+    align-items: center;
+}
+
+.hero h1 {
+    font-size: clamp(44px, 7.4vw, 106px);
+    line-height: 0.93;
+    letter-spacing: -0.045em;
+    margin: 22px 0 0;
+}
+.hero h1 .l {
+    display: block;
+    overflow: hidden;
+}
+.hero h1 .l > span {
+    display: block;
+    transform: translateY(105%);
+    animation: rise 1s var(--ease) forwards;
+}
+.hero h1 .l:nth-child(1) > span { animation-delay: .08s; }
+.hero h1 .l:nth-child(2) > span { animation-delay: .19s; }
+@keyframes rise { to { transform: translateY(0); } }
+
+.hero .lede { margin-top: 26px; max-width: 46ch; }
+
+.hero-cta {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-top: 34px;
+}
+
+.hero-fade { opacity: 0; animation: fadeUp .9s var(--ease) forwards; }
+.hero-fade.d1 { animation-delay: .34s; }
+.hero-fade.d2 { animation-delay: .46s; }
+.hero-fade.d3 { animation-delay: .58s; }
+.hero-fade.d4 { animation-delay: .70s; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+/* hero stats strip */
+.hero-facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(20px, 3vw, 48px);
+    margin-top: 44px;
+    padding-top: 26px;
+    border-top: 1px solid var(--rule-ink);
+}
+.hero-facts div { line-height: 1.25; }
+.hero-facts b {
+    display: block;
+    font-size: clamp(24px, 2.4vw, 34px);
+    font-weight: 900;
+    letter-spacing: -0.035em;
+    font-variant-numeric: tabular-nums;
+}
+.hero-facts span {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+    color: var(--on-ink-soft);
+}
+
+/* hero device */
+.hero-dev {
+    position: relative;
+    justify-self: center;
+    width: 100%;
+    max-width: 330px;
+    opacity: 0;
+    animation: fadeUp 1.1s var(--ease) .3s forwards;
+}
+.hero-dev .pv { animation: float 8s ease-in-out infinite; }
+@keyframes float {
+    0%, 100% { transform: translateY(0) }
+    50%      { transform: translateY(-12px) }
+}
+
+.hero-badge {
+    position: absolute;
+    left: -13%;
+    bottom: 7%;
+    z-index: 5;
+    background: var(--paper);
+    color: var(--ink);
+    padding: 12px 18px;
+    text-align: center;
+    font-family: var(--mono);
+    border-radius: 2px;
+    box-shadow: 0 18px 44px rgba(0,0,0,.5);
+    transform: rotate(-5deg);
+    animation: float 8s ease-in-out infinite;
+    animation-delay: -1.4s;
+}
+.hero-badge s { display: block; font-size: 9.5px; letter-spacing: 0.26em; font-weight: 600; text-decoration: none; }
+.hero-badge b {
+    display: block;
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--blue);
+    font-variant-numeric: tabular-nums;
+}
+
+.scroll-cue {
+    position: absolute;
+    left: var(--gut);
+    bottom: 22px;
     z-index: 3;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    padding: 22px 40px;
-    border-bottom: 3px solid var(--rule);
-}
-.fc5 .brand {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 19px;
-    letter-spacing: 0.04em;
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-}
-.fc5 .brand-logo {
-    width: 34px;
-    height: 34px;
-    border-radius: 8px;
-    border: 2px solid var(--ink);
-}
-.fc5 .brand-dot { color: var(--blue); }
-.fc5 .topnav { display: flex; gap: 28px; }
-.fc5 .topnav a {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    border-bottom: 2px solid transparent;
-    padding-bottom: 2px;
-}
-.fc5 .topnav a:hover { border-color: var(--blue); }
-
-/* ---------- hero ---------- */
-
-.fc5 .hero {
-    position: relative;
-    z-index: 1;
-    padding: 90px 40px 70px;
-    overflow: hidden;
-}
-.fc5 .hero-watermark {
-    position: absolute;
-    top: -60px;
-    right: -40px;
-    font-family: 'Archivo Black', sans-serif;
-    font-size: clamp(280px, 38vw, 560px);
-    line-height: 1;
-    color: transparent;
-    -webkit-text-stroke: 2px rgba(22, 21, 15, 0.14);
-    z-index: 0;
-    user-select: none;
-}
-.fc5 .hero-grid {
-    position: relative;
-    z-index: 1;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 48px;
-    align-items: center;
-}
-.fc5 .hero h1 {
-    font-size: clamp(52px, 7.5vw, 104px);
-    line-height: 1.0;
-    letter-spacing: -0.02em;
-    margin: 28px 0;
-    text-transform: none;
-}
-.fc5 .lede {
-    font-size: 20px;
-    color: var(--ink-soft);
-    max-width: 480px;
-    margin: 0 0 36px;
-}
-.fc5 .hero-device { position: relative; justify-self: center; }
-.fc5 .hero-device .device { animation: fc5-float 7s ease-in-out infinite; }
-@keyframes fc5-float {
-    0%, 100% { transform: rotate(3deg) translateY(0); }
-    50% { transform: rotate(3deg) translateY(-14px); }
-}
-.fc5 .hero-stamp {
-    position: absolute;
-    left: -54px;
-    bottom: 60px;
-    background: var(--paper);
-    border: 3px solid var(--ink);
-    box-shadow: 8px 8px 0 var(--ink);
-    padding: 14px 20px;
-    text-align: center;
-    transform: rotate(-7deg);
-    font-family: 'IBM Plex Mono', monospace;
-}
-.fc5 .hero-stamp span { display: block; font-size: 11px; letter-spacing: 0.3em; font-weight: 600; }
-.fc5 .hero-stamp strong {
-    display: block;
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 54px;
-    line-height: 1.05;
-    color: var(--blue);
-}
-
-/* ---------- ticker ---------- */
-
-.fc5 .ticker {
-    position: relative;
-    z-index: 2;
-    background: var(--ink);
-    color: var(--paper);
-    border-top: 3px solid var(--ink);
-    border-bottom: 3px solid var(--ink);
-    overflow: hidden;
-    padding: 14px 0;
-}
-.fc5 .ticker-track {
-    display: flex;
-    gap: 34px;
-    align-items: center;
-    white-space: nowrap;
-    width: max-content;
-    animation: fc5-ticker 26s linear infinite;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.22em;
-}
-.fc5 .ticker-track i { color: var(--volt); font-style: normal; font-size: 9px; }
-@keyframes fc5-ticker {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-}
-
-/* ---------- sections ---------- */
-
-.fc5 .sec {
-    position: relative;
-    z-index: 1;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 96px 40px 80px;
-}
-.fc5 .sec-ruled { border-top: 3px solid var(--rule); border-bottom: 3px solid var(--rule); }
-.fc5 .sec-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid var(--rule-soft);
-    padding-bottom: 16px;
-    margin-bottom: 44px;
-}
-.fc5 .sec-title {
-    font-size: clamp(40px, 5.4vw, 72px);
-    line-height: 1.04;
-    letter-spacing: -0.02em;
-    margin-bottom: 48px;
-}
-
-/* method */
-.fc5 .method-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border: 2px solid var(--rule);
-}
-.fc5 .method-card {
-    padding: 36px 30px 44px;
-    border-right: 2px solid var(--rule);
-    transition: background 0.2s ease;
-}
-.fc5 .method-card:last-child { border-right: none; }
-.fc5 .method-card:hover { background: var(--paper-deep); }
-.fc5 .m-num {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 14px;
-    font-weight: 600;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 10.5px;
     letter-spacing: 0.2em;
-    color: var(--blue);
-    margin-bottom: 60px;
-}
-.fc5 .method-card h3 { font-size: 24px; margin-bottom: 14px; }
-.fc5 .method-card p { color: var(--ink-soft); margin: 0; font-size: 16px; }
-
-/* spec sheet */
-.fc5 .spec-wrap {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 56px;
-    align-items: center;
-}
-.fc5 .spec-table {
-    width: 100%;
-    border-collapse: collapse;
-    border: 2px solid var(--rule);
-}
-.fc5 .spec-table td {
-    border-bottom: 2px solid var(--rule-soft);
-    padding: 18px 20px;
-    vertical-align: middle;
-}
-.fc5 .spec-table tr:last-child td { border-bottom: none; }
-.fc5 .spec-table tr { transition: background 0.15s ease; }
-.fc5 .spec-table tr:hover { background: var(--paper-deep); }
-.fc5 .spec-i { width: 56px; font-size: 20px; text-align: center; }
-.fc5 .spec-n {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 17px;
-    width: 150px;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    color: var(--on-ink-soft);
 }
-.fc5 .spec-d { color: var(--ink-soft); font-size: 15px; }
-.fc5 .spec-device { justify-self: center; }
-
-/* feature rows */
-.fc5 .feat-row {
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap: 64px;
-    align-items: center;
-}
-.fc5 .feat-row.flip { grid-template-columns: 1.1fr 0.9fr; }
-.fc5 .feat-device { position: relative; justify-self: center; }
-.fc5 .feat-watermark {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 300px;
-    color: transparent;
-    -webkit-text-stroke: 2px rgba(22, 21, 15, 0.12);
-    z-index: -1;
-    white-space: nowrap;
-    user-select: none;
-}
-.fc5 .feat-copy .sec-title { margin-bottom: 28px; }
-.fc5 .ruled-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-.fc5 .ruled-list li {
-    padding: 14px 0 14px 34px;
-    border-bottom: 2px solid var(--rule-soft);
+.scroll-cue i {
+    display: block;
+    width: 34px; height: 1px;
+    background: var(--rule-ink);
     position: relative;
-    color: var(--ink-soft);
+    overflow: hidden;
 }
-.fc5 .ruled-list li::before {
-    content: "→";
-    position: absolute;
-    left: 0;
-    color: var(--blue);
-    font-family: 'IBM Plex Mono', monospace;
-    font-weight: 600;
+.scroll-cue i::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: var(--volt);
+    transform: translateX(-100%);
+    animation: cue 2.4s var(--ease-io) infinite;
 }
-.fc5 .ruled-list li:last-child { border-bottom: none; }
+@keyframes cue {
+    0%   { transform: translateX(-100%) }
+    55%  { transform: translateX(0) }
+    100% { transform: translateX(100%) }
+}
 
-/* templates */
-.fc5 .tpl-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-    border: 2px solid var(--rule);
-}
-.fc5 .tpl {
-    padding: 32px 28px 28px;
-    border-right: 2px solid var(--rule);
-    border-bottom: 2px solid var(--rule);
-    position: relative;
-    transition: background 0.2s ease;
-}
-.fc5 .tpl:nth-child(3n) { border-right: none; }
-.fc5 .tpl:nth-last-child(-n+3) { border-bottom: none; }
-.fc5 .tpl:hover { background: var(--paper-deep); }
-.fc5 .tpl h3 { font-size: 21px; margin-bottom: 10px; }
-.fc5 .tpl p { color: var(--ink-soft); font-size: 15px; margin: 0 0 26px; }
-.fc5 .tpl-meta {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    color: var(--blue);
-}
-.fc5 .tpl-featured { background: var(--ink); color: var(--paper); }
-.fc5 .tpl-featured:hover { background: var(--ink); }
-.fc5 .tpl-featured p { color: rgba(242, 239, 231, 0.7); }
-.fc5 .tpl-featured .tpl-meta { color: var(--volt); }
-.fc5 .tpl-tag {
-    position: absolute;
-    top: -2px;
-    right: -2px;
+/* ============================================================
+   TICKER
+   ============================================================ */
+
+.ticker {
     background: var(--volt);
     color: var(--ink);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    overflow: hidden;
+    padding: 12px 0;
+    position: relative;
+    z-index: 3;
+}
+.ticker-track {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    width: max-content;
+    white-space: nowrap;
+    font-family: var(--mono);
+    font-size: 12.5px;
     font-weight: 600;
-    letter-spacing: 0.18em;
-    padding: 6px 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: marquee 38s linear infinite;
 }
-.fc5 .tpl-custom h3::after { content: " ✏️"; }
+.ticker-track b { font-weight: 600; }
+.ticker-track i { font-style: normal; font-size: 7px; opacity: .55; }
+@keyframes marquee { to { transform: translateX(-50%); } }
 
-/* manifesto */
-.fc5 .manifesto em { color: var(--blue-soft); }
-.fc5 .manifesto {
-    position: relative;
-    z-index: 1;
+/* ============================================================
+   REVEAL
+   ============================================================ */
+
+[data-rv] {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity .62s var(--ease), transform .72s var(--ease);
+    transition-delay: var(--d, 0ms);
+    will-change: opacity, transform;
+}
+[data-rv].in { opacity: 1; transform: none; }
+[data-rv].in { will-change: auto; }
+
+[data-rv="fade"] { transform: none; }
+[data-rv="left"] { transform: translateX(-26px); }
+[data-rv="right"] { transform: translateX(26px); }
+[data-rv="scale"] { transform: scale(.955); }
+
+/* line-clip reveal for big headings */
+.clip { overflow: hidden; display: block; }
+.clip > span {
+    display: block;
+    transform: translateY(102%);
+    transition: transform .85s var(--ease);
+    transition-delay: var(--d, 0ms);
+}
+.in-view .clip > span { transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+    }
+    [data-rv] { opacity: 1 !important; transform: none !important; }
+    .clip > span { transform: none !important; }
+    .hero h1 .l > span { transform: none !important; }
+    .hero-fade, .hero-dev { opacity: 1 !important; }
+}
+</style>
+<style>
+/* ============================================================
+   SECTION RHYTHM
+   Every band is dense. Nothing gets more air than it earns.
+   ============================================================ */
+
+.band { padding: clamp(76px, 9.5vh, 136px) 0; }
+.band-tight { padding: clamp(56px, 7vh, 92px) 0; }
+
+.edge-top { border-top: 1px solid var(--rule-paper); }
+.field-ink .edge-top, .edge-top-ink { border-top: 1px solid var(--rule-ink); }
+
+/* ============================================================
+   03 · PREMISE — why a challenge beats a streak
+   ============================================================ */
+
+.premise-in {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: clamp(40px, 6vw, 92px);
+    align-items: center;
+}
+.premise h2 { margin: 18px 0 22px; }
+
+.compare {
+    margin-top: 34px;
+    border-top: 1px solid var(--rule-paper);
+}
+.compare-row {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 20px;
+    align-items: start;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--rule-paper);
+}
+.compare-row .lbl {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding-top: 3px;
+    color: var(--on-paper-soft);
+}
+.compare-row.good .lbl { color: var(--blue); }
+.compare-row p { margin: 0; font-size: 16px; color: var(--on-paper-soft); }
+.compare-row b { color: var(--on-paper); font-weight: 700; }
+
+/* the 75-square board */
+.board-card {
     background: var(--ink);
-    color: var(--paper);
-    text-align: center;
-    padding: 110px 40px;
-}
-.fc5 .manifesto h2 {
-    font-size: clamp(36px, 5vw, 64px);
-    line-height: 1.08;
-    letter-spacing: -0.02em;
-    margin: 26px auto 26px;
-    max-width: 900px;
-}
-.fc5 .manifesto p {
-    max-width: 620px;
-    margin: 0 auto;
-    color: rgba(242, 239, 231, 0.75);
-    font-size: 18px;
-}
-.fc5 .manifesto a { color: var(--volt); border-bottom: 2px solid var(--volt); }
-
-/* download */
-.fc5 .download {
+    border-radius: 4px;
+    padding: clamp(22px, 2.6vw, 34px);
+    box-shadow: 0 40px 80px -40px rgba(11,11,9,.55);
     position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 130px 40px 120px;
     overflow: hidden;
 }
-.fc5 .dl-watermark {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'Archivo Black', sans-serif;
-    font-size: clamp(160px, 24vw, 360px);
-    color: transparent;
-    -webkit-text-stroke: 2px rgba(22, 21, 15, 0.1);
-    white-space: nowrap;
-    user-select: none;
-    z-index: 0;
+.board-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+    color: var(--on-ink);
 }
-.fc5 .download h2 {
-    position: relative;
-    font-size: clamp(56px, 8vw, 110px);
-    line-height: 1.0;
-    letter-spacing: -0.02em;
-    margin-bottom: 22px;
+.board-head .t { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--on-ink-soft); }
+.board-head .n {
+    font-weight: 900;
+    font-size: clamp(26px, 3vw, 38px);
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
 }
-.fc5 .dl-sub {
-    position: relative;
-    color: var(--ink-soft);
-    font-size: 19px;
-    margin: 0 0 40px;
-}
-.fc5 .download .btn-volt { position: relative; }
+.board-head .n em { color: var(--volt); }
 
-/* footer */
-.fc5 .fc5-footer {
-    position: relative;
-    z-index: 1;
+.board75 {
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+    gap: clamp(4px, 0.55vw, 8px);
+}
+.board75 i {
+    aspect-ratio: 1;
+    border-radius: 2px;
+    background: rgba(244,241,233,.055);
+    box-shadow: inset 0 0 0 1px rgba(244,241,233,.07);
+    transition: background .45s var(--ease), box-shadow .45s var(--ease), transform .45s var(--ease);
+}
+.board75 i.on {
+    background: rgba(48,209,88,.62);
+    box-shadow: inset 0 0 0 1px rgba(48,209,88,.85);
+}
+.board75 i.cur {
+    background: var(--volt);
+    box-shadow: inset 0 0 0 1px var(--volt), 0 0 14px rgba(200,242,34,.6);
+    transform: scale(1.22);
+}
+.board-foot {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    padding: 26px 40px;
-    border-top: 3px solid var(--rule);
+    gap: 14px;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--rule-ink);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--on-ink-soft);
 }
-.fc5 .foot-brand {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 15px;
-    display: inline-flex;
+
+/* ============================================================
+   04 · HOW — three steps
+   ============================================================ */
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule-paper);
+    border: 1px solid var(--rule-paper);
+    border-radius: 3px;
+    overflow: hidden;
+}
+.step {
+    background: var(--paper);
+    padding: clamp(26px, 2.6vw, 38px);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: background .35s var(--ease);
+    position: relative;
+    /* container lives on the parent — .mini reads cqw from here */
+    container-type: inline-size;
+}
+.step:hover { background: var(--paper-2); }
+.step .n {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    color: var(--blue);
+}
+.step h3 { font-size: clamp(21px, 2.1vw, 28px); letter-spacing: -0.03em; line-height: 1.08; }
+.step p { margin: 0; font-size: 15.5px; color: var(--on-paper-soft); }
+
+/* mini demo panel inside each step */
+.mini {
+    margin-top: auto;
+    background: var(--ink);
+    border-radius: 8px;
+    padding: 14px;
+    color: #fff;
+    font-family: -apple-system, 'Archivo', system-ui, sans-serif;
+    font-size: 4.2cqi;
+    overflow: hidden;
+    min-height: 132px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+@supports not (container-type: inline-size) { .mini { font-size: 13px; } }
+
+.mini-row {
+    display: flex;
     align-items: center;
+    gap: 0.7em;
+    background: #1c1c1e;
+    border-radius: 0.6em;
+    padding: 0.6em 0.7em;
+}
+.mini-row + .mini-row { margin-top: 0.45em; }
+.mini-row .dot {
+    width: 1.5em; height: 1.5em;
+    border-radius: 50%;
+    flex: none;
+    box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.28);
+    display: grid; place-items: center;
+    font-size: 0.85em;
+    color: transparent;
+    transition: background .4s var(--ease), color .3s var(--ease), box-shadow .4s var(--ease);
+}
+.mini-row.on .dot { background: var(--green); box-shadow: none; color: #fff; }
+.mini-row .tx { font-size: 0.82em; font-weight: 600; }
+.mini-row.on .tx { color: #8e8e93; text-decoration: line-through; }
+.mini-row .pill {
+    margin-left: auto;
+    font-size: 0.62em;
+    font-weight: 700;
+    padding: 0.25em 0.55em;
+    border-radius: 0.4em;
+    background: rgba(255,69,58,.16);
+    color: #FF6961;
+}
+
+.mini-dur {
+    display: flex; gap: 0.4em;
+}
+.mini-dur span {
+    flex: 1;
+    text-align: center;
+    padding: 0.75em 0;
+    border-radius: 0.55em;
+    background: #1c1c1e;
+    font-size: 0.8em;
+    font-weight: 700;
+    color: #8e8e93;
+    transition: background .4s var(--ease), color .4s var(--ease);
+}
+.mini-dur span.on { background: var(--blue); color: #fff; }
+
+.mini-cal {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 0.28em;
+}
+.mini-cal i {
+    aspect-ratio: 1;
+    border-radius: 0.18em;
+    background: #1c1c1e;
+    transition: background .4s var(--ease);
+}
+.mini-cal i.on { background: #1c7a3a; }
+.mini-cal i.cur { background: var(--blue); }
+
+/* ============================================================
+   05 · PINNED SEQUENCE — the centrepiece
+   Phone stays put; scroll drives what is on its screen.
+   ============================================================ */
+
+/* overflow-x: clip (not hidden) — `hidden` would turn these into scroll
+   containers and position:sticky would silently stop working */
+.pin {
+    position: relative;
+    background: var(--ink);
+    color: var(--on-ink);
+    overflow-x: clip;
+}
+.pin-rail { position: relative; height: 460vh; }
+.pin-stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    min-height: 640px;
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 var(--gut);
+    display: grid;
+    grid-template-columns: minmax(0, 620px) minmax(250px, 340px);
+    justify-content: space-between;
+    align-items: center;
+    gap: clamp(30px, 5vw, 80px);
+}
+.pin-bg {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    z-index: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(56% 52% at 76% 46%, rgba(17,120,222,.20), transparent 70%),
+        radial-gradient(48% 44% at 10% 82%, rgba(200,242,34,.07), transparent 70%);
+}
+
+.pin-copy { position: relative; z-index: 2; }
+.pin-panel {
+    position: absolute;
+    inset: auto 0 auto 0;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s var(--ease), transform .6s var(--ease);
+    pointer-events: none;
+}
+.pin-panel.on {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(-50%);
+}
+.pin-panel.before { transform: translateY(calc(-50% - 26px)); }
+.pin-panel.after  { transform: translateY(calc(-50% + 26px)); }
+
+.pin-panel .idx {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    color: var(--volt);
+}
+.pin-panel h3 {
+    font-size: clamp(32px, 4.4vw, 62px);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+    margin: 14px 0 18px;
+}
+.pin-panel p { margin: 0; color: var(--on-ink-soft); font-size: clamp(16px, 1.3vw, 20px); max-width: 52ch; }
+.pin-panel ul {
+    list-style: none;
+    margin: 26px 0 0;
+    padding: 0;
+}
+.pin-panel li {
+    position: relative;
+    padding: 11px 0 11px 26px;
+    border-bottom: 1px solid var(--rule-ink);
+    color: var(--on-ink-soft);
+    font-size: 15.5px;
+}
+.pin-panel li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 19px;
+    width: 7px; height: 7px;
+    background: var(--volt);
+}
+.pin-panel li:last-child { border-bottom: 0; }
+
+.pin-phone { position: relative; z-index: 2; justify-self: center; width: 100%; max-width: 320px; }
+.pin-screen {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: 0;
+    transform: scale(.985);
+    transition: opacity .45s var(--ease), transform .55s var(--ease);
+    pointer-events: none;
+}
+.pin-screen.on { opacity: 1; transform: none; pointer-events: auto; }
+
+/* step rail, bottom-left of the stage */
+.pin-dots {
+    position: absolute;
+    left: var(--gut);
+    bottom: 8vh;
+    z-index: 3;
+    display: flex;
     gap: 10px;
 }
-.fc5 .foot-brand .brand-logo { width: 26px; height: 26px; border-radius: 6px; }
-.fc5 .foot-brand .cr {
-    font-family: 'IBM Plex Mono', monospace;
-    font-weight: 400;
-    font-size: 12px;
-    color: var(--ink-soft);
-    margin-left: 10px;
+.pin-dots button {
+    all: unset;
+    cursor: pointer;
+    width: 34px;
+    height: 3px;
+    background: rgba(244,241,233,.22);
+    transition: background .35s var(--ease), width .35s var(--ease);
 }
-.fc5 .foot-links { display: flex; gap: 24px; }
-.fc5 .foot-links a {
-    font-family: 'IBM Plex Mono', monospace;
+.pin-dots button.on { background: var(--volt); width: 60px; }
+
+/* mobile: unpin, stack */
+.pin-stack { display: none; padding-top: 20px; padding-bottom: 20px; }
+.pin-stack .stack-item { padding: 46px 0; border-top: 1px solid var(--rule-ink); }
+.pin-stack .stack-item:first-child { border-top: 0; }
+.pin-stack .stack-phone { max-width: 260px; margin: 30px auto 0; }
+
+/* tablet: put the copy and the phone side by side instead of
+   stranding a narrow phone under a very wide column of text */
+@media (min-width: 620px) and (max-width: 900px) {
+    .pin-stack .stack-item {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 250px;
+        gap: 36px;
+        align-items: center;
+    }
+    .pin-stack .stack-phone { margin: 0; max-width: 250px; }
+    .pin-stack .pin-panel h3 { font-size: clamp(30px, 4.6vw, 42px); }
+}
+.pin-stack .pin-panel {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    pointer-events: auto;
+}
+
+/* ============================================================
+   06 · TASK TYPES
+   ============================================================ */
+
+.types-in {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 290px);
+    justify-content: space-between;
+    gap: clamp(36px, 5vw, 76px);
+    align-items: center;
+}
+.types-note {
+    margin-top: 22px;
+    font-family: var(--mono);
     font-size: 12px;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.1em;
+    color: var(--on-paper-soft);
     text-transform: uppercase;
-    color: var(--ink-soft);
 }
-.fc5 .foot-links a:hover { color: var(--blue); }
+.types-note b { color: var(--blue); font-weight: 600; }
+.types-list { border-top: 1px solid var(--rule-paper); }
+.type {
+    display: grid;
+    grid-template-columns: 46px minmax(0, 140px) 1fr;
+    align-items: center;
+    gap: 18px;
+    padding: 20px 12px 20px 4px;
+    border-bottom: 1px solid var(--rule-paper);
+    cursor: pointer;
+    transition: background .3s var(--ease), padding-left .3s var(--ease);
+    position: relative;
+}
+.type::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--blue);
+    transform: scaleY(0);
+    transition: transform .35s var(--ease);
+}
+.type:hover, .type.on { background: var(--paper-2); padding-left: 14px; }
+.type.on::before { transform: scaleY(1); }
+.type .ic {
+    width: 38px; height: 38px;
+    display: grid; place-items: center;
+    border-radius: 3px;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 17px;
+}
+.type.on .ic { background: var(--blue); }
+.type .nm {
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+.type .ds { color: var(--on-paper-soft); font-size: 15px; }
 
-/* ---------- responsive ---------- */
+.types-dev { position: sticky; top: 110px; }
 
-@media (max-width: 960px) {
-    .fc5 .hero-grid { grid-template-columns: 1fr; gap: 64px; }
-    .fc5 .hero-device { margin-top: 10px; }
-    .fc5 .hero-stamp { left: -10px; }
-    .fc5 .method-grid { grid-template-columns: 1fr; }
-    .fc5 .method-card { border-right: none; border-bottom: 2px solid var(--rule); }
-    .fc5 .method-card:last-child { border-bottom: none; }
-    .fc5 .m-num { margin-bottom: 18px; }
-    .fc5 .spec-wrap,
-    .fc5 .feat-row,
-    .fc5 .feat-row.flip { grid-template-columns: 1fr; gap: 48px; }
-    .fc5 .feat-row.flip .feat-copy { order: 1; }
-    .fc5 .feat-row.flip .feat-device { order: 2; }
-    .fc5 .tpl-grid { grid-template-columns: 1fr; }
-    .fc5 .tpl { border-right: none !important; border-bottom: 2px solid var(--rule); }
-    .fc5 .tpl:last-child { border-bottom: none; }
-    .fc5 .tpl:nth-last-child(-n+3) { border-bottom: 2px solid var(--rule); }
-    .fc5 .topnav { display: none; }
+/* ============================================================
+   07 · TEMPLATES
+   ============================================================ */
+
+.tpls {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule-ink);
+    border: 1px solid var(--rule-ink);
+    border-radius: 3px;
+    overflow: hidden;
+}
+.tpl {
+    background: var(--ink);
+    padding: clamp(24px, 2.4vw, 34px);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 230px;
+    transition: background .35s var(--ease);
+    overflow: hidden;
+}
+.tpl::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(90% 90% at 50% 120%, rgba(200,242,34,.10), transparent 70%);
+    opacity: 0;
+    transition: opacity .4s var(--ease);
+    pointer-events: none;
+}
+.tpl:hover { background: var(--ink-2); }
+.tpl:hover::after { opacity: 1; }
+.tpl h3 { font-size: clamp(20px, 1.9vw, 25px); letter-spacing: -0.03em; }
+.tpl p { margin: 0; font-size: 15px; color: var(--on-ink-soft); }
+.tpl .meta {
+    margin-top: auto;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: var(--volt);
+    padding-top: 16px;
+}
+.tpl .flag {
+    position: absolute;
+    top: 0; right: 0;
+    background: var(--volt);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    padding: 6px 11px;
+}
+.tpl-hero { background: var(--ink-2); }
+.tpl-hero h3 { color: var(--volt); }
+
+/* ============================================================
+   08 · REAL SCREENS
+   ============================================================ */
+
+.shots {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(14px, 1.8vw, 30px);
+    align-items: start;
+}
+.shot { text-align: center; }
+.shot .frame {
+    border-radius: 10%/4.8%;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 26px 54px -26px rgba(11,11,9,.55), 0 0 0 1px rgba(11,11,9,.14);
+    transition: transform .5s var(--ease), box-shadow .5s var(--ease);
+}
+.shot:hover .frame { transform: translateY(-8px); box-shadow: 0 40px 70px -30px rgba(11,11,9,.6), 0 0 0 1px rgba(11,11,9,.2); }
+.shot figcaption {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--on-paper-soft);
+    margin-top: 14px;
 }
 
-@media (max-width: 540px) {
-    .fc5 .fc5-topbar { padding: 18px 22px; }
-    .fc5 .hero { padding: 56px 22px 56px; }
-    .fc5 .sec { padding: 64px 22px 56px; }
-    .fc5 .manifesto, .fc5 .download { padding-left: 22px; padding-right: 22px; }
-    .fc5 .device { max-width: 270px; }
-    .fc5 .hero-stamp strong { font-size: 40px; }
+/* ============================================================
+   09 · MANIFESTO
+   ============================================================ */
+
+.manifesto { text-align: center; position: relative; overflow: hidden; }
+.manifesto .wrap { max-width: 980px; }
+.manifesto h2 {
+    font-size: clamp(34px, 5.4vw, 76px);
+    line-height: 1.0;
+    margin: 22px 0 26px;
 }
-</style></head><body>
-<!-- FlexChallenge V5 - Editorial Poster Edition -->
-<!-- Paste into a GHL Custom HTML element (body). CSS goes in the page stylesheet, JS in footer code. -->
-<!-- IMAGES: upload dark_tasks.png, dark_calendar.png, dark_stats.png, dark_home.png, light_home.png -->
-<!-- to the GHL media library and replace each src="..." below with the hosted URL. -->
-<!-- APP STORE LINK: replace the hrefs marked TODO-APPSTORE once the listing is live. -->
+.manifesto p {
+    color: var(--on-ink-soft);
+    font-size: clamp(16px, 1.35vw, 20px);
+    max-width: 62ch;
+    margin: 0 auto;
+}
+.manifesto .kicker { justify-content: center; }
+.mf-rule {
+    width: 1px;
+    height: clamp(46px, 7vh, 84px);
+    background: linear-gradient(to bottom, transparent, var(--volt));
+    margin: 0 auto 6px;
+}
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+/* ============================================================
+   10 · PRIVACY
+   ============================================================ */
 
-<div class="fc5">
+.priv-in {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(36px, 5vw, 80px);
+    align-items: center;
+}
+.priv-list { list-style: none; margin: 30px 0 0; padding: 0; border-top: 1px solid var(--rule-paper); }
+.priv-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--rule-paper);
+    color: var(--on-paper-soft);
+    font-size: 16px;
+}
+.priv-list li b { color: var(--on-paper); font-weight: 700; }
+.priv-list .x {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--blue);
+    flex: none;
+}
 
-    <!-- Top bar -->
-    <header class="fc5-topbar">
-        <a class="brand" href="/">
-            <img class="brand-logo" src="https://storage.googleapis.com/msgsndr/4d3rWYEWOEeBlYLGRli8/media/694a30de79fc9681eeee174d.png" alt="FlexChallenge logo">
-            FLEXCHALLENGE<span class="brand-dot">.</span>
-        </a>
-        <nav class="topnav">
-            <a href="#method">Method</a>
-            <a href="#tracking">Tracking</a>
-            <a href="#templates">Templates</a>
-            <a href="#privacy">Privacy</a>
-        </nav>
-        <!-- TODO-APPSTORE -->
-        <a href="#download" class="btn-ink">Get the App</a>
-    </header>
+.priv-card {
+    border: 1px solid var(--rule-paper);
+    border-radius: 3px;
+    padding: clamp(26px, 3vw, 40px);
+    background: var(--paper-2);
+}
+.priv-card .big {
+    font-weight: 900;
+    font-size: clamp(52px, 7vw, 92px);
+    letter-spacing: -0.05em;
+    line-height: 1;
+}
+.priv-card .cap {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--on-paper-soft);
+    margin-top: 8px;
+}
+.priv-card hr { border: 0; border-top: 1px solid var(--rule-paper); margin: 24px 0; }
+.priv-card p { margin: 0; font-size: 15.5px; color: var(--on-paper-soft); }
+.priv-card a { color: var(--blue); border-bottom: 1px solid currentColor; }
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-watermark" aria-hidden="true">75</div>
+/* ============================================================
+   11 · DOWNLOAD
+   ============================================================ */
 
-        <div class="hero-grid">
-            <div class="hero-copy">
-                <div class="kicker"><span class="sq"></span>A CHALLENGE TRACKER — NOT A HABIT APP</div>
-                <h1>Goals need a<br><em>finish line.</em></h1>
-                <p class="lede">Habits drift. A challenge has a Day&nbsp;1, a final day, and nothing
-                    vague in between. Pick 30, 60, or 75 days — then show up until it's done.</p>
+.get {
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+    background: var(--ink);
+    color: var(--on-ink);
+}
+.get-glow {
+    position: absolute;
+    left: 50%; bottom: -30%;
+    width: min(1000px, 110vw); height: min(1000px, 110vw);
+    transform: translateX(-50%);
+    background: radial-gradient(circle, rgba(200,242,34,.16), transparent 62%);
+    filter: blur(30px);
+    pointer-events: none;
+}
+.get h2 {
+    font-size: clamp(52px, 9.5vw, 140px);
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    margin: 20px 0 22px;
+}
+.get p { color: var(--on-ink-soft); font-size: clamp(16px, 1.4vw, 20px); max-width: 46ch; margin: 0 auto 38px; }
+.get .kicker { justify-content: center; }
+.get-cta { display: flex; flex-direction: column; align-items: center; gap: 16px; }
 
-                <div class="hero-cta">
-                    <!-- TODO-APPSTORE -->
-                    <a href="#download" class="btn-volt">
-                        <svg viewBox="0 0 384 512" width="15" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 46.9 78.1 79.9 78.1 28.3 0 39.6-21.6 68.3-21.6 27.8 0 40 21.3 68.3 21.6 30.6.3 58-30.8 77-59.5 7.1-10.7 15-26.6 20.7-40.4-56.5-7.7-93.5-44.1-93.9-84.2zM277.9 94.7C293.4 75.8 300 48.7 298.6 21 274.6 22 249.7 34 233.1 53.7c-13.8 16.4-23.8 41.5-21 68 28.5 2.1 55.7-9.5 65.8-27z"/></svg>
-                        Download on the App&nbsp;Store
-                    </a>
-                    <span class="cta-note">Free. No account. iOS 17+</span>
-                </div>
+.get-strip {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: clamp(18px, 3vw, 46px);
+    margin-top: 52px;
+    padding-top: 30px;
+    border-top: 1px solid var(--rule-ink);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--on-ink-soft);
+}
+
+/* ============================================================
+   12 · FOOTER
+   ============================================================ */
+
+.foot {
+    background: var(--ink);
+    color: var(--on-ink-soft);
+    border-top: 1px solid var(--rule-ink);
+    padding: 26px 0;
+}
+.foot-in {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.foot .brand { font-size: 14px; color: var(--on-ink); }
+.foot .brand img { width: 24px; height: 24px; }
+.foot .cr { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; margin-left: 10px; color: var(--on-ink-soft); font-weight: 400; text-transform: none; }
+.foot-links { display: flex; gap: 22px; flex-wrap: wrap; }
+.foot-links a {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    transition: color .25s var(--ease);
+}
+.foot-links a:hover { color: var(--volt); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1100px) {
+    .steps { grid-template-columns: 1fr 1fr; }
+    .steps .step:last-child { grid-column: 1 / -1; }
+    .tpls { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 900px) {
+    .nav-links { display: none; }
+
+    .hero { padding-top: 108px; }
+    .hero-in { grid-template-columns: 1fr; gap: 48px; }
+    .hero-dev { max-width: 290px; order: 2; }
+    .hero h1 { font-size: clamp(42px, 11vw, 72px); }
+    .hero-facts { gap: 22px; }
+    .scroll-cue { display: none; }
+
+    .premise-in,
+    .priv-in,
+    .types-in { grid-template-columns: 1fr; gap: 40px; }
+    .types-dev { position: static; max-width: 280px; margin: 0 auto; }
+
+    .shots { grid-template-columns: 1fr 1fr; gap: 22px; }
+
+    /* unpin the sequence — stack it instead */
+    .pin-rail { height: auto !important; }
+    .pin-stage { display: none; }
+    .pin-stack { display: block; }
+    .pin-dots { display: none !important; }
+}
+
+@media (max-width: 640px) {
+    .steps, .tpls { grid-template-columns: 1fr; }
+    .steps .step:last-child { grid-column: auto; }
+    .compare-row { grid-template-columns: 1fr; gap: 6px; }
+    .board75 { grid-template-columns: repeat(10, 1fr); }
+    .hero-facts b { font-size: 22px; }
+    .get h2 { font-size: clamp(44px, 14vw, 72px); }
+    .foot-in { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<!-- ============================== NAV ============================== -->
+<header class="nav" id="nav">
+    <a class="brand" href="/">
+        <img src="https://storage.googleapis.com/msgsndr/4d3rWYEWOEeBlYLGRli8/media/694a30de79fc9681eeee174d.png" alt="" width="30" height="30">
+        FlexChallenge<span>.</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+        <a href="#premise">Why</a>
+        <a href="#how">How</a>
+        <a href="#inside">Inside</a>
+        <a href="#templates">Templates</a>
+        <a href="#privacy">Privacy</a>
+    </nav>
+    <a href="#get" class="btn btn-volt">Get the app</a>
+</header>
+
+<main>
+
+<!-- ============================== 01 · HERO ============================== -->
+<section class="hero field-ink" id="top">
+    <div class="hero-grid75" id="grid75" aria-hidden="true"></div>
+    <div class="hero-glow g1" aria-hidden="true"></div>
+    <div class="hero-glow g2" aria-hidden="true"></div>
+
+    <div class="wrap hero-in">
+        <div class="hero-copy">
+            <div class="kicker hero-fade">Challenge tracker for iPhone</div>
+
+            <h1>
+                <span class="l"><span>Do what you said</span></span>
+                <span class="l"><span>you'd&nbsp;<em>do.</em></span></span>
+            </h1>
+
+            <p class="lede hero-fade d1">Not forever. For thirty days, or sixty, or seventy&#8209;five.
+                FlexChallenge gives the promise a start date, an end date, and a record of
+                every single day in between.</p>
+
+            <div class="hero-cta hero-fade d2">
+                <!-- TODO-APPSTORE -->
+                <a href="#get" class="btn btn-volt btn-lg">
+                    <svg viewBox="0 0 384 512" width="16" height="18" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 46.9 78.1 79.9 78.1 28.3 0 39.6-21.6 68.3-21.6 27.8 0 40 21.3 68.3 21.6 30.6.3 58-30.8 77-59.5 7.1-10.7 15-26.6 20.7-40.4-56.5-7.7-93.5-44.1-93.9-84.2zM277.9 94.7C293.4 75.8 300 48.7 298.6 21 274.6 22 249.7 34 233.1 53.7c-13.8 16.4-23.8 41.5-21 68 28.5 2.1 55.7-9.5 65.8-27z"/></svg>
+                    Download free
+                </a>
+                <span class="cta-note">iOS&nbsp;17+ · No account · No ads</span>
             </div>
 
-            <div class="hero-device reveal">
-                <div class="device tilt-r">
-                    <img src="dark_tasks.png" alt="FlexChallenge daily task list, day 23 of 75">
-                </div>
-                <div class="hero-stamp" aria-hidden="true">
-                    <span>DAY</span><strong>23</strong><span>OF 75</span>
-                </div>
+            <div class="hero-facts hero-fade d3">
+                <div><b>7</b><span>Ways to log a day</span></div>
+                <div><b>$0</b><span>Every feature, free</span></div>
+                <div><b>0</b><span>Servers holding your data</span></div>
             </div>
         </div>
-    </section>
 
-    <!-- Ticker -->
-    <div class="ticker" aria-hidden="true">
-        <div class="ticker-track">
-            <span>100% FREE</span><i>●</i><span>NO ACCOUNT</span><i>●</i><span>NO ADS</span><i>●</i><span>NO TRACKING</span><i>●</i><span>DATA STAYS ON YOUR DEVICE</span><i>●</i>
-            <span>100% FREE</span><i>●</i><span>NO ACCOUNT</span><i>●</i><span>NO ADS</span><i>●</i><span>NO TRACKING</span><i>●</i><span>DATA STAYS ON YOUR DEVICE</span><i>●</i>
+        <div class="hero-dev">
+            <div class="pv" id="heroPhone">
+                <div class="pv-shell">
+                    <div class="pv-screen">
+                        <div class="pv-notch" aria-hidden="true"></div>
+                        <div class="pv-ui">
+                            <div class="pv-status">
+                                <span>9:41</span>
+                                <span class="sig">
+                                    <svg width="16" height="11" viewBox="0 0 16 11" fill="currentColor" aria-hidden="true"><rect x="0" y="7" width="2.6" height="4" rx="1"/><rect x="4.4" y="5" width="2.6" height="6" rx="1"/><rect x="8.8" y="2.6" width="2.6" height="8.4" rx="1"/><rect x="13.2" y="0" width="2.6" height="11" rx="1"/></svg>
+                                    <svg width="16" height="11" viewBox="0 0 16 12" fill="currentColor" aria-hidden="true"><path d="M8 11.2 5.6 8.6a3.4 3.4 0 0 1 4.8 0L8 11.2Zm0-5.4a6 6 0 0 0-4.3 1.8L2.2 6.1a8.2 8.2 0 0 1 11.6 0l-1.5 1.5A6 6 0 0 0 8 5.8Zm0-4A9.9 9.9 0 0 0 .9 4.7L-.6 3.2a12 12 0 0 1 17.2 0l-1.5 1.5A9.9 9.9 0 0 0 8 1.8Z"/></svg>
+                                    <svg width="22" height="11" viewBox="0 0 26 12" aria-hidden="true"><rect x=".6" y=".6" width="21" height="10.8" rx="3" fill="none" stroke="currentColor" stroke-opacity=".45"/><rect x="2.2" y="2.2" width="17.8" height="7.6" rx="1.8" fill="#30D158"/><path d="M23.4 4.2v3.6a2.2 2.2 0 0 0 0-3.6Z" fill="currentColor" fill-opacity=".45"/></svg>
+                                </span>
+                            </div>
+
+                            <div class="pv-chiprow">
+                                <span class="pv-chip">⚙︎</span>
+                                <span class="pv-chip">⇄</span>
+                            </div>
+
+                            <div class="pv-h">75 Days</div>
+                            <div class="pv-sub">Day 23 of 75 · <b>53 days left</b></div>
+
+                            <div class="pv-list" id="heroList">
+                                <div class="pv-card" data-task="water">
+                                    <div class="pv-ring"><svg viewBox="0 0 32 32"><circle class="trk" cx="16" cy="16" r="13.5"/><circle class="val" cx="16" cy="16" r="13.5" stroke-dasharray="84.8" stroke-dashoffset="84.8"/></svg><span class="tick">✓</span></div>
+                                    <div class="pv-body">
+                                        <div class="pv-t">Drink 1 Gallon of Water</div>
+                                        <div class="pv-bar"><i></i></div>
+                                        <div class="pv-m"><span class="num" data-to="128">96</span> / 128 oz</div>
+                                        <span class="pv-tag tag-body">Body</span>
+                                    </div>
+                                    <span class="pv-act act-water">💧</span>
+                                </div>
+
+                                <div class="pv-card" data-task="steps">
+                                    <div class="pv-ring"><svg viewBox="0 0 32 32"><circle class="trk" cx="16" cy="16" r="13.5"/><circle class="val" cx="16" cy="16" r="13.5" stroke-dasharray="84.8" stroke-dashoffset="84.8"/></svg><span class="tick">✓</span></div>
+                                    <div class="pv-body">
+                                        <div class="pv-t">10,000 Steps</div>
+                                        <div class="pv-bar"><i></i></div>
+                                        <div class="pv-m"><span class="num" data-to="10000">8432</span> / 10,000 steps</div>
+                                        <span class="pv-tag tag-body">Body</span>
+                                    </div>
+                                    <span class="pv-act act-steps">＋</span>
+                                </div>
+
+                                <div class="pv-card" data-task="photo">
+                                    <div class="pv-ring"><svg viewBox="0 0 32 32"><circle class="trk" cx="16" cy="16" r="13.5"/><circle class="val" cx="16" cy="16" r="13.5" stroke-dasharray="84.8" stroke-dashoffset="84.8"/></svg><span class="tick">✓</span></div>
+                                    <div class="pv-body">
+                                        <div class="pv-t">Progress Photo</div>
+                                        <span class="pv-tag tag-body">Body</span>
+                                    </div>
+                                    <span class="pv-act act-photo">📷</span>
+                                </div>
+
+                                <div class="pv-card done">
+                                    <div class="pv-ring done"><svg viewBox="0 0 32 32"><circle class="trk" cx="16" cy="16" r="13.5"/></svg><span class="tick">✓</span></div>
+                                    <div class="pv-body">
+                                        <div class="pv-t">Workout 1 — 45 min</div>
+                                        <span class="pv-tag tag-body">Body</span>
+                                    </div>
+                                </div>
+
+                                <div class="pv-card done">
+                                    <div class="pv-ring done"><svg viewBox="0 0 32 32"><circle class="trk" cx="16" cy="16" r="13.5"/></svg><span class="tick">✓</span></div>
+                                    <div class="pv-body">
+                                        <div class="pv-t">Workout 2 — Outdoors</div>
+                                        <span class="pv-tag tag-body">Body</span>
+                                    </div>
+                                </div>
+
+                                <div class="pv-card done">
+                                    <div class="pv-ring done"><svg viewBox="0 0 32 32"><circle class="trk" cx="16" cy="16" r="13.5"/></svg><span class="tick">✓</span></div>
+                                    <div class="pv-body">
+                                        <div class="pv-t">Read 10 Pages</div>
+                                        <span class="pv-tag tag-being">Being</span>
+                                    </div>
+                                </div>
+
+                                <div class="pv-card done">
+                                    <div class="pv-ring done"><svg viewBox="0 0 32 32"><circle class="trk" cx="16" cy="16" r="13.5"/></svg><span class="tick">✓</span></div>
+                                    <div class="pv-body">
+                                        <div class="pv-t">Follow the Diet</div>
+                                        <span class="pv-tag tag-body">Body</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pv-fade" aria-hidden="true"></div>
+                        </div>
+
+                        <div class="pv-tabs" aria-hidden="true">
+                            <span class="pv-tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</span>
+                            <span class="pv-tab on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="7" r="3"/><circle cx="5" cy="17" r="3"/><path d="M11 7h9M11 17h9"/></svg>Challenge</span>
+                            <span class="pv-tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Calendar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-badge" aria-hidden="true">
+                <s>Day</s><b id="heroDay">23</b><s>of 75</s>
+            </div>
         </div>
     </div>
 
-    <!-- Method -->
-    <section class="sec" id="method">
-        <div class="sec-head">
-            <div class="kicker"><span class="sq"></span>THE METHOD</div>
-            <div class="sec-index">01 / 05</div>
+    <div class="scroll-cue" aria-hidden="true"><i></i> Scroll</div>
+</section>
+
+<!-- ============================== 02 · TICKER ============================== -->
+<div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+        <b>100% Free</b><i>●</i><b>No account</b><i>●</i><b>No ads</b><i>●</i><b>No tracking</b><i>●</i><b>No subscription</b><i>●</i><b>Your data stays on your phone</b><i>●</i>
+        <b>100% Free</b><i>●</i><b>No account</b><i>●</i><b>No ads</b><i>●</i><b>No tracking</b><i>●</i><b>No subscription</b><i>●</i><b>Your data stays on your phone</b><i>●</i>
+    </div>
+</div>
+
+<!-- ============================== 03 · PREMISE ============================== -->
+<section class="field-paper band" id="premise">
+    <div class="wrap">
+        <div class="sec-head" data-rv="fade">
+            <div class="kicker">The premise</div>
+            <div class="idx">01 / 06</div>
         </div>
-        <h2 class="sec-title">Why challenges work<br>when streaks <em>don't.</em></h2>
 
-        <div class="method-grid">
-            <article class="method-card reveal">
-                <div class="m-num">№1</div>
-                <h3>Intentional action</h3>
-                <p>Every day is a conscious decision to show up. That builds discipline — not just a number on a screen you're afraid to break.</p>
-            </article>
-            <article class="method-card reveal">
-                <div class="m-num">№2</div>
-                <h3>A real end date</h3>
-                <p>30, 60, 75 days — you pick. A finish line makes the commitment concrete and the victory worth something.</p>
-            </article>
-            <article class="method-card reveal">
-                <div class="m-num">№3</div>
-                <h3>Finish, then stack</h3>
-                <p>Complete one challenge, start the next. Some actions become habits. Others evolve into harder challenges.</p>
-            </article>
-        </div>
-    </section>
+        <div class="premise-in">
+            <div>
+                <h2 class="h-md" data-rv>Forever is not a commitment.<br>It's a <em>wish.</em></h2>
+                <p class="lede" data-rv data-d="80">Habit apps ask you to be consistent indefinitely, then
+                    punish you with a broken number when life happens. That's not accountability. It's
+                    anxiety with a counter attached.</p>
 
-    <!-- Tracking spec sheet -->
-    <section class="sec sec-ruled" id="tracking">
-        <div class="sec-head">
-            <div class="kicker"><span class="sq"></span>ALL-IN-ONE TRACKING</div>
-            <div class="sec-index">02 / 05</div>
-        </div>
-        <h2 class="sec-title">Seven task types.<br><em>One</em> checklist.</h2>
+                <div class="compare">
+                    <div class="compare-row" data-rv data-d="120">
+                        <div class="lbl">Streak</div>
+                        <p>Open-ended. The only outcome is <b>eventually failing</b>. Miss once at day 200 and the
+                            app tells you you're back at zero — which was never true.</p>
+                    </div>
+                    <div class="compare-row good" data-rv data-d="180">
+                        <div class="lbl">Challenge</div>
+                        <p>Bounded. Day 1, a final day, and a fixed set of terms you agreed to in advance.
+                            <b>You either finish or you don't</b> — and finishing is a thing you can actually do.</p>
+                    </div>
+                </div>
+            </div>
 
-        <div class="spec-wrap">
-            <table class="spec-table reveal">
-                <tbody>
-                    <tr><td class="spec-i">✓</td><td class="spec-n">Standard</td><td class="spec-d">Simple yes / no daily tasks</td></tr>
-                    <tr><td class="spec-i">💧</td><td class="spec-n">Water</td><td class="spec-d">Ounces or glasses with visual progress</td></tr>
-                    <tr><td class="spec-i">№</td><td class="spec-n">Counter</td><td class="spec-d">Reps, pages, minutes, prospects</td></tr>
-                    <tr><td class="spec-i">👟</td><td class="spec-n">Steps</td><td class="spec-d">Auto-synced from Apple Health</td></tr>
-                    <tr><td class="spec-i">📷</td><td class="spec-n">Photo</td><td class="spec-d">Progress pictures, day by day</td></tr>
-                    <tr><td class="spec-i">🎥</td><td class="spec-n">Video</td><td class="spec-d">Form checks and milestones</td></tr>
-                    <tr><td class="spec-i">🎙</td><td class="spec-n">Audio</td><td class="spec-d">Voice notes and daily reflections</td></tr>
-                </tbody>
-            </table>
-
-            <div class="spec-device reveal">
-                <div class="device tilt-l">
-                    <img src="dark_home.png" alt="FlexChallenge dashboard with weekly streak and stats">
+            <div data-rv="scale" data-d="100">
+                <div class="board-card">
+                    <div class="board-head">
+                        <span class="t">75 Days · Phase I</span>
+                        <span class="n"><em id="boardN">23</em>/75</span>
+                    </div>
+                    <div class="board75" id="board75" aria-hidden="true"></div>
+                    <div class="board-foot">
+                        <span>May 20 → Aug 2</span>
+                        <span id="boardLeft">52 days left</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Feature: streaks -->
-    <section class="sec">
-        <div class="sec-head">
-            <div class="kicker"><span class="sq"></span>STREAKS</div>
-            <div class="sec-index">03 / 05</div>
+<!-- ============================== 04 · HOW ============================== -->
+<section class="field-paper band-tight" id="how">
+    <div class="wrap">
+        <div class="sec-head" data-rv="fade">
+            <div class="kicker">How it works</div>
+            <div class="idx">02 / 06</div>
         </div>
+        <h2 class="h-md" data-rv style="margin-bottom:clamp(28px,3.4vw,46px);max-width:18ch">Three decisions,
+            then <em>one decision a day.</em></h2>
 
-        <div class="feat-row">
-            <div class="feat-device reveal">
-                <div class="device tilt-r">
-                    <img src="dark_calendar.png" alt="Challenge calendar with completed days">
+        <div class="steps">
+            <article class="step" data-rv data-d="0">
+                <div class="n">Step 01</div>
+                <h3>Set the terms</h3>
+                <p>Start from a proven template or write your own tasks. Be specific — "workout" is a
+                    suggestion, "45 minutes, outdoors" is a commitment.</p>
+                <div class="mini" aria-hidden="true">
+                    <div class="mini-row on"><span class="dot">✓</span><span class="tx">Workout — 45 min</span><span class="pill">Body</span></div>
+                    <div class="mini-row on"><span class="dot">✓</span><span class="tx">Read 10 pages</span><span class="pill" style="background:rgba(94,92,230,.2);color:#9B99FF">Being</span></div>
+                    <div class="mini-row"><span class="dot">✓</span><span class="tx">1 gallon of water</span><span class="pill">Body</span></div>
                 </div>
-                <div class="feat-watermark" aria-hidden="true">23</div>
-            </div>
-            <div class="feat-copy">
-                <h2 class="sec-title">Every day<br><em>counts.</em></h2>
-                <ul class="ruled-list">
-                    <li>Full-challenge calendar — every green square earned</li>
-                    <li>Tap any day to see its tasks, notes, photos and voice notes</li>
-                    <li>Custom day-end time, so a 1 a.m. workout still counts</li>
-                    <li>Strict or flexible mode — you set the stakes</li>
-                    <li>Home screen widget keeps today in sight</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Feature: analytics -->
-    <section class="sec sec-ruled">
-        <div class="sec-head">
-            <div class="kicker"><span class="sq"></span>ANALYTICS</div>
-            <div class="sec-index">04 / 05</div>
-        </div>
-
-        <div class="feat-row flip">
-            <div class="feat-copy">
-                <h2 class="sec-title">Proof you're<br><em>changing.</em></h2>
-                <ul class="ruled-list">
-                    <li>Completion rate, streaks and personal bests</li>
-                    <li>Trend charts across every challenge you run</li>
-                    <li>A media gallery of your whole journey — photos, videos, voice notes</li>
-                    <li>Back up and export everything. It's your data.</li>
-                </ul>
-            </div>
-            <div class="feat-device reveal">
-                <div class="device tilt-l">
-                    <img src="dark_stats.png" alt="Statistics screen, 97 percent completion">
-                </div>
-                <div class="feat-watermark" aria-hidden="true">97%</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Templates -->
-    <section class="sec" id="templates">
-        <div class="sec-head">
-            <div class="kicker"><span class="sq"></span>TEMPLATES</div>
-            <div class="sec-index">05 / 05</div>
-        </div>
-        <h2 class="sec-title">Start with a<br><em>proven plan.</em></h2>
-
-        <div class="tpl-grid">
-            <article class="tpl reveal tpl-featured">
-                <div class="tpl-tag">MOST POPULAR</div>
-                <h3>75 Days: Phase I</h3>
-                <p>The full mental-toughness format. Two workouts, a gallon of water, ten pages, a progress photo, strict diet.</p>
-                <div class="tpl-meta">75 DAYS — 7 TASKS</div>
             </article>
-            <article class="tpl reveal">
+
+            <article class="step" data-rv data-d="80">
+                <div class="n">Step 02</div>
+                <h3>Pick the length</h3>
+                <p>Thirty days to build something. Sixty to prove it wasn't luck. Seventy-five when you
+                    want the version of this that leaves a mark.</p>
+                <div class="mini" aria-hidden="true">
+                    <div style="font-size:.7em;color:#8e8e93;margin-bottom:.55em;letter-spacing:.06em">CHALLENGE LENGTH</div>
+                    <div class="mini-dur" id="miniDur">
+                        <span>30</span><span>60</span><span class="on">75</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;margin-top:.8em;font-size:.72em">
+                        <span style="color:#8e8e93">Starts</span><span style="font-weight:700">May 20</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;margin-top:.35em;font-size:.72em;padding-top:.35em;border-top:1px solid rgba(255,255,255,.1)">
+                        <span style="color:#8e8e93">Ends</span><span style="font-weight:700;color:#C8F222" id="miniEnd">Aug 2</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="step" data-rv data-d="160">
+                <div class="n">Step 03</div>
+                <h3>Show up and log it</h3>
+                <p>Open the app, do the work, mark the day. The record builds itself. On day 76 you'll
+                    have something no motivational post can give you: evidence.</p>
+                <div class="mini" aria-hidden="true">
+                    <div class="mini-cal" id="miniCal"></div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ============================== 05 · PINNED SEQUENCE ============================== -->
+<section class="pin field-ink" id="inside">
+    <div class="pin-rail" id="pinRail">
+        <div class="pin-stage" id="pinStage">
+            <div class="pin-bg" aria-hidden="true"></div>
+
+            <div class="pin-dots" id="pinDots" aria-hidden="true"></div>
+
+                <div class="pin-copy" style="position:relative;height:62vh">
+
+                    <article class="pin-panel on" data-p="0">
+                        <div class="idx">Inside · 01</div>
+                        <h3>Seven ways to<br>prove it.</h3>
+                        <p>A checkbox can't hold everything. Log ounces, reps, pages, steps, a photo, a
+                            clip, a voice note — whatever the task actually is.</p>
+                        <ul>
+                            <li>Water, counters and steps track against a target</li>
+                            <li>Steps sync from Apple Health without you touching it</li>
+                            <li>Photo, video and audio attach to the day they happened</li>
+                            <li>Set your own day-end time — a 1&nbsp;a.m. finish still counts</li>
+                        </ul>
+                    </article>
+
+                    <article class="pin-panel after" data-p="1">
+                        <div class="idx">Inside · 02</div>
+                        <h3>Every day is<br>a square.</h3>
+                        <p>The whole challenge on one screen. Filled squares are days you kept your word.
+                            Empty ones are days you didn't. It isn't complicated, and it doesn't flatter you.</p>
+                        <ul>
+                            <li>Tap any day to reopen its tasks, notes and media</li>
+                            <li>Strict or flexible mode — you decide what a miss costs</li>
+                            <li>A home screen widget keeps today in your face</li>
+                        </ul>
+                    </article>
+
+                    <article class="pin-panel after" data-p="2">
+                        <div class="idx">Inside · 03</div>
+                        <h3>Discipline is boring.<br>The proof <em>isn't.</em></h3>
+                        <p>Completion rate, best streak, trend over time. Numbers you earned, not badges
+                            somebody handed you for opening an app.</p>
+                        <ul>
+                            <li>Completion rate across every challenge you've run</li>
+                            <li>Trends by week, month, quarter and year</li>
+                            <li>Personal bests that are worth beating</li>
+                        </ul>
+                    </article>
+
+                    <article class="pin-panel after" data-p="3">
+                        <div class="idx">Inside · 04</div>
+                        <h3>Day one and day<br>seventy-five.</h3>
+                        <p>Every photo, clip and voice note lands in one gallery, in order. Scroll back far
+                            enough and you'll meet the person who started this.</p>
+                        <ul>
+                            <li>A media archive spanning the full challenge</li>
+                            <li>Back up or export the whole thing whenever you want</li>
+                            <li>It's your data. Take it with you.</li>
+                        </ul>
+                    </article>
+
+                </div>
+
+            <div class="pin-phone">
+                <div class="pv">
+                    <div class="pv-shell">
+                        <div class="pv-screen">
+                            <div class="pv-notch" aria-hidden="true"></div>
+
+                            <!-- screen 0 — log -->
+                            <div class="pin-screen on" data-s="0">
+                                <div class="pv-ui">
+                                    <div class="pv-status"><span>9:41</span><span class="sig">▮▮▮ ▚</span></div>
+                                    <div class="pv-h">75 Days</div>
+                                    <div class="pv-sub">Day 23 of 75 · <b>53 days left</b></div>
+                                    <div class="pv-list">
+                                        <div class="pv-card">
+                                            <div class="pv-ring"><svg viewBox="0 0 32 32"><circle class="trk" cx="16" cy="16" r="13.5"/><circle class="val s-water" cx="16" cy="16" r="13.5" stroke-dasharray="84.8" stroke-dashoffset="84.8"/></svg></div>
+                                            <div class="pv-body">
+                                                <div class="pv-t">Drink 1 Gallon of Water</div>
+                                                <div class="pv-bar"><i class="s-water-b"></i></div>
+                                                <div class="pv-m"><span class="s-water-n">96</span> / 128 oz</div>
+                                                <span class="pv-tag tag-body">Body</span>
+                                            </div>
+                                            <span class="pv-act act-water">💧</span>
+                                        </div>
+                                        <div class="pv-card">
+                                            <div class="pv-ring"><svg viewBox="0 0 32 32"><circle class="trk" cx="16" cy="16" r="13.5"/><circle class="val s-steps" cx="16" cy="16" r="13.5" stroke-dasharray="84.8" stroke-dashoffset="84.8"/></svg></div>
+                                            <div class="pv-body">
+                                                <div class="pv-t">10,000 Steps</div>
+                                                <div class="pv-bar"><i class="s-steps-b"></i></div>
+                                                <div class="pv-m"><span class="s-steps-n">8,432</span> / 10,000 · Health</div>
+                                                <span class="pv-tag tag-body">Body</span>
+                                            </div>
+                                            <span class="pv-act act-steps">＋</span>
+                                        </div>
+                                        <div class="pv-card">
+                                            <div class="pv-ring"><svg viewBox="0 0 32 32"><circle class="trk" cx="16" cy="16" r="13.5"/></svg></div>
+                                            <div class="pv-body">
+                                                <div class="pv-t">Progress Photo</div>
+                                                <span class="pv-tag tag-body">Body</span>
+                                            </div>
+                                            <span class="pv-act act-photo">📷</span>
+                                        </div>
+                                        <div class="pv-card">
+                                            <div class="pv-ring"><svg viewBox="0 0 32 32"><circle class="trk" cx="16" cy="16" r="13.5"/></svg></div>
+                                            <div class="pv-body">
+                                                <div class="pv-t">Voice Note — Reflection</div>
+                                                <span class="pv-tag tag-being">Being</span>
+                                            </div>
+                                            <span class="pv-act" style="background:#FF375F">🎙</span>
+                                        </div>
+                                        <div class="pv-card done">
+                                            <div class="pv-ring done"><svg viewBox="0 0 32 32"><circle class="trk" cx="16" cy="16" r="13.5"/></svg><span class="tick">✓</span></div>
+                                            <div class="pv-body">
+                                                <div class="pv-t">Workout 1 — 45 min</div>
+                                                <span class="pv-tag tag-body">Body</span>
+                                            </div>
+                                        </div>
+                                        <div class="pv-card done">
+                                            <div class="pv-ring done"><svg viewBox="0 0 32 32"><circle class="trk" cx="16" cy="16" r="13.5"/></svg><span class="tick">✓</span></div>
+                                            <div class="pv-body">
+                                                <div class="pv-t">10 Prospects Contacted</div>
+                                                <span class="pv-tag tag-biz">Business</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pv-fade" aria-hidden="true"></div>
+                                </div>
+                            </div>
+
+                            <!-- screen 1 — calendar -->
+                            <div class="pin-screen" data-s="1">
+                                <div class="pv-ui">
+                                    <div class="pv-status"><span>9:41</span><span class="sig">▮▮▮ ▚</span></div>
+                                    <div class="pv-h">75 Days</div>
+                                    <div class="pv-sub">May 20 → Aug 2 · <b><span id="calLeft">52</span> days left</b></div>
+                                    <div class="pv-cal" id="pinCal"></div>
+                                    <div class="pv-fade" aria-hidden="true"></div>
+                                </div>
+                            </div>
+
+                            <!-- screen 2 — stats -->
+                            <div class="pin-screen" data-s="2">
+                                <div class="pv-ui">
+                                    <div class="pv-status"><span>9:41</span><span class="sig">▮▮▮ ▚</span></div>
+                                    <div class="pv-h">Statistics</div>
+                                    <div class="pv-stat">
+                                        <div class="pv-stat-top">
+                                            <div>
+                                                <div class="pv-stat-lbl">Completion rate</div>
+                                                <div class="pv-big"><span id="statPct">0</span>%</div>
+                                            </div>
+                                            <div class="pv-donut">
+                                                <svg viewBox="0 0 100 100"><circle class="trk" cx="50" cy="50" r="42"/><circle class="val" id="statRing" cx="50" cy="50" r="42" stroke-dasharray="264" stroke-dashoffset="264"/></svg>
+                                            </div>
+                                        </div>
+                                        <div class="pv-kpis">
+                                            <div><b id="statTasks">0</b><span>Tasks</span></div>
+                                            <div><b id="statDays">0</b><span>Active days</span></div>
+                                            <div><b id="statBest">0</b><span>Best streak</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="pv-seg"><span>W</span><span class="on">M</span><span>3M</span><span>Y</span><span>All</span></div>
+                                    <div class="pv-stat">
+                                        <div class="pv-stat-lbl" style="margin-bottom:.2em">Completion trend</div>
+                                        <div class="pv-chart" id="statChart"></div>
+                                    </div>
+                                    <div class="pv-stat">
+                                        <div class="pv-stat-lbl" style="margin-bottom:.55em">This week</div>
+                                        <div style="display:flex;align-items:center;gap:.9em">
+                                            <div class="pv-donut" style="width:4.2em;height:4.2em;flex:none">
+                                                <svg viewBox="0 0 100 100">
+                                                    <circle class="trk" cx="50" cy="50" r="42"/>
+                                                    <circle class="val" id="wkRing1" cx="50" cy="50" r="42" stroke-dasharray="264" stroke-dashoffset="264"/>
+                                                    <circle class="trk" cx="50" cy="50" r="30"/>
+                                                    <circle class="val" id="wkRing2" cx="50" cy="50" r="30" stroke="#0A84FF" stroke-dasharray="188" stroke-dashoffset="188"/>
+                                                </svg>
+                                            </div>
+                                            <div style="flex:1;min-width:0">
+                                                <div style="display:flex;align-items:baseline;gap:.4em">
+                                                    <span style="width:.55em;height:.55em;border-radius:50%;background:#30D158;flex:none"></span>
+                                                    <b style="font-size:1em"><span id="wkA">0</span>%</b>
+                                                    <span style="font-size:.76em;color:#8e8e93">Completion</span>
+                                                </div>
+                                                <div style="display:flex;align-items:baseline;gap:.4em;margin-top:.4em">
+                                                    <span style="width:.55em;height:.55em;border-radius:50%;background:#0A84FF;flex:none"></span>
+                                                    <b style="font-size:1em"><span id="wkB">0</span>%</b>
+                                                    <span style="font-size:.76em;color:#8e8e93">Consistency</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pv-fade" aria-hidden="true"></div>
+                                </div>
+                            </div>
+
+                            <!-- screen 3 — gallery -->
+                            <div class="pin-screen" data-s="3">
+                                <div class="pv-ui">
+                                    <div class="pv-status"><span>9:41</span><span class="sig">▮▮▮ ▚</span></div>
+                                    <div class="pv-h">Media</div>
+                                    <div class="pv-sub">68 items · <b>Day 1 → Day 23</b></div>
+                                    <div class="pv-gal" id="pinGal"></div>
+                                    <div class="pv-fade" aria-hidden="true"></div>
+                                </div>
+                            </div>
+
+                            <div class="pv-tabs" aria-hidden="true">
+                                <span class="pv-tab" data-tab="0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</span>
+                                <span class="pv-tab on" data-tab="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="7" r="3"/><circle cx="5" cy="17" r="3"/><path d="M11 7h9M11 17h9"/></svg>Challenge</span>
+                                <span class="pv-tab" data-tab="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Calendar</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- mobile: same four beats, stacked. Built from the panels above. -->
+        <div class="pin-stack wrap" id="pinStack"></div>
+    </div>
+</section>
+
+<!-- ============================== 06 · TASK TYPES ============================== -->
+<section class="field-paper band" id="types">
+    <div class="wrap">
+        <div class="sec-head" data-rv="fade">
+            <div class="kicker">Task types</div>
+            <div class="idx">03 / 06</div>
+        </div>
+        <h2 class="h-md" data-rv style="margin-bottom:clamp(28px,3.4vw,46px);max-width:20ch">Seven ways to log
+            a day. <em>One</em> checklist.</h2>
+
+        <div class="types-in">
+            <div class="types-list" id="typesList">
+                <div class="type on" data-rv data-d="0" data-t="0"><span class="ic">✓</span><span class="nm">Standard</span><span class="ds">Done or not done. No partial credit.</span></div>
+                <div class="type" data-rv data-d="50" data-t="1"><span class="ic">💧</span><span class="nm">Water</span><span class="ds">Ounces or glasses, tracked to your target</span></div>
+                <div class="type" data-rv data-d="100" data-t="2"><span class="ic">№</span><span class="nm">Counter</span><span class="ds">Reps, pages, minutes, calls, prospects</span></div>
+                <div class="type" data-rv data-d="150" data-t="3"><span class="ic">👟</span><span class="nm">Steps</span><span class="ds">Synced from Apple Health automatically</span></div>
+                <div class="type" data-rv data-d="200" data-t="4"><span class="ic">📷</span><span class="nm">Photo</span><span class="ds">Progress pictures, filed by day</span></div>
+                <div class="type" data-rv data-d="250" data-t="5"><span class="ic">🎥</span><span class="nm">Video</span><span class="ds">Form checks, lifts, milestones</span></div>
+                <div class="type" data-rv data-d="300" data-t="6"><span class="ic">🎙</span><span class="nm">Audio</span><span class="ds">Voice notes when writing is too slow</span></div>
+                <div class="types-note" data-rv="fade" data-d="340">All seven can sit in the <b>same challenge</b> — pick per task</div>
+            </div>
+
+            <div class="types-dev" data-rv="right" data-d="100">
+                <div class="pv">
+                    <div class="pv-shell">
+                        <div class="pv-screen">
+                            <div class="pv-notch" aria-hidden="true"></div>
+                            <div class="pv-ui">
+                                <div class="pv-status"><span>9:41</span><span class="sig">▮▮▮ ▚</span></div>
+                                <div class="pv-h" id="typeTitle">Standard</div>
+                                <div class="pv-sub" id="typeSub">Day 23 · one tap and it's recorded</div>
+                                <div class="pv-list" id="typeDemo"></div>
+                                <div class="pv-fade" aria-hidden="true"></div>
+                            </div>
+                            <div class="pv-tabs" aria-hidden="true">
+                                <span class="pv-tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</span>
+                                <span class="pv-tab on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="7" r="3"/><circle cx="5" cy="17" r="3"/><path d="M11 7h9M11 17h9"/></svg>Challenge</span>
+                                <span class="pv-tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Calendar</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================== 07 · TEMPLATES ============================== -->
+<section class="field-ink band" id="templates">
+    <div class="wrap">
+        <div class="sec-head" data-rv="fade">
+            <div class="kicker">Templates</div>
+            <div class="idx">04 / 06</div>
+        </div>
+        <h2 class="h-md" data-rv style="margin-bottom:clamp(28px,3.4vw,46px);max-width:20ch">Start from a plan
+            that already <em>worked on somebody else.</em></h2>
+
+        <div class="tpls">
+            <article class="tpl tpl-hero" data-rv data-d="0">
+                <div class="flag">Most used</div>
+                <h3>75 Days — Phase I</h3>
+                <p>The unabridged mental-toughness format. Two workouts, one outdoors. A gallon of water.
+                    Ten pages. A progress photo. The diet, no negotiation.</p>
+                <div class="meta">75 Days · 7 Tasks</div>
+            </article>
+            <article class="tpl" data-rv data-d="60">
                 <h3>75 Soft</h3>
-                <p>Sustainable consistency. One workout, 64 oz water, healthy meals.</p>
-                <div class="tpl-meta">75 DAYS — 5 TASKS</div>
+                <p>The same discipline, survivable alongside a job and a family. One workout, 64 oz,
+                    meals you planned on purpose.</p>
+                <div class="meta">75 Days · 5 Tasks</div>
             </article>
-            <article class="tpl reveal">
+            <article class="tpl" data-rv data-d="120">
                 <h3>Revenue Growth</h3>
-                <p>Ten prospects a day, content posted, metrics logged.</p>
-                <div class="tpl-meta">30 DAYS — 5 TASKS</div>
+                <p>Discipline pointed at your business. Ten prospects contacted, content shipped,
+                    numbers logged before you close the laptop.</p>
+                <div class="meta">30 Days · 5 Tasks</div>
             </article>
-            <article class="tpl reveal">
+            <article class="tpl" data-rv data-d="180">
                 <h3>Mindful Living</h3>
-                <p>Meditation, gratitude, walking, no social media after 8 p.m.</p>
-                <div class="tpl-meta">30 DAYS — 4 TASKS</div>
+                <p>Meditation, gratitude, a walk without headphones, and the phone down after
+                    eight o'clock.</p>
+                <div class="meta">30 Days · 4 Tasks</div>
             </article>
-            <article class="tpl reveal">
+            <article class="tpl" data-rv data-d="240">
                 <h3>Core 4 Balance</h3>
-                <p>Body, Being, Balance, Business — two tasks in each life area.</p>
-                <div class="tpl-meta">30 DAYS — 8 TASKS</div>
+                <p>Body, Being, Balance, Business — two tasks in each, so one part of your life
+                    stops eating the other three.</p>
+                <div class="meta">30 Days · 8 Tasks</div>
             </article>
-            <article class="tpl reveal tpl-custom">
-                <h3>Custom</h3>
-                <p>Your tasks, your duration, your rules. Built from scratch in minutes.</p>
-                <div class="tpl-meta">ANY LENGTH — ANY TASKS</div>
+            <article class="tpl" data-rv data-d="300">
+                <h3>Build your own</h3>
+                <p>Your tasks, your duration, your rules on what counts as a miss. Takes about
+                    four minutes.</p>
+                <div class="meta">Any Length · Any Tasks</div>
             </article>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Privacy manifesto -->
-    <section class="manifesto" id="privacy">
-        <div class="kicker kicker-light"><span class="sq"></span>PRIVATE BY ARCHITECTURE</div>
-        <h2>We can't see your data.<br><em>We never built the servers.</em></h2>
-        <p>No accounts. No analytics. No third-party SDKs. Your challenges, photos and step
-            counts live on your iPhone — backed up only where you choose. Read the
-            <a href="/privacy">privacy policy</a>; it's refreshingly short.</p>
-    </section>
+<!-- ============================== 08 · REAL SCREENS ============================== -->
+<section class="field-paper band-tight" id="screens">
+    <div class="wrap">
+        <div class="sec-head" data-rv="fade">
+            <div class="kicker">The actual app</div>
+            <div class="idx">05 / 06</div>
+        </div>
+        <h2 class="h-sm" data-rv style="margin-bottom:clamp(26px,3vw,40px);max-width:36ch;font-size:clamp(19px,1.7vw,24px);font-weight:700;color:var(--on-paper-soft);letter-spacing:-0.02em;line-height:1.4">
+            Unretouched screenshots. This is what you get on day one.</h2>
 
-    <!-- Download -->
-    <section class="download" id="download">
-        <div class="dl-watermark" aria-hidden="true">DAY 1</div>
-        <h2>Day 1 is<br><em>today.</em></h2>
-        <p class="dl-sub">Every feature, free. Pick a template and start before the excuse shows up.</p>
-        <!-- TODO-APPSTORE -->
-        <a href="#" class="btn-volt btn-big">
-            <svg viewBox="0 0 384 512" width="18" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 46.9 78.1 79.9 78.1 28.3 0 39.6-21.6 68.3-21.6 27.8 0 40 21.3 68.3 21.6 30.6.3 58-30.8 77-59.5 7.1-10.7 15-26.6 20.7-40.4-56.5-7.7-93.5-44.1-93.9-84.2zM277.9 94.7C293.4 75.8 300 48.7 298.6 21 274.6 22 249.7 34 233.1 53.7c-13.8 16.4-23.8 41.5-21 68 28.5 2.1 55.7-9.5 65.8-27z"/></svg>
-            Download on the App Store
+        <div class="shots">
+            <figure class="shot" data-rv data-d="0" style="margin:0">
+                <div class="frame"><img src="dark_home.png" alt="FlexChallenge dashboard showing two active challenges, a weekly streak row and lifetime totals" loading="lazy" width="1320" height="2868"></div>
+                <figcaption>Dashboard</figcaption>
+            </figure>
+            <figure class="shot" data-rv data-d="70" style="margin:0">
+                <div class="frame"><img src="dark_tasks.png" alt="Daily task list for day 23 of 75 with water, steps, photo and workout tasks" loading="lazy" width="1320" height="2868"></div>
+                <figcaption>Today</figcaption>
+            </figure>
+            <figure class="shot" data-rv data-d="140" style="margin:0">
+                <div class="frame"><img src="dark_calendar.png" alt="Challenge calendar with 75 numbered days, completed days filled green" loading="lazy" width="1320" height="2868"></div>
+                <figcaption>Calendar</figcaption>
+            </figure>
+            <figure class="shot" data-rv data-d="210" style="margin:0">
+                <div class="frame"><img src="dark_stats.png" alt="Statistics screen showing a 97 percent completion rate and a completion trend chart" loading="lazy" width="1320" height="2868"></div>
+                <figcaption>Statistics</figcaption>
+            </figure>
+        </div>
+    </div>
+</section>
+
+<!-- ============================== 09 · MANIFESTO ============================== -->
+<section class="field-ink band manifesto">
+    <div class="wrap">
+        <div class="mf-rule" data-rv="fade" aria-hidden="true"></div>
+        <div class="kicker" data-rv="fade">On integrity</div>
+        <h2 data-rv>Nobody is watching.<br>That's the <em>whole point.</em></h2>
+        <p data-rv data-d="90">There is no leaderboard here, no followers, no streak to post. The only
+            person who will ever know whether day 41 was honest is you — which is exactly the muscle
+            worth building. Do the work when it's inconvenient, log it truthfully when it went badly,
+            and on the last day you'll own something that can't be bought or faked.</p>
+    </div>
+</section>
+
+<!-- ============================== 10 · PRIVACY ============================== -->
+<section class="field-paper band" id="privacy">
+    <div class="wrap">
+        <div class="sec-head" data-rv="fade">
+            <div class="kicker">Privacy</div>
+            <div class="idx">06 / 06</div>
+        </div>
+
+        <div class="priv-in">
+            <div>
+                <h2 class="h-md" data-rv style="max-width:16ch">We can't see your data. We never built the
+                    <em>servers.</em></h2>
+                <ul class="priv-list">
+                    <li data-rv data-d="60"><span class="x">01</span><span><b>No account.</b> No email, no password, no profile. Download it and start.</span></li>
+                    <li data-rv data-d="110"><span class="x">02</span><span><b>No analytics, no third-party SDKs.</b> Nothing phones home, because there is no home to phone.</span></li>
+                    <li data-rv data-d="160"><span class="x">03</span><span><b>Everything stays on your iPhone.</b> Challenges, photos, voice notes and step counts — backed up only where you choose.</span></li>
+                    <li data-rv data-d="210"><span class="x">04</span><span><b>Export whenever.</b> It's your record. Take it and go, no hostage-taking.</span></li>
+                </ul>
+            </div>
+
+            <div class="priv-card" data-rv="scale" data-d="100">
+                <div class="big">$0</div>
+                <div class="cap">Price · forever</div>
+                <hr>
+                <div class="big">0</div>
+                <div class="cap">Ads, trackers, subscriptions</div>
+                <hr>
+                <p>Free doesn't mean you're the product here — there's simply nothing to sell.
+                    The <a href="/privacy">privacy policy</a> is short enough to read in full, which
+                    is the point.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================== 11 · DOWNLOAD ============================== -->
+<section class="get band field-ink" id="get">
+    <div class="get-glow" aria-hidden="true"></div>
+    <div class="wrap">
+        <div class="kicker" data-rv="fade">Start</div>
+        <h2 data-rv>Day 1 is <em>today.</em></h2>
+        <p data-rv data-d="80">Pick a template, set the terms, and begin before the part of you that
+            negotiates gets a word in.</p>
+
+        <div class="get-cta" data-rv data-d="140">
+            <!-- TODO-APPSTORE -->
+            <a href="#" class="btn btn-volt btn-lg">
+                <svg viewBox="0 0 384 512" width="18" height="20" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 46.9 78.1 79.9 78.1 28.3 0 39.6-21.6 68.3-21.6 27.8 0 40 21.3 68.3 21.6 30.6.3 58-30.8 77-59.5 7.1-10.7 15-26.6 20.7-40.4-56.5-7.7-93.5-44.1-93.9-84.2zM277.9 94.7C293.4 75.8 300 48.7 298.6 21 274.6 22 249.7 34 233.1 53.7c-13.8 16.4-23.8 41.5-21 68 28.5 2.1 55.7-9.5 65.8-27z"/></svg>
+                Download on the App Store
+            </a>
+            <span class="cta-note">iPhone &amp; iPad · iOS 17 or later</span>
+        </div>
+
+        <div class="get-strip" data-rv="fade" data-d="200">
+            <span>Free forever</span><span>No account</span><span>No ads</span><span>No tracking</span><span>Your data, your phone</span>
+        </div>
+    </div>
+</section>
+
+<!-- ============================== 12 · FOOTER ============================== -->
+<footer class="foot">
+    <div class="wrap foot-in">
+        <a class="brand" href="/">
+            <img src="https://storage.googleapis.com/msgsndr/4d3rWYEWOEeBlYLGRli8/media/694a30de79fc9681eeee174d.png" alt="" width="24" height="24">
+            FlexChallenge<span>.</span>
+            <span class="cr">© 2026</span>
         </a>
-        <span class="cta-note">iPhone &amp; iPad — iOS 17 or later</span>
-    </section>
-
-    <!-- Footer -->
-    <footer class="fc5-footer">
-        <div class="foot-brand">
-            <img class="brand-logo" src="https://storage.googleapis.com/msgsndr/4d3rWYEWOEeBlYLGRli8/media/694a30de79fc9681eeee174d.png" alt="">
-            FLEXCHALLENGE<span class="brand-dot">.</span> <span class="cr">© 2026</span>
-        </div>
-        <nav class="foot-links">
+        <nav class="foot-links" aria-label="Footer">
             <a href="/privacy">Privacy</a>
             <a href="/terms">Terms</a>
             <a href="/faq">FAQ</a>
             <a href="mailto:support@flexchallenge.app">Support</a>
         </nav>
-    </footer>
+    </div>
+</footer>
+</main>
 
-</div>
 <script>
-// FlexChallenge V5 - Interactions (paste in GHL footer code)
+/* ============================================================
+   FlexChallenge v6 — interactions
+   One rAF loop. One IntersectionObserver. Nothing polls.
+   ============================================================ */
 (function () {
-    function init() {
-        // Scroll reveal
-        var revealEls = document.querySelectorAll('.fc5 .reveal');
-        if ('IntersectionObserver' in window) {
-            var io = new IntersectionObserver(function (entries) {
-                entries.forEach(function (entry) {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('in-view');
-                        io.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1, rootMargin: '0px 0px 60px 0px' });
-            revealEls.forEach(function (el) { io.observe(el); });
+'use strict';
 
-            // Failsafe
-            setTimeout(function () {
-                revealEls.forEach(function (el) { el.classList.add('in-view'); });
-            }, 1500);
-        } else {
-            revealEls.forEach(function (el) { el.classList.add('in-view'); });
+var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var raf = window.requestAnimationFrame || function (f) { return setTimeout(f, 16); };
+
+/* ---------- helpers ---------- */
+function $(s, c) { return (c || document).querySelector(s); }
+function $$(s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); }
+function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
+function lerp(a, b, t) { return a + (b - a) * t; }
+function fmt(n) { return Math.round(n).toLocaleString('en-US'); }
+
+/* ============================================================
+   1 · Reveal on scroll
+   Fires at 12% into the viewport so elements are already moving
+   as they arrive, instead of catching up late.
+   ============================================================ */
+var revealIO = null;
+if ('IntersectionObserver' in window && !reduce) {
+    revealIO = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            e.target.classList.add('in', 'in-view');
+            revealIO.unobserve(e.target);
+        });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.01 });
+}
+function observeReveals(root) {
+    var els = $$('[data-rv], .has-clip', root || document);
+    els.forEach(function (el, i) {
+        if (el.dataset.rvBound) return;
+        el.dataset.rvBound = '1';
+        if (!el.style.getPropertyValue('--d') && el.dataset.d) {
+            el.style.setProperty('--d', el.dataset.d + 'ms');
         }
+        if (revealIO) { revealIO.observe(el); }
+        else { el.classList.add('in', 'in-view'); }
+    });
+}
 
-        // Smooth anchor scroll
-        document.querySelectorAll('.fc5 a[href^="#"]').forEach(function (anchor) {
-            anchor.addEventListener('click', function (e) {
-                var href = this.getAttribute('href');
-                if (!href || href === '#') return;
-                var target = document.querySelector(href);
-                if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
+/* ============================================================
+   2 · Shared scroll loop
+   Every scroll-linked effect registers a callback here. One read
+   of scrollY per frame, writes only. No layout thrash.
+   ============================================================ */
+var scrollJobs = [];
+var ticking = false;
+var vh = window.innerHeight;
+
+function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    raf(function () {
+        var y = window.pageYOffset || document.documentElement.scrollTop;
+        for (var i = 0; i < scrollJobs.length; i++) scrollJobs[i](y, vh);
+        ticking = false;
+    });
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+window.addEventListener('resize', function () { vh = window.innerHeight; onScroll(); }, { passive: true });
+
+/* ============================================================
+   3 · Nav state + scroll progress
+   ============================================================ */
+var nav = $('#nav');
+var progress = $('#progress');
+scrollJobs.push(function (y) {
+    if (nav) nav.classList.toggle('stuck', y > 40);
+    if (progress) {
+        var max = document.documentElement.scrollHeight - vh;
+        progress.style.transform = 'scaleX(' + (max > 0 ? clamp(y / max, 0, 1) : 0) + ')';
+    }
+});
+
+/* The bar inverts to ink-on-cream whenever a paper section sits under it,
+   so it never reads as a muddy dark slab floating on the page.
+   Hit-tested against cached section bounds — a zero-height IntersectionObserver
+   band is unreliable at exactly this job. */
+(function navContrast() {
+    if (!nav) return;
+    var papers = $$('.field-paper');
+    if (!papers.length) return;
+    var bounds = [];
+
+    function measure() {
+        var sy = window.pageYOffset || document.documentElement.scrollTop;
+        bounds = papers.map(function (p) {
+            var r = p.getBoundingClientRect();
+            return [r.top + sy, r.bottom + sy];
+        });
+    }
+    measure();
+    window.addEventListener('resize', measure, { passive: true });
+    window.addEventListener('load', measure);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+
+    scrollJobs.push(function (y) {
+        var line = y + 34;   // the vertical middle of the bar
+        var onPaper = false;
+        for (var i = 0; i < bounds.length; i++) {
+            if (line >= bounds[i][0] && line <= bounds[i][1]) { onPaper = true; break; }
+        }
+        nav.classList.toggle('on-paper', onPaper);
+    });
+})();
+
+/* ============================================================
+   4 · Hero phone — the app completing a day, on a loop
+   Water fills, steps count, the photo task checks off, then it
+   resets. This is the product demonstrating itself.
+   ============================================================ */
+(function heroPhone() {
+    var list = $('#heroList');
+    if (!list) return;
+
+    var cards = $$('.pv-card[data-task]', list);
+    var CIRC = 84.8;
+
+    function setCard(card, pct, done) {
+        var ring = $('.pv-ring', card);
+        var val = $('.val', ring);
+        var bar = $('.pv-bar i', card);
+        var num = $('.num', card);
+        if (val) val.setAttribute('stroke-dashoffset', String(CIRC * (1 - pct)));
+        if (bar) bar.style.width = (pct * 100) + '%';
+        if (num) {
+            var to = parseFloat(num.dataset.to);
+            var from = parseFloat(num.dataset.from || num.textContent.replace(/,/g, ''));
+            num.dataset.from = from;
+            num.textContent = fmt(lerp(from, to, pct));
+        }
+        ring.classList.toggle('done', !!done);
+        card.classList.toggle('done', !!done);
+    }
+
+    function reset() {
+        cards.forEach(function (c) {
+            var num = $('.num', c);
+            if (num) { num.textContent = fmt(parseFloat(num.dataset.start)); num.dataset.from = num.dataset.start; }
+            setCard(c, parseFloat(c.dataset.start0 || 0), false);
         });
     }
 
-    if (document.readyState === 'complete' || document.readyState === 'interactive') {
-        init();
-    } else {
-        document.addEventListener('DOMContentLoaded', init);
+    // remember starting values
+    cards.forEach(function (c) {
+        var num = $('.num', c);
+        if (num) num.dataset.start = num.textContent.replace(/,/g, '');
+        var t = c.dataset.task;
+        c.dataset.start0 = t === 'water' ? 0.75 : t === 'steps' ? 0.84 : 0;
+    });
+
+    if (reduce) {
+        cards.forEach(function (c) { setCard(c, 1, true); });
+        return;
+    }
+
+    reset();
+
+    var running = false;
+    var io = new IntersectionObserver(function (e) {
+        if (e[0].isIntersecting && !running) { running = true; loop(); }
+    }, { threshold: 0.25 });
+    io.observe(list);
+
+    function animate(card, from, to, dur, done) {
+        var t0 = null;
+        function frame(t) {
+            if (t0 === null) t0 = t;
+            var p = clamp((t - t0) / dur, 0, 1);
+            var e = 1 - Math.pow(1 - p, 3);
+            setCard(card, lerp(from, to, e), false);
+            if (p < 1) raf(frame);
+            else { setCard(card, to, to >= 1); if (done) done(); }
+        }
+        raf(frame);
+    }
+
+    function loop() {
+        var i = 0;
+        function next() {
+            if (i >= cards.length) {
+                setTimeout(function () { reset(); setTimeout(loop, 900); }, 2600);
+                return;
+            }
+            var card = cards[i++];
+            animate(card, parseFloat(card.dataset.start0), 1, 1100, function () {
+                setTimeout(next, 480);
+            });
+        }
+        setTimeout(next, 700);
     }
 })();
+
+/* ============================================================
+   5 · The 75-square board (premise section)
+   Fills once, in view, then holds. 23 of 75 — the same number
+   used everywhere else on the page.
+   ============================================================ */
+(function board() {
+    var host = $('#board75');
+    if (!host) return;
+    var DONE = 23, TOTAL = 75;
+    var cells = [];
+    for (var i = 0; i < TOTAL; i++) {
+        var el = document.createElement('i');
+        host.appendChild(el);
+        cells.push(el);
+    }
+    var nEl = $('#boardN'), leftEl = $('#boardLeft');
+
+    function paint(n) {
+        for (var i = 0; i < TOTAL; i++) {
+            cells[i].classList.toggle('on', i < n - 1);
+            cells[i].classList.toggle('cur', i === n - 1);
+        }
+        if (nEl) nEl.textContent = n;
+        if (leftEl) leftEl.textContent = (TOTAL - n) + ' days left';
+    }
+
+    if (reduce) { paint(DONE); return; }
+    paint(0);
+
+    var io = new IntersectionObserver(function (e) {
+        if (!e[0].isIntersecting) return;
+        io.disconnect();
+        var n = 0;
+        (function tick() {
+            paint(++n);
+            if (n < DONE) setTimeout(tick, 34);
+        })();
+    }, { threshold: 0.35 });
+    io.observe(host);
+})();
+
+/* ============================================================
+   6 · Step 3 mini calendar
+   ============================================================ */
+(function miniCal() {
+    var host = $('#miniCal');
+    if (!host) return;
+    var cells = [];
+    for (var i = 0; i < 30; i++) {
+        var el = document.createElement('i');
+        host.appendChild(el);
+        cells.push(el);
+    }
+    function paint(n) {
+        cells.forEach(function (c, i) {
+            c.classList.toggle('on', i < n - 1);
+            c.classList.toggle('cur', i === n - 1);
+        });
+    }
+    if (reduce) { paint(18); return; }
+    paint(0);
+    var io = new IntersectionObserver(function (e) {
+        if (!e[0].isIntersecting) return;
+        io.disconnect();
+        var n = 0;
+        (function tick() { paint(++n); if (n < 18) setTimeout(tick, 60); })();
+    }, { threshold: 0.4 });
+    io.observe(host);
+
+    // duration selector cycles so the step never sits still
+    var dur = $('#miniDur');
+    var endEl = $('#miniEnd');
+    if (dur && !reduce) {
+        var opts = $$('span', dur), k = 2;
+        var ENDS = ['Jun 18', 'Jul 18', 'Aug 2'];
+        setInterval(function () {
+            k = (k + 1) % opts.length;
+            opts.forEach(function (o, i) { o.classList.toggle('on', i === k); });
+            if (endEl) endEl.textContent = ENDS[k];
+        }, 2600);
+    }
+})();
+
+/* ============================================================
+   7 · The pinned sequence
+   Scroll position drives which panel is up, which screen is on
+   the phone, and how far the calendar / stats have progressed.
+   Every pixel of scroll changes something on screen.
+   ============================================================ */
+(function pinned() {
+    var rail = $('#pinRail');
+    var stage = $('#pinStage');
+    if (!rail || !stage) return;
+
+    var panels = $$('.pin-panel', stage);
+    var screens = $$('.pin-screen', stage);
+    var tabs = $$('.pv-tab', stage);
+    var STEPS = panels.length;
+    var TAB_FOR = [1, 2, 0, 0];
+
+    /* --- build the 75-day calendar --- */
+    var calCells = [];
+    (function () {
+        var host = $('#pinCal');
+        if (!host) return;
+        var start = new Date(2026, 4, 20);
+        for (var i = 0; i < 49; i++) {
+            var d = new Date(start.getTime() + i * 86400000);
+            var el = document.createElement('div');
+            el.className = 'pv-day';
+            el.innerHTML = '<span>' + (i + 1) + '</span><span class="dd">' +
+                (d.getMonth() + 1) + '/' + d.getDate() + '</span>';
+            host.appendChild(el);
+            calCells.push(el);
+        }
+    })();
+
+    /* --- build the media gallery --- */
+    (function () {
+        var host = $('#pinGal');
+        if (!host) return;
+        var kinds = ['📷','📷','🎥','📷','🎙','📷','📷','🎥','📷','🎙','📷','📷','🎥','📷','📷','🎙','📷','🎥','📷','📷','📷'];
+        var tints = ['#1f3a4d','#3a2f1f','#25323f','#1f3a2b','#332435','#2c2f1f'];
+        kinds.forEach(function (k, i) {
+            var el = document.createElement('i');
+            el.textContent = k;
+            el.setAttribute('data-d', 'D' + (i + 1));
+            el.style.background = tints[i % tints.length];
+            host.appendChild(el);
+        });
+    })();
+
+    /* --- build the trend chart --- */
+    var bars = [];
+    (function () {
+        var host = $('#statChart');
+        if (!host) return;
+        var vals = [100, 100, 86, 100, 100, 100, 71, 100, 100, 100, 100, 43];
+        vals.forEach(function (v) {
+            var b = document.createElement('i');
+            b.dataset.v = v;
+            host.appendChild(b);
+            bars.push(b);
+        });
+    })();
+
+    /* --- step rail --- */
+    var dots = $('#pinDots');
+    var dotEls = [];
+    if (dots) {
+        for (var i = 0; i < STEPS; i++) {
+            (function (i) {
+                var b = document.createElement('button');
+                b.type = 'button';
+                b.addEventListener('click', function () {
+                    window.scrollTo({
+                        top: railTop + (railH - vh) * ((i + 0.35) / STEPS),
+                        behavior: reduce ? 'auto' : 'smooth'
+                    });
+                });
+                dots.appendChild(b);
+                dotEls.push(b);
+            })(i);
+        }
+    }
+
+    var CAL_DONE = 23;
+    var lastStep = -1;
+
+    /* Document-relative geometry, cached.
+       offsetTop is measured against the nearest positioned ancestor —
+       here that's the section, which makes it 0. Always resolve the rail
+       against the document, and only re-measure on resize. */
+    var railTop = 0, railH = 0;
+    function measure() {
+        var r = rail.getBoundingClientRect();
+        railTop = r.top + (window.pageYOffset || document.documentElement.scrollTop);
+        railH = rail.offsetHeight;
+    }
+    measure();
+    window.addEventListener('resize', measure, { passive: true });
+    window.addEventListener('load', measure);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+
+    function setStep(i) {
+        if (i === lastStep) return;
+        lastStep = i;
+        panels.forEach(function (p, k) {
+            p.classList.toggle('on', k === i);
+            p.classList.toggle('before', k < i);
+            p.classList.toggle('after', k > i);
+        });
+        screens.forEach(function (s, k) { s.classList.toggle('on', k === i); });
+        dotEls.forEach(function (d, k) { d.classList.toggle('on', k === i); });
+        var t = TAB_FOR[i];
+        tabs.forEach(function (tb, k) { tb.classList.toggle('on', k === t); });
+    }
+
+    /* --- per-step scrubbing --- */
+    var CIRC_S = 264;
+    function paintCalendar(sub) {
+        var n = Math.round(clamp(sub, 0, 1) * CAL_DONE);
+        for (var i = 0; i < calCells.length; i++) {
+            calCells[i].classList.toggle('fill', i < n - 1);
+            calCells[i].classList.toggle('today', i === n - 1);
+        }
+        var left = $('#calLeft');
+        if (left) left.textContent = 75 - Math.max(n, 1);
+    }
+    function paintStats(sub) {
+        var p = clamp(sub * 1.35, 0, 1);
+        var e = 1 - Math.pow(1 - p, 3);
+        var ring = $('#statRing');
+        if (ring) ring.setAttribute('stroke-dashoffset', String(CIRC_S * (1 - e * 0.97)));
+        var pct = $('#statPct'); if (pct) pct.textContent = Math.round(e * 97);
+        var a = $('#statTasks'); if (a) a.textContent = fmt(e * 163);
+        var b = $('#statDays');  if (b) b.textContent = Math.round(e * 23);
+        var c = $('#statBest');  if (c) c.textContent = Math.round(e * 22);
+        bars.forEach(function (bar, i) {
+            var d = clamp((e - i * 0.045) * 1.6, 0, 1);
+            bar.style.height = (parseFloat(bar.dataset.v) * d) + '%';
+        });
+        var r1 = $('#wkRing1'), r2 = $('#wkRing2');
+        if (r1) r1.setAttribute('stroke-dashoffset', String(264 * (1 - e * 0.97)));
+        if (r2) r2.setAttribute('stroke-dashoffset', String(188 * (1 - e)));
+        var wa = $('#wkA'); if (wa) wa.textContent = Math.round(e * 97);
+        var wb = $('#wkB'); if (wb) wb.textContent = Math.round(e * 100);
+    }
+    function paintGallery(sub) {
+        var tiles = $$('#pinGal i');
+        var p = clamp(sub * 1.5, 0, 1);
+        tiles.forEach(function (t, i) {
+            var d = clamp((p - i * 0.03) * 6, 0, 1);
+            t.style.opacity = d;
+            t.style.transform = 'scale(' + lerp(0.86, 1, d) + ')';
+        });
+    }
+
+    if (reduce) {
+        setStep(0);
+        paintCalendar(1); paintStats(1); paintGallery(1);
+        return;
+    }
+
+    paintCalendar(0); paintStats(0); paintGallery(0);
+
+    scrollJobs.push(function (y) {
+        var span = railH - vh;
+        if (span <= 0) return;
+        // only work while the rail is anywhere near the viewport
+        if (y < railTop - vh || y > railTop + railH + vh) return;
+
+        var p = clamp((y - railTop) / span, 0, 1);
+        var raw = p * STEPS;
+        var idx = clamp(Math.floor(raw), 0, STEPS - 1);
+        var sub = clamp(raw - idx, 0, 1);
+
+        setStep(idx);
+
+        // scrub the active screen; hold finished ones at their end state
+        if (idx === 1) paintCalendar(sub * 1.25);
+        else if (idx > 1) paintCalendar(1);
+
+        if (idx === 2) paintStats(sub);
+        else if (idx > 2) paintStats(1);
+
+        if (idx === 3) paintGallery(sub);
+    });
+})();
+
+/* ============================================================
+   8 · Mobile stack — the same four beats, unpinned
+   Built by cloning the panels and screens so there is exactly
+   one source of truth for the copy.
+   ============================================================ */
+(function mobileStack() {
+    var host = $('#pinStack');
+    var stage = $('#pinStage');
+    if (!host || !host || !stage) return;
+    var built = false;
+
+    function build() {
+        if (built) return;
+        built = true;
+        var panels = $$('.pin-panel', stage);
+        var screens = $$('.pin-screen', stage);
+        panels.forEach(function (p, i) {
+            var item = document.createElement('div');
+            item.className = 'stack-item';
+
+            var copy = p.cloneNode(true);
+            copy.classList.remove('after', 'before');
+            copy.classList.add('on');
+            item.appendChild(copy);
+
+            var src = screens[i];
+            if (src) {
+                var ph = document.createElement('div');
+                ph.className = 'stack-phone';
+                ph.innerHTML =
+                    '<div class="pv"><div class="pv-shell"><div class="pv-screen">' +
+                    '<div class="pv-notch"></div>' +
+                    '</div></div></div>';
+                var scr = $('.pv-screen', ph);
+                var clone = src.cloneNode(true);
+                clone.classList.add('on');
+                clone.style.position = 'absolute';
+                // ids must not be duplicated
+                $$('[id]', clone).forEach(function (n) { n.removeAttribute('id'); });
+                scr.appendChild(clone);
+                item.appendChild(ph);
+            }
+            host.appendChild(item);
+            if (window.FC) window.FC.observeReveals(item);
+        });
+    }
+
+    var mq = window.matchMedia('(max-width: 900px)');
+    if (mq.matches) build();
+    (mq.addEventListener ? mq.addEventListener.bind(mq, 'change') : mq.addListener.bind(mq))(function (e) {
+        if (e.matches) build();
+    });
+})();
+
+/* ============================================================
+   9 · Task-type switcher
+   Each of the seven log types demonstrates itself in the phone.
+   ============================================================ */
+(function taskTypes() {
+    var list = $('#typesList');
+    var demo = $('#typeDemo');
+    var title = $('#typeTitle');
+    var sub = $('#typeSub');
+    if (!list || !demo) return;
+
+    var DATA = [
+        { t: 'Standard', s: 'Done, or not done. No partial credit.', rows: [
+            { n: 'Cold Shower', tag: 'body', done: true },
+            { n: 'Make the Bed', tag: 'being', done: true },
+            { n: 'No Alcohol', tag: 'body', done: true },
+            { n: 'Phone Down by 9pm', tag: 'bal' },
+            { n: 'Inbox to Zero', tag: 'biz' }
+        ]},
+        { t: 'Water', s: 'Ounces or glasses, against your target', rows: [
+            { n: 'Drink 1 Gallon of Water', tag: 'body', pct: 0.75, m: '96 / 128 oz', act: '💧' },
+            { n: 'Electrolytes — 2 servings', tag: 'body', pct: 0.5, m: '1 / 2 servings', act: '💧' },
+            { n: 'Black Coffee Only', tag: 'body', done: true },
+            { n: 'No Soda', tag: 'body', done: true }
+        ]},
+        { t: 'Counter', s: 'Reps, pages, minutes, calls, prospects', rows: [
+            { n: 'Read 10 Pages', tag: 'being', pct: 1, m: '10 / 10 pages', done: true },
+            { n: '100 Push-ups', tag: 'body', pct: 0.62, m: '62 / 100 reps', act: '＋' },
+            { n: '10 Prospects Contacted', tag: 'biz', pct: 0.4, m: '4 / 10 calls', act: '＋' },
+            { n: 'Meditate 20 Minutes', tag: 'being', pct: 1, m: '20 / 20 min', done: true }
+        ]},
+        { t: 'Steps', s: 'Synced from Apple Health, hands off', rows: [
+            { n: '10,000 Steps', tag: 'body', pct: 0.84, m: '8,432 / 10,000 · Health', act: '👟' },
+            { n: 'Walk After Dinner', tag: 'bal', done: true },
+            { n: 'Stand 12 Hours', tag: 'body', pct: 0.75, m: '9 / 12 hours · Health', act: '👟' },
+            { n: 'Zone 2 — 30 min', tag: 'body', done: true }
+        ]},
+        { t: 'Photo', s: 'Progress pictures, filed by day', rows: [
+            { n: 'Progress Photo', tag: 'body', act: '📷' },
+            { n: 'Meal Photo — Lunch', tag: 'body', done: true, act: '📷' }
+        ], gal: true },
+        { t: 'Video', s: 'Form checks, lifts, milestones', rows: [
+            { n: 'Squat — Form Check', tag: 'body', act: '🎥' },
+            { n: 'Weekly Recap Clip', tag: 'being', done: true, act: '🎥' }
+        ], gal: true },
+        { t: 'Audio', s: 'Voice notes, for when writing is too slow', rows: [
+            { n: 'Morning Intention', tag: 'being', done: true, act: '🎙' },
+            { n: 'Evening Reflection', tag: 'being', act: '🎙' }
+        ], wave: true }
+    ];
+
+    var NOTES = '<div class="pv-card" style="align-items:flex-start;margin-top:.6em">' +
+        '<div class="pv-body"><div class="pv-t" style="font-size:.8em;color:#8e8e93">NOTES · DAY 23</div>' +
+        '<div style="font-size:.8em;color:#c7c7cc;margin-top:.35em;line-height:1.45">' +
+        'Legs were dead by the second workout. Did it anyway. Slept 7h20m.</div></div></div>';
+
+    function rowHTML(r) {
+        var ring = r.done
+            ? '<div class="pv-ring done"><svg viewBox="0 0 32 32"><circle class="trk" cx="16" cy="16" r="13.5"/></svg><span class="tick">✓</span></div>'
+            : '<div class="pv-ring"><svg viewBox="0 0 32 32"><circle class="trk" cx="16" cy="16" r="13.5"/>' +
+              (r.pct ? '<circle class="val" cx="16" cy="16" r="13.5" stroke-dasharray="84.8" stroke-dashoffset="' + (84.8 * (1 - r.pct)) + '"/>' : '') +
+              '</svg></div>';
+        return '<div class="pv-card' + (r.done ? ' done' : '') + '">' + ring +
+            '<div class="pv-body"><div class="pv-t">' + r.n + '</div>' +
+            (r.pct !== undefined ? '<div class="pv-bar"><i style="width:' + (r.pct * 100) + '%"></i></div>' : '') +
+            (r.m ? '<div class="pv-m">' + r.m + '</div>' : '') +
+            '<span class="pv-tag tag-' + r.tag + '">' + ({ body: 'Body', being: 'Being', biz: 'Business', bal: 'Balance' })[r.tag] + '</span>' +
+            '</div>' +
+            (r.act ? '<span class="pv-act">' + r.act + '</span>' : '') +
+            '</div>';
+    }
+
+    var items = $$('.type', list);
+    var cur = -1;
+
+    function show(i) {
+        if (i === cur) return;
+        cur = i;
+        var d = DATA[i];
+        items.forEach(function (el, k) { el.classList.toggle('on', k === i); });
+        if (title) title.textContent = d.t;
+        if (sub) sub.textContent = d.s;
+        var html = d.rows.map(rowHTML).join('');
+        if (d.gal) {
+            html += '<div class="pv-gal" style="margin-top:.7em">' +
+                ['📷','🎥','📷','📷','🎥','📷'].map(function (k, n) {
+                    return '<i data-d="D' + (18 + n) + '" style="background:' + ['#1f3a4d','#3a2f1f','#25323f','#1f3a2b','#332435','#2c2f1f'][n] + '">' + k + '</i>';
+                }).join('') + '</div>';
+        }
+        if (d.wave) {
+            html += '<div class="pv-card" style="margin-top:.6em"><div class="pv-body" style="width:100%">' +
+                '<div class="pv-t" style="margin-bottom:.5em">Day 23 · 0:42</div>' +
+                '<div style="display:flex;align-items:center;gap:.16em;height:2.2em">' +
+                Array.apply(null, Array(30)).map(function (_, n) {
+                    var h = 18 + Math.abs(Math.sin(n * 1.7)) * 78;
+                    return '<span style="flex:1;height:' + h + '%;background:' + (n < 14 ? '#0A84FF' : 'rgba(255,255,255,.22)') + ';border-radius:1px"></span>';
+                }).join('') + '</div></div></div>';
+        }
+        demo.innerHTML = html + NOTES;
+    }
+
+    items.forEach(function (el, i) {
+        el.setAttribute('tabindex', '0');
+        el.setAttribute('role', 'button');
+        el.addEventListener('mouseenter', function () { show(i); auto = false; });
+        el.addEventListener('focus', function () { show(i); auto = false; });
+        el.addEventListener('click', function () { show(i); auto = false; });
+        el.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(i); auto = false; }
+        });
+    });
+
+    show(0);
+
+    /* cycle on its own until the visitor takes over */
+    var auto = true;
+    if (!reduce) {
+        var visible = false;
+        new IntersectionObserver(function (e) { visible = e[0].isIntersecting; }, { threshold: 0.3 })
+            .observe(list);
+        setInterval(function () {
+            if (auto && visible) show((cur + 1) % DATA.length);
+        }, 2400);
+    }
+})();
+
+/* ============================================================
+   10 · Count-up numbers (hero facts and anywhere else)
+   ============================================================ */
+(function countUps() {
+    var els = $$('[data-count]');
+    if (!els.length) return;
+    if (reduce) { els.forEach(function (e) { e.textContent = e.dataset.count; }); return; }
+    var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+            if (!en.isIntersecting) return;
+            io.unobserve(en.target);
+            var el = en.target;
+            var to = parseFloat(el.dataset.count);
+            var pre = el.dataset.pre || '';
+            var t0 = null;
+            (function frame(t) {
+                if (t0 === null) t0 = t;
+                var p = clamp((t - t0) / 1200, 0, 1);
+                el.textContent = pre + fmt(lerp(0, to, 1 - Math.pow(1 - p, 3)));
+                if (p < 1) raf(frame);
+            })(performance.now());
+        });
+    }, { threshold: 0.5 });
+    els.forEach(function (e) { io.observe(e); });
+})();
+
+/* ---------- boot ---------- */
+function boot() {
+    observeReveals();
+    onScroll();
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+else boot();
+
+window.FC = { observeReveals: observeReveals, scrollJobs: scrollJobs, reduce: reduce, clamp: clamp, lerp: lerp, fmt: fmt };
+})();
 </script>
-</body></html>
+</body>
+</html>
