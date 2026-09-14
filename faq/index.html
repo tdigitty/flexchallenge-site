@@ -1,6 +1,7 @@
 <!-- FlexChallenge — FAQ page -->
 <!-- Paste this entire block into a GHL Custom HTML element on the /faq page -->
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -46,7 +47,7 @@
         }
 
         .fc-legal .legal-nav .nav-links { display: flex; gap: 20px; font-size: 14px; }
-        .fc-legal .legal-nav .nav-links a { color: var(--muted); }
+        .fc-legal .legal-nav .nav-links a { color: var(--muted); display: inline-flex; align-items: center; min-height: 44px; }
         .fc-legal .legal-nav .nav-links a:hover { color: var(--text); text-decoration: none; }
 
         .fc-legal .legal-wrap {
@@ -113,11 +114,16 @@
             color: var(--muted);
         }
 
-        .fc-legal .legal-footer a { color: var(--muted); }
+        .fc-legal .legal-footer a { color: var(--muted); display: inline-flex; align-items: center; min-height: 44px; }
         .fc-legal .legal-footer a:hover { color: var(--text); }
 
         @media (max-width: 540px) {
-            .fc-legal .legal-nav { flex-direction: column; gap: 12px; }
+            .fc-legal .legal-nav { flex-direction: column; gap: 12px; align-items: flex-start; }
+            .fc-legal .legal-nav .nav-links { flex-wrap: wrap; gap: 4px 18px; }
+            .fc-legal .legal-wrap { padding-top: 32px; }
+            .fc-legal h1 { font-size: clamp(28px, 8vw, 36px); }
+            .fc-legal .legal-footer { flex-direction: column; gap: 4px; }
+            .fc-legal .faq-item { padding: 20px 20px; }
         }
     </style>
 

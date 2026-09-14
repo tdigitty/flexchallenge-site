@@ -1,6 +1,7 @@
 <!-- FlexChallenge — Privacy Policy page -->
 <!-- Paste this entire block into a GHL Custom HTML element on the /privacy page -->
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -46,7 +47,7 @@
         }
 
         .fc-legal .legal-nav .nav-links { display: flex; gap: 20px; font-size: 14px; }
-        .fc-legal .legal-nav .nav-links a { color: var(--muted); }
+        .fc-legal .legal-nav .nav-links a { color: var(--muted); display: inline-flex; align-items: center; min-height: 44px; }
         .fc-legal .legal-nav .nav-links a:hover { color: var(--text); text-decoration: none; }
 
         .fc-legal .legal-wrap {
@@ -137,11 +138,19 @@
             color: var(--muted);
         }
 
-        .fc-legal .legal-footer a { color: var(--muted); }
+        .fc-legal .legal-footer a { color: var(--muted); display: inline-flex; align-items: center; min-height: 44px; }
         .fc-legal .legal-footer a:hover { color: var(--text); }
 
+        .fc-legal .tbl-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
         @media (max-width: 540px) {
-            .fc-legal .legal-nav { flex-direction: column; gap: 12px; }
+            .fc-legal .legal-nav { flex-direction: column; gap: 12px; align-items: flex-start; }
+            .fc-legal .legal-nav .nav-links { flex-wrap: wrap; gap: 4px 18px; }
+            .fc-legal .legal-wrap { padding-top: 32px; }
+            .fc-legal h1 { font-size: clamp(28px, 8vw, 36px); }
+            .fc-legal .legal-footer { flex-direction: column; gap: 4px; }
+            .fc-legal table { font-size: 13.5px; }
+            .fc-legal th, .fc-legal td { padding: 8px 8px; }
         }
     </style>
 
@@ -180,6 +189,7 @@
 
         <h3>What our App Store privacy label declares</h3>
         <p>For transparency, these are the only two data types FlexChallenge declares in its App Store privacy manifest. Both are <strong>not linked to your identity</strong> and <strong>not used for tracking</strong>:</p>
+        <div class="tbl-scroll">
         <table>
             <thead>
                 <tr><th>Data type</th><th>Why</th><th>Linked to you?</th><th>Tracking?</th></tr>
@@ -189,6 +199,7 @@
                 <tr><td>User ID (anonymous, app-generated)</td><td>App functionality — it is how your purchase is recognized across reinstalls and devices</td><td>No</td><td>No</td></tr>
             </tbody>
         </table>
+        </div>
 
         <h2>Data Stored On Your Device</h2>
         <p>FlexChallenge keeps the following information locally on your device, using Apple's SwiftData storage:</p>
