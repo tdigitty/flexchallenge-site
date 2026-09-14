@@ -1,0 +1,921 @@
+<!-- FlexChallenge — Support / How-to page -->
+<!-- Paste this entire block into a GHL Custom HTML element on the /support page -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<div class="fc-legal fc-support">
+    <style>
+        .fc-legal {
+            --bg: #F2EFE7;
+            --surface: #FBF9F4;
+            --card: #FBF9F4;
+            --border: rgba(22, 21, 15, 0.25);
+            --text: #16150F;
+            --muted: #55524A;
+            --accent: #C2410C;
+            --blue: #0A72CD;
+            --volt: #C8F222;
+            --grad: linear-gradient(#E8541D, #E8541D);
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            width: 100%;
+            min-height: 100vh;
+            padding: 0 0 80px;
+        }
+
+        .fc-legal * { box-sizing: border-box; }
+        .fc-legal a { color: var(--accent); text-decoration: none; }
+        .fc-legal a:hover { text-decoration: underline; }
+
+        .fc-legal .legal-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 28px 24px 0;
+        }
+
+        .fc-legal .legal-nav .brand {
+            font-weight: 700;
+            font-size: 17px;
+            color: var(--text);
+            letter-spacing: -0.02em;
+        }
+
+        .fc-legal .legal-nav .nav-links { display: flex; gap: 20px; font-size: 14px; }
+        .fc-legal .legal-nav .nav-links a { color: var(--muted); }
+        .fc-legal .legal-nav .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+        .fc-legal .legal-wrap {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 56px 24px 0;
+        }
+
+        .fc-legal .eyebrow {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            background: var(--grad);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 12px;
+        }
+
+        .fc-legal h1 {
+            font-size: clamp(32px, 5vw, 44px);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin: 0 0 8px;
+        }
+
+        .fc-legal .effective { color: var(--muted); font-size: 14px; margin-bottom: 36px; }
+        .fc-legal p, .fc-legal li { color: #3E3B33; font-size: 16px; }
+        .fc-legal strong { color: var(--text); }
+
+        /* ---- Table of contents ---- */
+        .fc-support .toc {
+            background: var(--card);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 22px 26px;
+            margin-bottom: 40px;
+        }
+        .fc-support .toc h2 {
+            font-family: 'IBM Plex Mono', ui-monospace, monospace;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin: 0 0 14px;
+        }
+        .fc-support .toc ol {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 6px 24px;
+            counter-reset: toc;
+        }
+        .fc-support .toc li { margin: 0; counter-increment: toc; font-size: 15px; }
+        .fc-support .toc li a { color: var(--text); }
+        .fc-support .toc li a::before {
+            content: counter(toc, decimal-leading-zero);
+            font-family: 'IBM Plex Mono', ui-monospace, monospace;
+            font-size: 12px;
+            color: var(--blue);
+            margin-right: 10px;
+        }
+
+        /* ---- Sections ---- */
+        .fc-support .sec {
+            border-top: 2px solid var(--border);
+            padding-top: 28px;
+            margin-top: 44px;
+            scroll-margin-top: 24px;
+        }
+        .fc-support .sec:first-of-type { border-top: none; margin-top: 0; padding-top: 0; }
+        .fc-support .sec > h2 {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin: 0 0 6px;
+        }
+        .fc-support .sec > .lede { color: var(--muted); margin: 0 0 20px; font-size: 15px; }
+        .fc-support h3 {
+            font-size: 17px;
+            font-weight: 700;
+            letter-spacing: -0.015em;
+            margin: 26px 0 10px;
+        }
+
+        /* ---- Step lists ---- */
+        .fc-support .steps { list-style: none; margin: 0 0 18px; padding: 0; }
+        .fc-support .steps > li {
+            margin: 0 0 14px;
+            padding-left: 16px;
+            border-left: 2px solid rgba(10, 114, 205, 0.35);
+        }
+        .fc-support .steps b { color: var(--text); display: block; font-weight: 700; }
+        .fc-support .path {
+            font-family: 'IBM Plex Mono', ui-monospace, monospace;
+            font-size: 13.5px;
+            color: var(--muted);
+            display: block;
+            margin-top: 2px;
+            word-break: break-word;
+        }
+        .fc-support .note {
+            display: block;
+            font-size: 14.5px;
+            color: #3E3B33;
+            margin-top: 4px;
+        }
+        .fc-support .note::before {
+            content: "Note";
+            font-family: 'IBM Plex Mono', ui-monospace, monospace;
+            font-size: 10.5px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-right: 8px;
+        }
+
+        .fc-support .callout {
+            background: var(--card);
+            border: 2px solid var(--border);
+            border-left: 6px solid var(--blue);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 18px 0;
+        }
+        .fc-support .callout p { margin: 0; font-size: 15px; }
+        .fc-support .callout p + p { margin-top: 8px; }
+        .fc-support .callout.warn { border-left-color: var(--accent); }
+
+        .fc-support ul.plain { padding-left: 22px; margin: 10px 0 18px; }
+        .fc-support ul.plain li { margin-bottom: 6px; }
+
+        /* ---- Figures ---- */
+        .fc-support .shot {
+            float: right;
+            width: 300px;
+            max-width: 100%;
+            margin: 0 0 24px 28px;
+            padding: 0;
+        }
+        .fc-support .shot img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border: 2px solid var(--text);
+            border-radius: 24px;
+            background: var(--surface);
+            aspect-ratio: 9 / 19.5;
+            object-fit: cover;
+        }
+        .fc-support .shot figcaption {
+            font-family: 'IBM Plex Mono', ui-monospace, monospace;
+            font-size: 12px;
+            line-height: 1.65;
+            color: var(--muted);
+            margin-top: 10px;
+        }
+        .fc-support .sec::after { content: ""; display: block; clear: both; }
+
+        /* ---- Video placeholder ---- */
+        .fc-support .video-box {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            width: 100%;
+            border: 2px solid var(--text);
+            border-radius: 16px;
+            background: var(--surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 24px;
+        }
+        .fc-support .video-box span {
+            font-family: 'IBM Plex Mono', ui-monospace, monospace;
+            font-size: clamp(12px, 2.4vw, 15px);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .fc-support .video-box iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 14px;
+        }
+
+        /* ---- Templates table ---- */
+        .fc-support .tpl {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0 18px;
+            font-size: 15px;
+        }
+        .fc-support .tpl th, .fc-support .tpl td {
+            text-align: left;
+            padding: 9px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        .fc-support .tpl th {
+            font-family: 'IBM Plex Mono', ui-monospace, monospace;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            font-weight: 600;
+        }
+        .fc-support .tpl td { color: #3E3B33; }
+        .fc-support .tbl-scroll { overflow-x: auto; }
+
+        .fc-support .contact {
+            background: var(--text);
+            color: var(--bg);
+            border-radius: 16px;
+            padding: 30px 32px;
+            margin-top: 52px;
+        }
+        .fc-support .contact h2 { margin: 0 0 8px; font-size: 24px; font-weight: 800; letter-spacing: -0.02em; }
+        .fc-support .contact p { color: rgba(242, 239, 231, 0.82); margin: 0 0 6px; }
+        .fc-support .contact a { color: var(--volt); font-weight: 600; }
+
+        .fc-legal .legal-footer {
+            max-width: 860px;
+            margin: 64px auto 0;
+            padding: 28px 24px 0;
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px 24px;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--muted);
+        }
+        .fc-legal .legal-footer a { color: var(--muted); }
+        .fc-legal .legal-footer a:hover { color: var(--text); }
+
+        @media (max-width: 760px) {
+            .fc-support .shot { float: none; width: 260px; margin: 0 0 20px; }
+        }
+        @media (max-width: 540px) {
+            .fc-legal .legal-nav { flex-direction: column; gap: 12px; }
+            .fc-support .toc ol { grid-template-columns: 1fr; }
+            .fc-support .toc { padding: 18px 20px; }
+            .fc-support .shot { width: 100%; }
+            .fc-support .contact { padding: 24px 20px; }
+        }
+    </style>
+
+    <nav class="legal-nav">
+        <a href="/" class="brand">FlexChallenge</a>
+        <div class="nav-links">
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
+            <a href="/faq">FAQ</a>
+            <a href="/support">Help</a>
+        </div>
+    </nav>
+
+    <div class="legal-wrap">
+        <span class="eyebrow">Support</span>
+        <h1>How to use FlexChallenge</h1>
+        <p class="effective">Every screen, every button, and the things that surprise people. Last updated: September 13, 2026.</p>
+
+        <div class="toc">
+            <h2>On this page</h2>
+            <ol>
+                <li><a href="#video">Video walkthrough</a></li>
+                <li><a href="#getting-started">Getting started</a></li>
+                <li><a href="#home">Home dashboard</a></li>
+                <li><a href="#today">Today's tasks</a></li>
+                <li><a href="#task-types">Task types</a></li>
+                <li><a href="#editing-tasks">Editing &amp; reordering tasks</a></li>
+                <li><a href="#calendar">Calendar &amp; day detail</a></li>
+                <li><a href="#statistics">Statistics</a></li>
+                <li><a href="#media">Photos, video &amp; voice notes</a></li>
+                <li><a href="#challenges">Managing challenges</a></li>
+                <li><a href="#reminders">Reminders &amp; notifications</a></li>
+                <li><a href="#widget">Widgets</a></li>
+                <li><a href="#subscription">Subscription &amp; restore</a></li>
+                <li><a href="#backup">Backup &amp; restore</a></li>
+                <li><a href="#settings">Settings</a></li>
+                <li><a href="#troubleshooting">Troubleshooting &amp; gotchas</a></li>
+            </ol>
+        </div>
+
+        <!-- ============ VIDEO ============ -->
+        <section class="sec" id="video">
+            <h2>Video walkthrough</h2>
+            <p class="lede">A five-minute tour of the whole app.</p>
+            <div class="video-box">
+                <span>Walkthrough video coming after launch</span>
+            </div>
+        </section>
+
+        <!-- ============ GETTING STARTED ============ -->
+        <section class="sec" id="getting-started">
+            <h2>Getting started</h2>
+            <p class="lede">First launch walks you through four steps: pick or build a challenge, choose a mode, review it, turn on reminders.</p>
+
+            <figure class="shot">
+                <img src="/support/img/01-onboarding-welcome.png" alt="FlexChallenge welcome screen on first launch" loading="lazy">
+                <figcaption>① App logo and name ② The headline ③ Get started ④ Already a member? Restore purchases</figcaption>
+            </figure>
+
+            <ul class="steps">
+                <li><b>Start the setup</b><span class="path">First launch → Get started → Set up my challenge</span></li>
+                <li><b>Restore an existing subscription instead</b><span class="path">Welcome screen → Already a member? Restore purchases</span><span class="note">If a challenge already exists on this device you go straight into the app; if not, you land on the path picker.</span></li>
+            </ul>
+
+            <figure class="shot">
+                <img src="/support/img/01b-onboarding-receipts.png" alt="Keep the receipts value screen with an example media grid and task rows" loading="lazy">
+                <figcaption>① Your Journey — an example of the media library ② Tasks that fit the job ③ Set up my challenge</figcaption>
+            </figure>
+
+            <figure class="shot">
+                <img src="/support/img/02-onboarding-path.png" alt="Choose path screen with Start from a program and Write my own cards" loading="lazy">
+                <figcaption>① Step 1 of 4 ② Start from a program, with program-count chips ③ Write my own ④ Back chevron</figcaption>
+            </figure>
+
+            <h3>Choose a path</h3>
+            <ul class="steps">
+                <li><b>Start from a program</b><span class="path">Step 1 of 4 → Start from a program</span><span class="note">Opens the list of built-in programs.</span></li>
+                <li><b>Write my own</b><span class="path">Step 1 of 4 → Write my own</span><span class="note">Skips the program list and opens the builder with an empty challenge.</span></li>
+            </ul>
+
+            <figure class="shot">
+                <img src="/support/img/03-templates.png" alt="Program list showing built-in challenge templates" loading="lazy">
+                <figcaption>① Step 2 of 4 ② A program row: name plus "N days · M tasks · level" ③ Chevron opens the detail ④ None of these fit? Write my own</figcaption>
+            </figure>
+
+            <h3>Pick a program</h3>
+            <ul class="steps">
+                <li><b>Open a program's detail</b><span class="path">Step 2 of 4 → tap a program row</span><span class="note">The detail shows the description, The rules, the Every day task list, prerequisites, and a health disclaimer on physical programs.</span></li>
+                <li><b>Use it as-is</b><span class="path">Program detail → Use this program</span><span class="note">Skips the builder and goes straight to the mode picker.</span></li>
+                <li><b>Adjust it first</b><span class="path">Program detail → Customize it first</span><span class="note">Seeds the challenge from the program, then opens the builder.</span></li>
+            </ul>
+
+            <div class="callout">
+                <p><strong>Eight programs during setup, nine in the app.</strong> The first-launch picker hides <strong>Habit Stacking</strong> because it has no preset tasks — it needs its own setup flow. Once you are in the app, the template picker (Home → <strong>+</strong>) lists all nine, Habit Stacking included.</p>
+            </div>
+
+            <div class="tbl-scroll">
+                <table class="tpl">
+                    <thead><tr><th>Program</th><th>Days</th><th>Level</th></tr></thead>
+                    <tbody>
+                        <tr><td>75 Days: Phase I</td><td>75</td><td>Advanced</td></tr>
+                        <tr><td>75 Soft</td><td>75</td><td>Intermediate</td></tr>
+                        <tr><td>75 Days: Phase II</td><td>30</td><td>Advanced</td></tr>
+                        <tr><td>75 Days: Phase III</td><td>30</td><td>Advanced</td></tr>
+                        <tr><td>Revenue Growth</td><td>90</td><td>Intermediate</td></tr>
+                        <tr><td>Mindful Living</td><td>30</td><td>Beginner</td></tr>
+                        <tr><td>Creative Sprint</td><td>30</td><td>Beginner</td></tr>
+                        <tr><td>Habit Stacking</td><td>30</td><td>Beginner — in-app only</td></tr>
+                        <tr><td>Core 4</td><td>30</td><td>Intermediate</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <figure class="shot">
+                <img src="/support/img/03b-template-detail.png" alt="Program detail sheet showing the rules and the every-day task list" loading="lazy">
+                <figcaption>① THE RULES — what the program demands ② EVERY DAY — the tasks it creates ③ Use this program ④ Customize it first</figcaption>
+            </figure>
+
+            <figure class="shot">
+                <img src="/support/img/04-build-custom.png" alt="Build your own challenge screen with name field, duration chips and task list" loading="lazy">
+                <figcaption>① Name field ② Duration chips 30/60/75/90 plus Custom ③ A task row — tap to edit it ④ Scroll for the rest of the list ⑤ Review my challenge</figcaption>
+            </figure>
+
+            <h3>Build your own</h3>
+            <ul class="steps">
+                <li><b>Name it</b><span class="path">Build screen → name field</span></li>
+                <li><b>Set the length</b><span class="path">Build screen → How long → 30 / 60 / 75 / 90, or Custom</span><span class="note">Custom accepts 7 to 365 days; anything outside that is clamped.</span></li>
+                <li><b>Add a suggested task</b><span class="path">Build screen → Every day, I will → tap a suggestion chip</span><span class="note">Six suggestions: Workout 45 min, 10,000 steps, No alcohol, Meditate, Drink 64 oz water, Read 10 pages. A chip disappears once you have used it.</span></li>
+                <li><b>Add a blank task</b><span class="path">Build screen → Add a task</span><span class="note">Opens the task sheet right away: title, type, category, target, unit.</span></li>
+                <li><b>Remove a task</b><span class="path">Build screen → tap a task → Remove task</span><span class="note">Disabled on the last task. A challenge needs at least one.</span></li>
+                <li><b>Continue</b><span class="path">Build screen → Review my challenge</span><span class="note">Needs a name, a length of 7 to 365 days, and at least one titled task. Untitled leftovers are dropped silently.</span></li>
+            </ul>
+
+            <figure class="shot">
+                <img src="/support/img/05b-miss-a-day.png" alt="Step 3 of 4 choosing between Strict and Flexible mode" loading="lazy">
+                <figcaption>① Strict — the app stops and asks on every miss ② Flexible — the day is logged missed and tomorrow starts on time ③ Continue</figcaption>
+            </figure>
+
+            <figure class="shot">
+                <img src="/support/img/05-review.png" alt="Review screen summarising the challenge before starting" loading="lazy">
+                <figcaption>① Challenge name ② Day 1 and Finish line dates ③ Mode row, tap to change ④ Edit beside the task count ⑤ Start on a different day ⑥ That's my challenge</figcaption>
+            </figure>
+
+            <h3>Mode and review</h3>
+            <ul class="steps">
+                <li><b>Pick Strict</b><span class="path">Step 3 of 4 → Strict → Continue</span><span class="note">On a missed day the app stops and asks: restart from Day 1, or mark the day and keep going.</span></li>
+                <li><b>Pick Flexible</b><span class="path">Step 3 of 4 → Flexible → Continue</span><span class="note">The day is logged as missed and tomorrow starts on time. Either way the miss stays in the record.</span></li>
+                <li><b>Change the mode from Review</b><span class="path">Step 4 of 4 → tap the mode row</span></li>
+                <li><b>Edit the tasks from Review</b><span class="path">Step 4 of 4 → Edit</span></li>
+                <li><b>Start on a later date</b><span class="path">Step 4 of 4 → Start on a different day → pick a date → Done</span><span class="note">Picking today clears the schedule; picking a later day makes the challenge scheduled.</span></li>
+                <li><b>Confirm</b><span class="path">Step 4 of 4 → That's my challenge</span></li>
+            </ul>
+
+            <figure class="shot">
+                <img src="/support/img/06-reminders.png" alt="Reminders screen with time picker" loading="lazy">
+                <figcaption>① Example notification ② Default 7:00 PM reminder time ③ Change time reveals the wheel picker ④ Turn on reminders ⑤ Not now</figcaption>
+            </figure>
+
+            <ul class="steps">
+                <li><b>Set the daily reminder time</b><span class="path">Reminders → Change time → wheel picker</span><span class="note">Defaults to 7:00 PM.</span></li>
+                <li><b>Turn reminders on</b><span class="path">Reminders → Turn on reminders</span><span class="note">Triggers the iOS permission prompt. Declining does not block setup. The reminder is only actually scheduled when the challenge goes live, so quitting at the paywall never leaves a stray notification behind.</span></li>
+                <li><b>Skip reminders</b><span class="path">Reminders → Not now</span></li>
+            </ul>
+
+            <figure class="shot">
+                <img src="/support/img/07-paywall-trial.png" alt="Trial paywall with three-step timeline and plan rows" loading="lazy">
+                <figcaption>① "N-day free trial" eyebrow ② Three-step timeline: today, reminder, first charge ③ Yearly, selected ④ Monthly ⑤ Start my free trial ⑥ Restore / Terms / Privacy footer</figcaption>
+            </figure>
+
+            <ul class="steps">
+                <li><b>Start the free trial</b><span class="path">Paywall → Start my free N-day trial</span><span class="note">Shown only when the App Store confirms you are eligible. One trial per Apple Account, ever.</span></li>
+                <li><b>Subscribe without a trial</b><span class="path">Paywall → Subscribe</span><span class="note">Shown when you have subscribed before, or when eligibility cannot be confirmed in time.</span></li>
+                <li><b>Switch monthly and yearly</b><span class="path">Paywall → tap a plan row</span><span class="note">Both paywalls default to yearly.</span></li>
+                <li><b>Go live</b><span class="path">After purchase → Let's go</span><span class="note">The challenge is created, reminders are scheduled, and the app opens. A scheduled challenge reads "starts Mon, Sep 22" instead of "starts now."</span></li>
+            </ul>
+
+            <div class="callout">
+                <p><strong>Quit halfway through setup?</strong> Relaunch and the app restores your draft at the Review step. The mode choice is not restored, so check it before you continue.</p>
+            </div>
+        </section>
+
+        <!-- ============ HOME ============ -->
+        <section class="sec" id="home">
+            <h2>Home dashboard</h2>
+            <p class="lede">Three tabs run the app: <strong>Home</strong>, <strong>Challenge</strong>, <strong>Calendar</strong>.</p>
+
+            <figure class="shot">
+                <img src="/support/img/23-side-menu-or-tabbar.png" alt="The Home, Challenge and Calendar tab bar" loading="lazy">
+                <figcaption>① Home tab ② Challenge tab — today's checklist ③ Calendar tab — the full grid ④ ⋯ menu: Settings and Help &amp; Support ⑤ Your Journey + See All</figcaption>
+            </figure>
+
+            <ul class="steps">
+                <li><b>Open a challenge's task list</b><span class="path">Home → tap an active challenge card</span><span class="note">Switches the Challenge and Calendar tabs to that challenge. The card shows a completion ring, "Day N of M", "X/Y done", and a streak count.</span></li>
+                <li><b>Card shortcuts</b><span class="path">Home → long-press a challenge card → Open / Settings / Delete</span></li>
+                <li><b>Delete from Home</b><span class="path">Home → long-press a card → Delete → Keep Media or Delete Media</span><span class="note">Keep Media leaves your photos, videos, and voice notes on the device.</span></li>
+                <li><b>Open a recent day</b><span class="path">Home → This Week strip → tap a day dot</span><span class="note">If more than one challenge ran that day, a picker appears.</span></li>
+                <li><b>Open Statistics</b><span class="path">Home → Insights card</span></li>
+                <li><b>Open the media gallery</b><span class="path">Home → Your Journey → See All</span></li>
+                <li><b>Create a challenge</b><span class="path">Home → + (top right)</span><span class="note">With nothing active yet, the big Start Your First Challenge button does the same thing.</span></li>
+                <li><b>App settings and help</b><span class="path">Home → ⋯ (top right) → Settings or Help &amp; Support</span></li>
+                <li><b>Start a scheduled challenge early</b><span class="path">Home → Upcoming Challenges → Start Now</span></li>
+                <li><b>Start one whose date has arrived</b><span class="path">Home → Ready to Start → Start</span></li>
+                <li><b>Reopen an inactive challenge</b><span class="path">Home → Inactive → tap a row</span><span class="note">Opens its settings. Long-press gives Open / Settings / Delete.</span></li>
+            </ul>
+
+            <figure class="shot">
+                <img src="/support/img/09-today-multi.png" alt="Home dashboard with an active challenge card, week strip and media strip" loading="lazy">
+                <figcaption>① Challenge card: ring, Day N of M, X/Y done, streak ② A second active challenge ③ This Week strip ④ Streak and Tasks Done, tap for Statistics ⑤ + new challenge ⑥ ⋯ menu</figcaption>
+            </figure>
+        </section>
+
+        <!-- ============ TODAY ============ -->
+        <section class="sec" id="today">
+            <h2>Today's tasks</h2>
+            <p class="lede">The Challenge tab is the daily checklist for whichever challenge you last selected.</p>
+
+            <figure class="shot">
+                <img src="/support/img/08-today-single.png" alt="Today's task list with mixed task types" loading="lazy">
+                <figcaption>① Day N of M and days left ② Streak flame ③ Water task: ring, progress, droplet + ④ Steps task: ring and count ⑤ Completed task, green circle ⑥ NOTES card ⑦ ⚙ settings ⑧ ⇄ switcher</figcaption>
+            </figure>
+
+            <ul class="steps">
+                <li><b>See today's progress</b><span class="path">Challenge tab → header</span><span class="note">The streak counts consecutive fully complete days, looking back at most 30 days.</span></li>
+                <li><b>Switch challenge</b><span class="path">Challenge tab → ⇄ (top right)</span><span class="note">Only appears when more than one challenge is active.</span></li>
+                <li><b>Open this challenge's settings</b><span class="path">Challenge tab → ⚙ (top right)</span></li>
+                <li><b>Write today's note</b><span class="path">Challenge tab → scroll to NOTES → tap → write → Save</span></li>
+            </ul>
+
+            <div class="callout">
+                <p>Finishing every task fires three seconds of confetti. Turn it off in <strong>Home → ⋯ → Settings → Experience → Completion Confetti</strong>.</p>
+            </div>
+        </section>
+
+        <!-- ============ TASK TYPES ============ -->
+        <section class="sec" id="task-types">
+            <h2>Task types</h2>
+            <p class="lede">Six kinds of task, each with its own completion gesture.</p>
+
+            <ul class="steps">
+                <li><b>Standard — tap to complete</b><span class="path">Challenge tab → tap the circle on the left of the row</span><span class="note">Tap again to uncomplete.</span></li>
+                <li><b>Water — log an amount</b><span class="path">Challenge tab → blue droplet + (or the progress ring) → log</span></li>
+                <li><b>Counter — add to the count</b><span class="path">Challenge tab → indigo + (or the progress ring) → log</span></li>
+                <li><b>Steps — sync from Health</b><span class="path">Challenge tab → green circular-arrows button</span><span class="note">Reads step count only, never writes. Grant the Health permission when you create or edit a steps task.</span></li>
+                <li><b>Photo or video — capture</b><span class="path">Challenge tab → orange camera or video button → shoot → Save</span><span class="note">Saving auto-completes the task. Video is capped at 60 seconds.</span></li>
+                <li><b>Audio — record</b><span class="path">Challenge tab → pink mic button → record → Stop → Save</span><span class="note">No length limit. Saving auto-completes the task.</span></li>
+            </ul>
+
+            <figure class="shot">
+                <img src="/support/img/10-task-menu.png" alt="Counter sheet for a water task with quick-add buttons" loading="lazy">
+                <figcaption>① Mark Incomplete ② Set Reminder ③ Manage Tasks ④ Delete Task ⑤ The task you long-pressed, lifted</figcaption>
+            </figure>
+
+            <h3>The counter sheet</h3>
+            <ul class="steps">
+                <li><b>Quick add a portion</b><span class="path">Counter sheet → Quick Add row</span><span class="note">Defaults are 8/12/16/20/32 for ounces and 250/350/500/750/1000 for millilitres.</span></li>
+                <li><b>Type an exact amount</b><span class="path">Counter sheet → number field → blue +</span></li>
+                <li><b>Nudge or reset</b><span class="path">Counter sheet → +10 / −10 / Reset</span><span class="note">−10 stops at zero. Reset zeroes the count and clears the milestone celebrations.</span></li>
+            </ul>
+
+            <div class="callout">
+                <p><strong>Water, counter, and steps tasks complete themselves</strong> the moment the value reaches the target, and uncomplete themselves if it drops back below — unless you ticked the task by hand, in which case your choice sticks.</p>
+                <p>Hitting 100 percent fires confetti and closes the counter sheet after about a second and a half. That is expected, not a crash.</p>
+            </div>
+        </section>
+
+        <!-- ============ EDITING TASKS ============ -->
+        <section class="sec" id="editing-tasks">
+            <h2>Editing &amp; reordering tasks</h2>
+
+            <figure class="shot">
+                <img src="/support/img/11-edit-tasks-reorder.png" alt="Manage Tasks screen in edit mode with drag handles" loading="lazy">
+                <figcaption>① Edit, now a blue check ② Drag handle to reorder ③ Pencil to edit a task ④ Trash to delete ⑤ + to add ⑥ Done</figcaption>
+            </figure>
+
+            <ul class="steps">
+                <li><b>Open the task context menu</b><span class="path">Challenge tab → long-press a task row</span><span class="note">Mark Complete, Set Reminder, Remove Reminder, Take Photo or Video, Record Audio, Manage Tasks, Delete Task.</span></li>
+                <li><b>Reach the reminder faster</b><span class="path">Challenge tab → swipe a row left → Remind (or Edit / Remove)</span></li>
+                <li><b>Open the task manager</b><span class="path">Challenge tab → long-press a task → Manage Tasks</span></li>
+                <li><b>Reorder</b><span class="path">Manage Tasks → Edit (top left) → drag the handles</span></li>
+                <li><b>Add a task</b><span class="path">Manage Tasks → + (top right) → fill in details → Add</span></li>
+                <li><b>Edit a task</b><span class="path">Manage Tasks → pencil on a row → Save</span></li>
+                <li><b>Delete a task</b><span class="path">Manage Tasks → trash on a row → Delete</span><span class="note">All completion data for that task is lost. The last remaining task cannot be deleted.</span></li>
+                <li><b>Close</b><span class="path">Manage Tasks → Done (top right)</span></li>
+            </ul>
+
+            <figure class="shot">
+                <img src="/support/img/12-add-task.png" alt="Add Task sheet with task detail fields" loading="lazy">
+                <figcaption>① Task name ② Type: standard, water, counter, steps, photo, video, audio ③ Category ④ Cancel ⑤ Add</figcaption>
+            </figure>
+
+            <div class="callout warn">
+                <p>Choosing <strong>Mark Complete</strong> on a water or counter task opens the counter sheet rather than ticking it outright — you still have to log the amount or tap Done.</p>
+            </div>
+        </section>
+
+        <!-- ============ CALENDAR ============ -->
+        <section class="sec" id="calendar">
+            <h2>Calendar &amp; day detail</h2>
+
+            <figure class="shot">
+                <img src="/support/img/13-calendar.png" alt="Challenge calendar grid with completed, missed and media-badged days" loading="lazy">
+                <figcaption>① Completed day, green ② Today, blue ③ A future day, still empty ④ Date range and days left ⑤ Gallery icon ⑥ ⚙ ⑦ ⇄</figcaption>
+            </figure>
+
+            <ul class="steps">
+                <li><b>See the whole challenge</b><span class="path">Calendar tab</span><span class="note">One numbered cell per day, with a camera badge on days that have media.</span></li>
+                <li><b>Open a day</b><span class="path">Calendar tab → tap a day cell</span></li>
+                <li><b>Open this challenge's gallery</b><span class="path">Calendar tab → photo-stack icon (top right)</span></li>
+                <li><b>Settings or switcher</b><span class="path">Calendar tab → ⚙ or ⇄ (top right)</span></li>
+            </ul>
+
+            <figure class="shot">
+                <img src="/support/img/14-day-detail.png" alt="Day Detail sheet showing task status, notes and media for one day" loading="lazy">
+                <figcaption>① Day N ② Status chip ③ Date and X/Y tasks ④ A task row ⑤ Its completion mark ⑥ Done — this screen is read-only</figcaption>
+            </figure>
+
+            <ul class="steps">
+                <li><b>Review a day</b><span class="path">Day Detail</span><span class="note">Status, task list with counter values, notes, and a media card.</span></li>
+                <li><b>Open a media item</b><span class="path">Day Detail → tap a thumbnail</span></li>
+                <li><b>See everything from that day</b><span class="path">Day Detail → View All Media for Day N</span></li>
+                <li><b>Switch challenge</b><span class="path">Day Detail → Challenge picker at the top</span><span class="note">Appears when more than one challenge ran that day.</span></li>
+            </ul>
+
+            <div class="callout warn">
+                <p><strong>You cannot tick off a past day here.</strong> Day Detail is read-only. The only way to credit a missed day is the strict-mode dialog on the next launch, and only for the day that just ended.</p>
+                <p>A future cell shows "This day hasn't started yet."</p>
+            </div>
+        </section>
+
+        <!-- ============ STATISTICS ============ -->
+        <section class="sec" id="statistics">
+            <h2>Statistics</h2>
+
+            <figure class="shot">
+                <img src="/support/img/15-stats.png" alt="Statistics screen with completion ring, trend chart and breakdowns" loading="lazy">
+                <figcaption>① Completion rate ② Its ring ③ Tasks, Active Days, Best Streak ④ Range control: W / M / 3M / Y / All ⑤ Completion Trend chart ⑥ Done</figcaption>
+            </figure>
+
+            <ul class="steps">
+                <li><b>Open Statistics</b><span class="path">Home → Insights card</span><span class="note">Close with Done, top right.</span></li>
+                <li><b>Change the range</b><span class="path">Statistics → W (7 days) / M (30) / 3M (90) / Y (365) / All</span></li>
+                <li><b>Inspect one day</b><span class="path">Statistics → Completion Trend → tap a bar</span></li>
+                <li><b>Jump to a challenge</b><span class="path">Statistics → tap a challenge row</span><span class="note">An active challenge opens its task list; an inactive one opens its settings, because it has no task view.</span></li>
+            </ul>
+            <p>With no completions yet you see "No Statistics Yet."</p>
+        </section>
+
+        <!-- ============ MEDIA ============ -->
+        <section class="sec" id="media">
+            <h2>Photos, video &amp; voice notes</h2>
+
+            <h3>Capturing</h3>
+            <ul class="steps">
+                <li><b>Take a progress photo</b><span class="path">Challenge tab → camera button on a photo task</span><span class="note">Needs camera permission. If it is off you get an Open Settings link instead of the viewfinder.</span></li>
+                <li><b>Record a video</b><span class="path">Challenge tab → video button on a video task</span><span class="note">Maximum 60 seconds, medium quality. A thumbnail is made for you.</span></li>
+                <li><b>Use an existing photo or clip</b><span class="path">Camera screen → Choose from Library</span></li>
+                <li><b>Back out</b><span class="path">Camera screen → ✕ (top right)</span></li>
+                <li><b>Record a voice note</b><span class="path">Challenge tab → mic button on an audio task</span><span class="note">Needs microphone permission. No length limit.</span></li>
+                <li><b>Pause, stop, re-record</b><span class="path">Recorder → pause → stop → Re-record or Save</span><span class="note">Save writes the file and completes the task; ✕ discards the take.</span></li>
+            </ul>
+
+            <figure class="shot">
+                <img src="/support/img/18-voice-note.png" alt="Voice note recorder with waveform and transport controls" loading="lazy">
+                <figcaption>① Close ② Tap to Record ③ Waveform ④ Timer ⑤ Record button — tap to start, tap again to stop</figcaption>
+            </figure>
+
+            <h3>Browsing</h3>
+            <figure class="shot">
+                <img src="/support/img/16-media-gallery.png" alt="Media gallery grid with filter pills and type segments" loading="lazy">
+                <figcaption>① Challenge filter pill ② Day filter pill ③ All / Photos / Videos / Audio / Notes ④ Date group header ⑤ A photo with its Day badge ⑥ Done</figcaption>
+            </figure>
+
+            <ul class="steps">
+                <li><b>Open the gallery</b><span class="path">Home → Your Journey → See All, or Calendar tab → photo-stack icon</span></li>
+                <li><b>Filter</b><span class="path">Gallery → challenge pill, day pill, or the type segments</span></li>
+                <li><b>Open an item</b><span class="path">Gallery → tap a thumbnail or audio row</span></li>
+                <li><b>Act without opening</b><span class="path">Gallery → long-press a thumbnail → Share / Save to Photos / Delete</span></li>
+                <li><b>Delete a note</b><span class="path">Gallery → swipe a note row</span><span class="note">Deletes immediately, with no confirmation.</span></li>
+            </ul>
+
+            <h3>Viewing</h3>
+            <figure class="shot">
+                <img src="/support/img/17-photo-viewer.png" alt="Full-screen media viewer with the overflow menu open" loading="lazy">
+                <figcaption>① ✕ close ② ⋯ for Save to Device, Share, Delete ③ The media — pinch to zoom, swipe down to dismiss ④ Its task ⑤ Day N and date ⑥ Everything else finished that day</figcaption>
+            </figure>
+
+            <ul class="steps">
+                <li><b>Move between items</b><span class="path">Viewer → swipe left or right</span></li>
+                <li><b>Zoom a photo</b><span class="path">Viewer → pinch 1× to 5×, drag to pan, double-tap to toggle 1×/2×</span></li>
+                <li><b>Play a voice note</b><span class="path">Viewer → play/pause, rewind 10s, forward 10s, or scrub the waveform</span></li>
+                <li><b>Save a copy</b><span class="path">Viewer → ⋯ → Save to Device</span><span class="note">Photos and videos go to your Photo Library. Audio opens the share sheet instead, so save it via Files.</span></li>
+                <li><b>Share</b><span class="path">Viewer → ⋯ → Share</span></li>
+                <li><b>Delete</b><span class="path">Viewer → ⋯ → Delete → Delete</span><span class="note">This erases the file from the device. There is no trash and no undo.</span></li>
+            </ul>
+
+            <div class="callout warn">
+                <p><strong>Swiping in the viewer ignores your filters.</strong> Keep swiping and you can land on media from another day or another challenge.</p>
+                <p>Photos and videos are only copied to your iOS Photo Library when <strong>Settings → Media → Save Photos / Videos to Phone</strong> is on. The first such save asks for the system Photos permission.</p>
+            </div>
+        </section>
+
+        <!-- ============ CHALLENGES ============ -->
+        <section class="sec" id="challenges">
+            <h2>Managing challenges</h2>
+
+            <figure class="shot">
+                <img src="/support/img/19-challenge-switcher.png" alt="My Challenges switcher listing tracking, scheduled and inactive challenges" loading="lazy">
+                <figcaption>① Create New Challenge ② The VIEWING badge on the current one ③ Tracking card: day counter, actions, progress bar ④ A second tracked challenge ⑤ ✕ close</figcaption>
+            </figure>
+
+            <h3>The switcher</h3>
+            <ul class="steps">
+                <li><b>Open it</b><span class="path">Challenge tab or Calendar tab → ⇄ (top right)</span><span class="note">Only present when more than one challenge is active.</span></li>
+                <li><b>Switch</b><span class="path">Switcher → tap a card under Tracking</span></li>
+                <li><b>Pause an active challenge</b><span class="path">Switcher → swipe an active card left → Pause</span></li>
+                <li><b>Reactivate</b><span class="path">Switcher → swipe an inactive card right → Activate</span></li>
+                <li><b>Clone</b><span class="path">Switcher → swipe an inactive card right → Clone</span><span class="note">The copy is inactive.</span></li>
+                <li><b>Delete</b><span class="path">Switcher → swipe an inactive card left → Delete</span><span class="note">Tasks, completions, and media all go.</span></li>
+                <li><b>Tidy up stray entries</b><span class="path">Switcher → Clean Up (top left)</span><span class="note">Only appears when leftover "New Challenge" placeholders exist. Your real challenges are untouched.</span></li>
+            </ul>
+
+            <figure class="shot">
+                <img src="/support/img/20-challenge-settings.png" alt="Per-challenge settings with schedule, mode, widget and actions" loading="lazy">
+                <figcaption>① Challenge Name ② Schedule: Start Date, Duration, Day Ends At ③ Day End Reminder and Remind Me ④ Show in Widget ⑤ Challenge Mode ⑥ Save</figcaption>
+            </figure>
+
+            <h3>Per-challenge settings</h3>
+            <p>Reach it from the Challenge tab <strong>⚙</strong>, the Calendar tab <strong>⚙</strong>, a long-press on a Home card, or the switcher. This is a different screen from the app-wide Settings, even though both are labelled "Settings."</p>
+            <ul class="steps">
+                <li><b>Rename</b><span class="path">Settings → Challenge Name</span></li>
+                <li><b>Change start date, length, or day-end time</b><span class="path">Settings → Schedule → Start Date / Duration / Day Ends At</span><span class="note">A future start date converts the challenge to scheduled when you save. Duration runs 1 to 365 days.</span></li>
+                <li><b>Change strict or flexible</b><span class="path">Settings → Day Transition Behavior → Challenge Mode</span></li>
+                <li><b>Add, edit, reorder, or delete tasks</b><span class="path">Settings → Tasks → + / tap a row / Edit → drag or swipe</span></li>
+                <li><b>Make an inactive challenge active</b><span class="path">Settings → Challenge Actions → Make Active</span></li>
+                <li><b>Duplicate</b><span class="path">Settings → Challenge Actions → Duplicate Challenge → Duplicate</span><span class="note">The copy is named "(Copy)", starts inactive, and does not take the widget slot. Its settings open right away.</span></li>
+                <li><b>Complete early</b><span class="path">Settings → Challenge Actions → Complete Challenge → Complete</span><span class="note">Moves it to your history, releases the widget slot, and stops its notifications.</span></li>
+                <li><b>Restart from Day 1</b><span class="path">Settings → Challenge Actions → Start New Attempt → Start Over</span><span class="note">Deletes every completion, zeroes counters, and resets the start date to today. The challenge itself is kept.</span></li>
+                <li><b>Delete</b><span class="path">Settings → Delete Challenge → Delete</span><span class="note">Tasks, completions, photos, videos, and audio are all permanently removed.</span></li>
+                <li><b>Save</b><span class="path">Settings → Save (top right)</span><span class="note">Disabled while the name is empty.</span></li>
+            </ul>
+
+            <h3>Creating more challenges</h3>
+            <ul class="steps">
+                <li><b>From the dashboard</b><span class="path">Home → + (top right) → pick a program</span><span class="note">The start date is pre-suggested as the day after your current challenge ends.</span></li>
+                <li><b>Read about a program first</b><span class="path">Template picker → Learn More → Start Challenge</span></li>
+                <li><b>Build from scratch</b><span class="path">Template picker → Custom Challenge</span></li>
+                <li><b>Habit Stacking</b><span class="path">Template picker → Habit Stacking</span><span class="note">Opens its own setup flow where you define "After [existing habit], I will [new habit]" pairs; those become the tasks.</span></li>
+                <li><b>Schedule a future start</b><span class="path">New-challenge settings → Start Date → a future day → Save</span><span class="note">There is no separate "schedule for later" toggle. A future start date is the schedule.</span></li>
+            </ul>
+
+            <h3>Upcoming, history, and finishing</h3>
+            <ul class="steps">
+                <li><b>Browse past challenges</b><span class="path">All Challenges</span><span class="note">Name, start date, completion percentage, duration, and task count. The gear opens its settings.</span></li>
+                <li><b>Start a scheduled one now</b><span class="path">Upcoming → Start Now → Start</span><span class="note">This one <strong>deactivates your other active challenges</strong>.</span></li>
+                <li><b>Cancel a scheduled one</b><span class="path">Upcoming → Cancel → Yes, Cancel</span><span class="note">Deletes it outright.</span></li>
+                <li><b>Review a finished challenge</b><span class="path">Automatic on launch after the last day</span><span class="note">A summary with Longest Streak, Tasks Done, Completion %, and Days Missed. Reminders for that challenge are turned off.</span></li>
+                <li><b>Go again</b><span class="path">Completion summary → Start Again</span><span class="note">Resets to Day 1 today and deletes the old completions.</span></li>
+                <li><b>Extend instead</b><span class="path">Completion summary → Extend Challenge → Add 7 / 30 / original duration days</span><span class="note">Your existing days and streaks are kept. Days since the challenge ended count as missed.</span></li>
+            </ul>
+
+            <div class="callout warn">
+                <p><strong>Running several challenges at once triggers warnings, not blocks.</strong> There is no hard limit. The switcher shows a one-time "Too Many Active Challenges" alert that never returns once dismissed; challenge settings and the create flow show a separate "Multiple Active Challenges" alert every time. Both let you continue.</p>
+            </div>
+        </section>
+
+        <!-- ============ REMINDERS ============ -->
+        <section class="sec" id="reminders">
+            <h2>Reminders &amp; notifications</h2>
+            <ul class="steps">
+                <li><b>Daily day-end reminder</b><span class="path">Challenge settings → Notifications → Day End Reminder → Remind Me: 1 / 2 / 3 hours</span><span class="note">Fires that many hours before this challenge's day-end time.</span></li>
+                <li><b>Per-task reminder</b><span class="path">Challenge tab → swipe a task → Remind → Every Day or Select Days → Time → Save Reminder</span></li>
+                <li><b>Remove a task reminder</b><span class="path">Challenge tab → swipe a task → Remove, or long-press → Remove Reminder</span></li>
+            </ul>
+            <p>These fire on their own, with no setting to change:</p>
+            <ul class="plain">
+                <li><strong>Trial ending</strong> — 9:00 AM, two days before your trial converts. Cancelled automatically if the subscription ends or is refunded.</li>
+                <li><strong>Challenge Started!</strong> — when a scheduled challenge activates.</li>
+                <li><strong>Step goal reached</strong> — once a day, when a steps task hits its target.</li>
+            </ul>
+            <div class="callout">
+                <p>Notification permission is asked for the first time something tries to schedule a reminder. If you denied it, scheduling silently does nothing — turn it back on in <strong>iOS Settings → Notifications → FlexChallenge</strong>. Reminders for deleted or paused challenges are cleaned up at launch.</p>
+            </div>
+        </section>
+
+        <!-- ============ WIDGET ============ -->
+        <section class="sec" id="widget">
+            <h2>Widgets</h2>
+
+            <figure class="shot">
+                <img src="/support/img/24-widget.png" alt="FlexChallenge in the iOS widget gallery showing the small widget preview" loading="lazy">
+                <figcaption>① FlexChallenge in the iOS widget gallery ② What the widget does ③ Small size: name, streak, ring, Day X of Y ④ Dots — swipe for Medium and Large ⑤ Add Widget</figcaption>
+            </figure>
+
+            <ul class="steps">
+                <li><b>Add the widget</b><span class="path">Home Screen → long-press → + → FlexChallenge → Small, Medium, or Large</span><span class="note">Home Screen only. There is no Lock Screen or StandBy widget.</span></li>
+                <li><b>Choose which challenge it shows</b><span class="path">Challenge settings → Widget → Show in Widget</span><span class="note">Only one challenge can hold the slot. Turning it on elsewhere asks to replace the current one.</span></li>
+                <li><b>Open the app on that challenge</b><span class="path">Tap the widget body</span></li>
+                <li><b>Complete a task from the widget</b><span class="path">Tap the circle on a standard or media task row</span></li>
+                <li><b>Add water or count from the widget</b><span class="path">Tap the labelled button on the right of the row</span><span class="note">It adds a smart amount based on the target — "16 oz", "glass", "+5" — and the label tells you what it will add.</span></li>
+                <li><b>Capture media from the widget</b><span class="path">Tap the icon on a photo, video, or audio row</span><span class="note">Opens the app on the right capture screen.</span></li>
+            </ul>
+            <p>Sizes: <strong>Small</strong> shows name, streak, ring, and "Day X of Y". <strong>Medium</strong> adds up to three incomplete tasks. <strong>Large</strong> adds up to five plus a stats grid when the day is done.</p>
+            <div class="callout warn">
+                <p><strong>Steps tasks are read-only in the widget</strong> — ring only, no toggle. Sync them in the app.</p>
+                <p><strong>Completed tasks disappear from the widget list</strong>, so there is no way to uncomplete one from the Home Screen.</p>
+                <p>iOS refreshes widgets about every 15 minutes, less often when there is nothing to show. Your own taps refresh it immediately; a value that looks briefly stale right after switching apps is normal.</p>
+            </div>
+        </section>
+
+        <!-- ============ SUBSCRIPTION ============ -->
+        <section class="sec" id="subscription">
+            <h2>Subscription &amp; restore</h2>
+            <ul class="steps">
+                <li><b>Check your status</b><span class="path">Home → ⋯ → Settings → Subscription</span><span class="note">Shows Active or Inactive plus the plan.</span></li>
+                <li><b>Change or cancel the plan</b><span class="path">Settings → Subscription → Manage Subscription</span><span class="note">Opens Apple's own sheet. The app cannot cancel on your behalf.</span></li>
+                <li><b>Restore a purchase</b><span class="path">Settings → Subscription → Restore Purchases</span><span class="note">Also available on the welcome screen and on any paywall. You will never be charged twice.</span></li>
+            </ul>
+            <ul class="plain">
+                <li><strong>Trial length</strong> comes from the App Store, and eligibility is one trial per Apple Account for life. Having subscribed before routes you to the paid paywall.</li>
+                <li><strong>Offline for a while?</strong> Access continues for up to 7 days after the last successful check. Past that it is denied until the app can reach the store.</li>
+                <li><strong>If the subscription lapses</strong>, the app opens on a resubscribe screen. <strong>Nothing is deleted.</strong> Every challenge, completion, photo, and streak is still on your device and reappears the moment you resubscribe.</li>
+            </ul>
+        </section>
+
+        <!-- ============ BACKUP ============ -->
+        <section class="sec" id="backup">
+            <h2>Backup &amp; restore</h2>
+
+            <figure class="shot">
+                <img src="/support/img/21b-app-settings-data.png" alt="Settings scrolled to the Data and About sections" loading="lazy">
+                <figcaption>① Data → Backup &amp; Restore ② Version ③ Privacy Policy and Terms of Service</figcaption>
+            </figure>
+
+            <figure class="shot">
+                <img src="/support/img/22-backup-restore.png" alt="Backup and Restore screen with Export and Import buttons" loading="lazy">
+                <figcaption>① Export Backup writes one JSON file ② Import Backup reads one back ③ Import replaces everything — read this first ④ ✕ close</figcaption>
+            </figure>
+
+            <ul class="steps">
+                <li><b>Export a backup</b><span class="path">Home → ⋯ → Settings → Data → Backup &amp; Restore → Export Backup</span><span class="note">Writes one JSON file (default name FlexChallenge_Backup) and lets you save it anywhere — Files, iCloud Drive, AirDrop. Nothing is changed on the device.</span></li>
+                <li><b>Import a backup</b><span class="path">Backup &amp; Restore → Import Backup → pick a .json → Replace</span></li>
+            </ul>
+
+            <div class="callout warn">
+                <p><strong>Import replaces everything; it does not merge.</strong> Every existing challenge, task, and completion is deleted before the backup is loaded, and their notifications are cancelled. Export a fresh backup before importing an old one.</p>
+                <p><strong>Media is not in the backup file.</strong> Photos, videos, and voice notes live as files on the device. The JSON carries challenges, tasks, and completions only.</p>
+            </div>
+        </section>
+
+        <!-- ============ SETTINGS ============ -->
+        <section class="sec" id="settings">
+            <h2>Settings</h2>
+            <p class="lede">App-wide settings: <strong>Home → ⋯ (top right) → Settings</strong>. Close with Done.</p>
+
+            <figure class="shot">
+                <img src="/support/img/21-app-settings.png" alt="App settings with media, experience, appearance and subscription sections" loading="lazy">
+                <figcaption>① Media toggles ② Haptic Feedback and Completion Confetti ③ Theme ④ Subscription status, Manage, Restore</figcaption>
+            </figure>
+
+            <ul class="steps">
+                <li><b>Save Photos / Videos to Phone</b><span class="path">Settings → Media</span><span class="note">Also copies captures into your iOS Photo Library.</span></li>
+                <li><b>Export Audio Recordings</b><span class="path">Settings → Media</span><span class="note">Prompts to save each voice note to Files after recording.</span></li>
+                <li><b>Haptic Feedback / Completion Confetti</b><span class="path">Settings → Experience</span><span class="note">Both on by default.</span></li>
+                <li><b>Theme</b><span class="path">Settings → Appearance → Theme → System / Light / Dark</span></li>
+                <li><b>Version, Privacy Policy, Terms</b><span class="path">Settings → About</span></li>
+            </ul>
+        </section>
+
+        <!-- ============ TROUBLESHOOTING ============ -->
+        <section class="sec" id="troubleshooting">
+            <h2>Troubleshooting &amp; gotchas</h2>
+
+            <h3>"My day didn't roll over until I opened the app"</h3>
+            <p>That is by design. The rollover check runs when the app launches or returns to the foreground, never on a background timer. Opening the app after midnight is what advances the day, resets your counters, and activates any challenge scheduled to start.</p>
+
+            <h3>"It marked my challenge complete and I wasn't done"</h3>
+            <p>A challenge whose last day has passed is moved to Completed automatically, whether you hit every task or none. It is a statement about the calendar, not about success. Use <strong>Extend Challenge</strong> on the summary to add days, or <strong>Start Again</strong> to restart.</p>
+
+            <h3>"Strict mode stopped me on launch"</h3>
+            <p>With a strict challenge and an incomplete previous day you get a blocking dialog with three choices: <strong>Mark All Complete &amp; Continue</strong>, <strong>Continue Without Marking</strong>, or <strong>Start Challenge Over</strong>. The third opens a second confirmation offering Keep Media or Delete Media. A restart is never automatic — it always takes two confirmations. With several challenges affected you see them one at a time, labelled "Challenge X of Y".</p>
+
+            <h3>"My steps aren't updating"</h3>
+            <p>Steps need Apple Health permission, and denying it produces no error — the task just stops tracking and you complete it by hand. Grant access in <strong>iOS Settings → Health → Data Access &amp; Devices → FlexChallenge</strong>, then tap the green sync button. The app reads steps only and never writes to Health.</p>
+
+            <h3>"A task ticked itself, or unticked itself"</h3>
+            <p>Water, counter, and steps tasks complete when they reach the target and uncomplete if the number falls back below it. Tick the task by hand and your choice is preserved instead.</p>
+
+            <h3>"My video stopped recording"</h3>
+            <p>Video capture is capped at 60 seconds.</p>
+
+            <h3>"Start Now turned off my other challenges"</h3>
+            <p><strong>Upcoming → Start Now</strong> activates that challenge and deactivates every other active one. Reactivate the others from the switcher: swipe an inactive card right → Activate.</p>
+
+            <h3>"My subscription ran out — did I lose everything?"</h3>
+            <p>No. Nothing is deleted when a subscription lapses. Your challenges, completions, and media are all intact and return as soon as you resubscribe or restore. If you do not plan to resubscribe, export a backup first — your data lives only on your device, so we have no copy to recover for you.</p>
+
+            <h3>"The widget is behind"</h3>
+            <p>iOS schedules widget refreshes roughly every 15 minutes. Open the app to force one.</p>
+        </section>
+
+        <div class="contact">
+            <h2>Still stuck?</h2>
+            <p>Email <a href="mailto:support@flexchallenge.app">support@flexchallenge.app</a> and tell us your iOS version and what you were doing when it went wrong. We read everything.</p>
+            <p>You can also reach this from inside the app: <strong>Home → ⋯ → Help &amp; Support → Contact Support</strong>.</p>
+        </div>
+    </div>
+
+    <footer class="legal-footer">
+        <span>© 2026 FlexChallenge</span>
+        <span>
+            <a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp;
+            <a href="/terms">Terms of Service</a> &nbsp;·&nbsp;
+            <a href="/faq">FAQ</a> &nbsp;·&nbsp;
+            <a href="/support">Support</a>
+        </span>
+    </footer>
+</div>
