@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>FlexChallenge — Finish what you start</title><meta name="description" content="A daily challenge tracker for iPhone. Build the challenge, track every day, keep the streak. 14-day free trial, no account, data stays on your device."><link rel="canonical" href="https://flexchallenge.app/"><style>body{margin:0}</style><style>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="apple-itunes-app" content="app-id=6757351926"><title>FlexChallenge — Finish what you start</title><meta name="description" content="A daily challenge tracker for iPhone. Build the challenge, track every day, keep the streak. 14-day free trial, no account, data stays on your device."><link rel="canonical" href="https://flexchallenge.app/"><style>body{margin:0}</style><style>
 /* FlexChallenge V5 - Editorial Poster Edition */
 /* Cream paper, ink type, logo-blue accent, volt buttons. Archivo Black + IBM Plex Mono. */
 
@@ -283,6 +283,34 @@
     line-height: 1.04;
     letter-spacing: -0.02em;
     margin-bottom: 48px;
+}
+
+
+/* demo video */
+.fc5 .demo-frame {
+    position: relative;
+    border: 3px solid var(--ink);
+    background: var(--ink);
+    box-shadow: 18px 18px 0 rgba(22, 21, 15, 0.9);
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+}
+.fc5 .demo-frame video { width: 100%; height: 100%; display: block; object-fit: cover; background: var(--ink); }
+.fc5 .demo-play {
+    position: absolute; left: 24px; bottom: 24px;
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 14px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 14px 22px; cursor: pointer;
+    background: var(--volt); color: var(--ink);
+    border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--ink);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.fc5 .demo-play:hover { transform: translate(-2px, -2px); box-shadow: 9px 9px 0 var(--ink); }
+.fc5 .demo-play[hidden] { display: none; }
+@media (max-width: 640px) {
+    .fc5 .demo-frame { box-shadow: 8px 8px 0 rgba(22, 21, 15, 0.9); }
+    .fc5 .demo-play { left: 12px; bottom: 12px; font-size: 11px; padding: 10px 14px; box-shadow: 4px 4px 0 var(--ink); }
 }
 
 /* method */
@@ -583,7 +611,6 @@
 <!-- Paste into a GHL Custom HTML element (body). CSS goes in the page stylesheet, JS in footer code. -->
 <!-- IMAGES: upload dark_tasks.png, dark_calendar.png, dark_stats.png, dark_home.png, light_home.png -->
 <!-- to the GHL media library and replace each src="..." below with the hosted URL. -->
-<!-- APP STORE LINK: replace the hrefs marked TODO-APPSTORE once the listing is live. -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -598,13 +625,13 @@
             FLEXCHALLENGE<span class="brand-dot">.</span>
         </a>
         <nav class="topnav">
+            <a href="#demo">Demo</a>
             <a href="#method">Method</a>
             <a href="#tracking">Tracking</a>
             <a href="#templates">Templates</a>
             <a href="#privacy">Privacy</a>
         </nav>
-        <!-- TODO-APPSTORE -->
-        <a href="#download" class="btn-ink">Get the App</a>
+        <a href="https://apps.apple.com/us/app/flexchallenge/id6757351926" class="btn-ink" target="_blank" rel="noopener">Get the App</a>
     </header>
 
     <!-- Hero -->
@@ -619,8 +646,7 @@
                     vague in between. Pick 30, 60, or 75 days — then show up until it's done.</p>
 
                 <div class="hero-cta">
-                    <!-- TODO-APPSTORE -->
-                    <a href="#download" class="btn-volt">
+                    <a href="https://apps.apple.com/us/app/flexchallenge/id6757351926" class="btn-volt" target="_blank" rel="noopener">
                         <svg viewBox="0 0 384 512" width="15" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 46.9 78.1 79.9 78.1 28.3 0 39.6-21.6 68.3-21.6 27.8 0 40 21.3 68.3 21.6 30.6.3 58-30.8 77-59.5 7.1-10.7 15-26.6 20.7-40.4-56.5-7.7-93.5-44.1-93.9-84.2zM277.9 94.7C293.4 75.8 300 48.7 298.6 21 274.6 22 249.7 34 233.1 53.7c-13.8 16.4-23.8 41.5-21 68 28.5 2.1 55.7-9.5 65.8-27z"/></svg>
                         Download on the App&nbsp;Store
                     </a>
@@ -646,6 +672,25 @@
             <span>14-DAY FREE TRIAL</span><i>●</i><span>NO ACCOUNT</span><i>●</i><span>NO ADS</span><i>●</i><span>NO CLOUD</span><i>●</i><span>DATA STAYS ON YOUR DEVICE</span><i>●</i>
         </div>
     </div>
+
+    <!-- Demo video -->
+    <section class="sec" id="demo">
+        <div class="sec-head">
+            <div class="kicker"><span class="sq"></span>SEE IT IN ACTION</div>
+            <div class="sec-index">90 SEC</div>
+        </div>
+        <h2 class="sec-title">Watch a day<br>get <em>done.</em></h2>
+        <div class="demo-frame reveal">
+            <video id="fc-demo" autoplay muted loop playsinline preload="metadata" poster="media/fc-demo-poster.jpg" aria-label="FlexChallenge app demo">
+                <source src="media/fc-hero-loop.webm" type="video/webm">
+                <source src="media/fc-hero-loop.mp4" type="video/mp4">
+            </video>
+            <button class="demo-play" id="fc-demo-play" type="button">
+                <svg viewBox="0 0 24 24" width="16" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>
+                Watch the full demo &middot; sound on
+            </button>
+        </div>
+    </section>
 
     <!-- Method -->
     <section class="sec" id="method">
@@ -847,8 +892,7 @@
         </table>
         <p class="cta-note pricing-note">14-day free trial on either plan. Nothing is charged today. Cancel anytime in the App Store.</p>
 
-        <!-- TODO-APPSTORE -->
-        <a href="#" class="btn-volt btn-big">
+        <a href="https://apps.apple.com/us/app/flexchallenge/id6757351926" class="btn-volt btn-big" target="_blank" rel="noopener">
             <svg viewBox="0 0 384 512" width="18" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 46.9 78.1 79.9 78.1 28.3 0 39.6-21.6 68.3-21.6 27.8 0 40 21.3 68.3 21.6 30.6.3 58-30.8 77-59.5 7.1-10.7 15-26.6 20.7-40.4-56.5-7.7-93.5-44.1-93.9-84.2zM277.9 94.7C293.4 75.8 300 48.7 298.6 21 274.6 22 249.7 34 233.1 53.7c-13.8 16.4-23.8 41.5-21 68 28.5 2.1 55.7-9.5 65.8-27z"/></svg>
             Download on the App Store
         </a>
@@ -895,6 +939,24 @@
             }, 1500);
         } else {
             revealEls.forEach(function (el) { el.classList.add('in-view'); });
+        }
+
+
+        // Demo video: muted loop preview -> full narrated cut on click
+        var demo = document.getElementById('fc-demo');
+        var demoBtn = document.getElementById('fc-demo-play');
+        if (demo && demoBtn) {
+            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                demo.removeAttribute('autoplay'); demo.pause();
+            }
+            demoBtn.addEventListener('click', function () {
+                demo.loop = false;
+                demo.muted = false;
+                demo.controls = true;
+                demo.src = 'media/fc-demo-narrated.mp4';
+                demo.play();
+                demoBtn.hidden = true;
+            });
         }
 
         // Smooth anchor scroll
