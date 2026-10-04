@@ -66,6 +66,7 @@ GUIDES = [
     ("75-soft-challenge", "75 Soft Challenge rules"),
     ("best-75-hard-apps", "Best 75 Hard tracker apps"),
     ("flexchallenge-vs-streaks", "FlexChallenge vs Streaks"),
+    ("challenge-based-lifestyle", "The challenge-based lifestyle"),
 ]
 
 CTA = f"""
@@ -187,6 +188,8 @@ def write(slug, content):
 
 import guides_content as C  # noqa: E402  (content lives next to this script)
 
-for g in C.PAGES:
+import article_lifestyle as A  # noqa: E402
+
+for g in C.PAGES + [A.PAGE]:
     write(g["slug"], page(**g))
-print("built", [g["slug"] for g in C.PAGES])
+print("built", [g["slug"] for g in C.PAGES + [A.PAGE]])

@@ -35,3 +35,4 @@ FlexChallenge has no servers for user data. Challenges, photos, videos, voice no
 - [75 Soft Challenge rules](https://flexchallenge.app/75-soft-challenge/): the rules, 75 Soft vs 75 Hard, and how to track it
 - [Best 75 Hard tracker apps for iPhone](https://flexchallenge.app/best-75-hard-apps/): official 75 HARD app vs FlexChallenge vs Streaks vs Habitify
 - [FlexChallenge vs Streaks](https://flexchallenge.app/flexchallenge-vs-streaks/): challenge tracker vs habit tracker
+- [The challenge-based lifestyle](https://flexchallenge.app/challenge-based-lifestyle/): why finite, self-set challenges help people follow through, with cited research on habit formation, goal setting, deadlines, progress monitoring and self-efficacy
