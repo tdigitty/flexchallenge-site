@@ -1,0 +1,31 @@
+# FlexChallenge
+
+> FlexChallenge is a daily challenge tracker app for iPhone (iOS 17 or later). You pick a template or build your own challenge with a fixed length (1 to 365 days), then check off that day's tasks every day until you finish. No account, no ads, no tracking: all data stays on the device.
+
+- App Store: https://apps.apple.com/us/app/flexchallenge/id6757351926 (app ID 6757351926)
+- Platform: iPhone, iOS 17 or later. No Android, iPad-specific, or web version.
+- Price: free to download with a 14-day free trial for new subscribers, then $3.99/month or $24.99/year (US prices). One subscription unlocks every feature; no tiers, no other in-app purchases, no ads.
+- Support: support@flexchallenge.app
+
+## What it does
+
+- **Challenges, not open-ended habits.** Every challenge has a Day 1 and a final day. Choose the length (7 to 365 days, or anything from 1 to 365) and which weekdays count; scheduled rest days never break the streak.
+- **Templates:** 75 Days: Phase I (two workouts, a gallon of water, ten pages, a progress photo, strict diet; 75 days, 7 tasks), 75 Soft (75 days, 5 tasks), 75 Days: Phase II & III (30 days, 7 tasks), Revenue Growth (90 days), Mindful Living (30 days), Creative Sprint (30 days), Habit Stacking (30 days), Core 4 (Body, Being, Balance, Business; 30 days, 8 tasks), and Custom. Every template is editable. Inspired by 75 Hard; not affiliated with Andy Frisella or 75 Hard.
+- **Seven task types in one daily checklist:** standard yes/no, water (ounces or glasses), counter (reps, pages, minutes), steps (read from Apple Health), progress photo, video clip, and voice note.
+- **Strict or flexible mode:** in strict mode, missing a day prompts you to restart from Day 1 or continue; flexible mode keeps going.
+- **Custom day-end time** so late-night activity still counts for "today."
+- **Progress tracking:** calendar with a square per completed day, day detail with tasks/notes/photos/voice notes, streaks, completion rate, personal bests, trend charts, and a media gallery.
+- **Home Screen and Lock Screen widgets** and reminders.
+- **Backup and restore** as a JSON file the user saves anywhere (Files, iCloud Drive, AirDrop).
+
+## Privacy
+
+FlexChallenge has no servers for user data. Challenges, photos, videos, voice notes and step counts are stored only on the iPhone. There is no account, no cloud sync, no ads and no cross-app tracking. The only network exchange is subscription verification through Apple and RevenueCat using the App Store receipt and an anonymous random ID. Deleting the app erases its data, so users should export a backup first.
+
+## Pages
+
+- [Home](https://flexchallenge.app/): product overview, features, templates, pricing, demo video
+- [FAQ](https://flexchallenge.app/faq/): pricing, free trial, cancelling, refunds, restoring purchases, data storage, backups, step tracking, day-end time, widgets
+- [How to use FlexChallenge](https://flexchallenge.app/support/): step-by-step guide to every screen, with screenshots and troubleshooting
+- [Privacy Policy](https://flexchallenge.app/privacy/)
+- [Terms of Service](https://flexchallenge.app/terms/)
