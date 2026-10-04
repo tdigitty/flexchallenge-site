@@ -784,13 +784,14 @@
     color: var(--ink-soft);
     margin-left: 10px;
 }
-.fc5 .foot-links { display: flex; gap: 24px; }
+.fc5 .foot-links { display: flex; flex-wrap: wrap; gap: 12px 24px; }
 .fc5 .foot-links a {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 12px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--ink-soft);
+    white-space: nowrap;
 }
 .fc5 .foot-links a:hover { color: var(--blue); }
 
