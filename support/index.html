@@ -239,6 +239,15 @@
         }
         .fc-support .sec::after { content: ""; display: block; clear: both; }
 
+        .fc-support .shot figcaption { font-family: 'Archivo', -apple-system, sans-serif; font-size: 14px; line-height: 1.45; color: #3E3B33; }
+        .fc-support .shot figcaption .lead { display: block; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+        .fc-support ol.callouts { list-style: none; padding: 0; margin: 4px 0 0; display: grid; gap: 7px; }
+        .fc-support ol.callouts li { display: flex; gap: 10px; align-items: flex-start; margin: 0; font-size: 14px; line-height: 1.45; color: #3E3B33; }
+        .fc-support .cn { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: #C8F222; border: 2px solid #16150F; color: #16150F; font: 800 12px/1 'Archivo', -apple-system, sans-serif; vertical-align: -5px; margin: 0 2px; }
+        .fc-support ol.callouts .cn { margin: 0; }
+        .fc-support .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+        .fc-support video.walkthrough { display: block; width: 100%; aspect-ratio: 16 / 9; border: 2px solid var(--text); border-radius: 16px; background: #000; }
+
         /* ---- Video placeholder ---- */
         .fc-support .video-box {
             position: relative;
@@ -376,10 +385,10 @@
         <!-- ============ VIDEO ============ -->
         <section class="sec" id="video">
             <h2>Video walkthrough</h2>
-            <p class="lede">A five-minute tour of the whole app.</p>
-            <div class="video-box">
-                <span>Walkthrough video coming after launch</span>
-            </div>
+            <p class="lede">A 94-second narrated tour: templates, building your own challenge, a day of tasks, strict vs flexible, progress photos, widgets and stats.</p>
+            <video class="walkthrough" controls playsinline preload="metadata" poster="/media/fc-demo-poster.jpg" aria-label="FlexChallenge app walkthrough, narrated">
+                <source src="/media/fc-demo-narrated.mp4" type="video/mp4">
+            </video>
         </section>
 
         <!-- ============ GETTING STARTED ============ -->
@@ -389,7 +398,7 @@
 
             <figure class="shot">
                 <img src="/support/img/01-onboarding-welcome.png" alt="FlexChallenge welcome screen on first launch" loading="lazy">
-                <figcaption>① App logo and name ② The headline ③ Get started ④ Already a member? Restore purchases</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>App logo and name</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>The headline</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Get started</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>Already a member? Restore purchases</span></li></ol></figcaption>
             </figure>
 
             <ul class="steps">
@@ -399,12 +408,12 @@
 
             <figure class="shot">
                 <img src="/support/img/01b-onboarding-receipts.png" alt="Keep the receipts value screen with an example media grid and task rows" loading="lazy">
-                <figcaption>① Your Journey — an example of the media library ② Tasks that fit the job ③ Set up my challenge</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Your Journey — an example of the media library</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>Tasks that fit the job</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Set up my challenge</span></li></ol></figcaption>
             </figure>
 
             <figure class="shot">
                 <img src="/support/img/02-onboarding-path.png" alt="Choose path screen with Start from a program and Write my own cards" loading="lazy">
-                <figcaption>① Step 1 of 4 ② Start from a program, with program-count chips ③ Write my own ④ Back chevron</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Step 1 of 4</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>Start from a program, with program-count chips</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Write my own</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>Back chevron</span></li></ol></figcaption>
             </figure>
 
             <h3>Choose a path</h3>
@@ -415,7 +424,7 @@
 
             <figure class="shot">
                 <img src="/support/img/03-templates.png" alt="Program list showing built-in challenge templates" loading="lazy">
-                <figcaption>① Step 2 of 4 ② A program row: name plus "N days · M tasks · level" ③ Chevron opens the detail ④ None of these fit? Write my own</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Step 2 of 4</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>A program row: name plus "N days · M tasks · level"</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Chevron opens the detail</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>None of these fit? Write my own</span></li></ol></figcaption>
             </figure>
 
             <h3>Pick a program</h3>
@@ -448,12 +457,12 @@
 
             <figure class="shot">
                 <img src="/support/img/03b-template-detail.png" alt="Program detail sheet showing the rules and the every-day task list" loading="lazy">
-                <figcaption>① THE RULES — what the program demands ② EVERY DAY — the tasks it creates ③ Use this program ④ Customize it first</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>THE RULES — what the program demands</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>EVERY DAY — the tasks it creates</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Use this program</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>Customize it first</span></li></ol></figcaption>
             </figure>
 
             <figure class="shot">
                 <img src="/support/img/04-build-custom.png" alt="Build your own challenge screen with name field, duration chips and task list" loading="lazy">
-                <figcaption>① Name field ② Duration chips 30/60/75/90 plus Custom ③ A task row — tap to edit it ④ Scroll for the rest of the list ⑤ Review my challenge</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Name field</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>Duration chips 30/60/75/90 plus Custom</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>A task row — tap to edit it</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>Scroll for the rest of the list</span></li><li><span class="cn" aria-hidden="true">5</span><span><span class="sr">5. </span>Review my challenge</span></li></ol></figcaption>
             </figure>
 
             <h3>Build your own</h3>
@@ -468,12 +477,12 @@
 
             <figure class="shot">
                 <img src="/support/img/05b-miss-a-day.png" alt="Step 3 of 4 choosing between Strict and Flexible mode" loading="lazy">
-                <figcaption>① Strict — the app stops and asks on every miss ② Flexible — the day is logged missed and tomorrow starts on time ③ Continue</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Strict — the app stops and asks on every miss</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>Flexible — the day is logged missed and tomorrow starts on time</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Continue</span></li></ol></figcaption>
             </figure>
 
             <figure class="shot">
                 <img src="/support/img/05-review.png" alt="Review screen summarising the challenge before starting" loading="lazy">
-                <figcaption>① Challenge name ② Day 1 and Finish line dates ③ Mode row, tap to change ④ Edit beside the task count ⑤ Start on a different day ⑥ That's my challenge</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Challenge name</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>Day 1 and Finish line dates</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Mode row, tap to change</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>Edit beside the task count</span></li><li><span class="cn" aria-hidden="true">5</span><span><span class="sr">5. </span>Start on a different day</span></li><li><span class="cn" aria-hidden="true">6</span><span><span class="sr">6. </span>That's my challenge</span></li></ol></figcaption>
             </figure>
 
             <h3>Mode and review</h3>
@@ -488,7 +497,7 @@
 
             <figure class="shot">
                 <img src="/support/img/06-reminders.png" alt="Reminders screen with time picker" loading="lazy">
-                <figcaption>① Example notification ② Default 7:00 PM reminder time ③ Change time reveals the wheel picker ④ Turn on reminders ⑤ Not now</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Example notification</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>Default 7:00 PM reminder time</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Change time reveals the wheel picker</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>Turn on reminders</span></li><li><span class="cn" aria-hidden="true">5</span><span><span class="sr">5. </span>Not now</span></li></ol></figcaption>
             </figure>
 
             <ul class="steps">
@@ -499,7 +508,7 @@
 
             <figure class="shot">
                 <img src="/support/img/07-paywall-trial.png" alt="Trial paywall with three-step timeline and plan rows" loading="lazy">
-                <figcaption>① "N-day free trial" eyebrow ② Three-step timeline: today, reminder, first charge ③ Yearly, selected ④ Monthly ⑤ Start my free trial ⑥ Restore / Terms / Privacy footer</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>"N-day free trial" eyebrow</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>Three-step timeline: today, reminder, first charge</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Yearly, selected</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>Monthly</span></li><li><span class="cn" aria-hidden="true">5</span><span><span class="sr">5. </span>Start my free trial</span></li><li><span class="cn" aria-hidden="true">6</span><span><span class="sr">6. </span>Restore / Terms / Privacy footer</span></li></ol></figcaption>
             </figure>
 
             <ul class="steps">
@@ -521,7 +530,7 @@
 
             <figure class="shot">
                 <img src="/support/img/23-side-menu-or-tabbar.png" alt="The Home, Challenge and Calendar tab bar" loading="lazy">
-                <figcaption>① Home tab ② Challenge tab — today's checklist ③ Calendar tab — the full grid ④ ⋯ menu: Settings and Help &amp; Support ⑤ Your Journey + See All</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Home tab</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>Challenge tab — today's checklist</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Calendar tab — the full grid</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>⋯ menu: Settings and Help &amp; Support</span></li><li><span class="cn" aria-hidden="true">5</span><span><span class="sr">5. </span>Your Journey + See All</span></li></ol></figcaption>
             </figure>
 
             <ul class="steps">
@@ -540,7 +549,7 @@
 
             <figure class="shot">
                 <img src="/support/img/09-today-multi.png" alt="Home dashboard with an active challenge card, week strip and media strip" loading="lazy">
-                <figcaption>① Challenge card: ring, Day N of M, X/Y done, streak ② A second active challenge ③ This Week strip ④ Streak and Tasks Done, tap for Statistics ⑤ + new challenge ⑥ ⋯ menu</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Challenge card: ring, Day N of M, X/Y done, streak</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>A second active challenge</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>This Week strip</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>Streak and Tasks Done, tap for Statistics</span></li><li><span class="cn" aria-hidden="true">5</span><span><span class="sr">5. </span>+ new challenge</span></li><li><span class="cn" aria-hidden="true">6</span><span><span class="sr">6. </span>⋯ menu</span></li></ol></figcaption>
             </figure>
         </section>
 
@@ -551,7 +560,7 @@
 
             <figure class="shot">
                 <img src="/support/img/08-today-single.png" alt="Today's task list with mixed task types" loading="lazy">
-                <figcaption>① Day N of M and days left ② Streak flame ③ Water task: ring, progress, droplet + ④ Steps task: ring and count ⑤ Completed task, green circle ⑥ NOTES card ⑦ ⚙ settings ⑧ ⇄ switcher</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Day N of M and days left</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>Streak flame</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Water task: ring, progress, droplet +</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>Steps task: ring and count</span></li><li><span class="cn" aria-hidden="true">5</span><span><span class="sr">5. </span>Completed task, green circle</span></li><li><span class="cn" aria-hidden="true">6</span><span><span class="sr">6. </span>NOTES card</span></li><li><span class="cn" aria-hidden="true">7</span><span><span class="sr">7. </span>⚙ Challenge settings</span></li><li><span class="cn" aria-hidden="true">8</span><span><span class="sr">8. </span>⇄ Switch challenge</span></li></ol></figcaption>
             </figure>
 
             <ul class="steps">
@@ -582,7 +591,7 @@
 
             <figure class="shot">
                 <img src="/support/img/10-task-menu.png" alt="Long-press menu on a task with Mark Incomplete, Set Reminder, Manage Tasks and Delete Task" loading="lazy">
-                <figcaption>① Mark Incomplete ② Set Reminder ③ Manage Tasks ④ Delete Task ⑤ The task you long-pressed, lifted</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Mark Incomplete</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>Set Reminder</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Manage Tasks</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>Delete Task</span></li><li><span class="cn" aria-hidden="true">5</span><span><span class="sr">5. </span>The task you long-pressed, lifted</span></li></ol></figcaption>
             </figure>
 
             <h3>The counter sheet</h3>
@@ -604,7 +613,7 @@
 
             <figure class="shot">
                 <img src="/support/img/11-edit-tasks-reorder.png" alt="Manage Tasks screen in edit mode with drag handles" loading="lazy">
-                <figcaption>① Edit, now a blue check ② Drag handle to reorder ③ Pencil to edit a task ④ Trash to delete ⑤ + to add ⑥ Done</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Edit, now a blue check</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>Drag handle to reorder</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Pencil to edit a task</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>Trash to delete</span></li><li><span class="cn" aria-hidden="true">5</span><span><span class="sr">5. </span>+ to add</span></li><li><span class="cn" aria-hidden="true">6</span><span><span class="sr">6. </span>Done</span></li></ol></figcaption>
             </figure>
 
             <ul class="steps">
@@ -622,7 +631,7 @@
 
             <figure class="shot">
                 <img src="/support/img/12-add-task.png" alt="Add Task sheet with task detail fields" loading="lazy">
-                <figcaption>① Task name ② Type: standard, water, counter, steps, photo, video, audio ③ Category ④ Cancel ⑤ Add</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Task name</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>Type: standard, water, counter, steps, photo, video, audio</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Category</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>Cancel</span></li><li><span class="cn" aria-hidden="true">5</span><span><span class="sr">5. </span>Add</span></li></ol></figcaption>
             </figure>
 
             <div class="callout warn">
@@ -633,12 +642,12 @@
 
                 <figure class="shot">
                     <img src="/support/img/12b-edit-water-task.png" alt="Edit Task sheet for a water task with goal, unit and repeat days" loading="lazy">
-                    <figcaption>① Task name ② Type ③ Category ④ Daily Goal ⑤ Unit ⑥ Repeat on: the weekdays this task repeats ⑦ Save</figcaption>
+                    <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Task name</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>Type</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Category</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>Daily Goal</span></li><li><span class="cn" aria-hidden="true">5</span><span><span class="sr">5. </span>Unit</span></li><li><span class="cn" aria-hidden="true">6</span><span><span class="sr">6. </span>Repeat on: the weekdays this task repeats</span></li><li><span class="cn" aria-hidden="true">7</span><span><span class="sr">7. </span>Save</span></li></ol></figcaption>
                 </figure>
 
                 <figure class="shot">
                     <img src="/support/img/12c-edit-counter-task.png" alt="Edit Task sheet for a counter task with goal, custom unit and repeat days" loading="lazy">
-                    <figcaption>Counter tasks: ① Daily Goal ② Unit, typed freely (pages, reps, minutes) ③ Repeat on</figcaption>
+                    <figcaption><span class="lead">Counter tasks:</span><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Daily Goal</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>Unit, typed freely (pages, reps, minutes)</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Repeat on</span></li></ol></figcaption>
                 </figure>
             </div>
         </section>
@@ -649,7 +658,7 @@
 
             <figure class="shot">
                 <img src="/support/img/13-calendar.png" alt="Challenge calendar grid with completed, missed and media-badged days" loading="lazy">
-                <figcaption>① Completed day, green ② Today, blue ③ A future day, still empty ④ Date range and days left ⑤ Gallery icon ⑥ ⚙ ⑦ ⇄</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Completed day, green</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>Today, blue</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>A future day, still empty</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>Date range and days left</span></li><li><span class="cn" aria-hidden="true">5</span><span><span class="sr">5. </span>Gallery icon</span></li><li><span class="cn" aria-hidden="true">6</span><span><span class="sr">6. </span>⚙ Challenge settings</span></li><li><span class="cn" aria-hidden="true">7</span><span><span class="sr">7. </span>⇄ Switch challenge</span></li></ol></figcaption>
             </figure>
 
             <ul class="steps">
@@ -661,7 +670,7 @@
 
             <figure class="shot">
                 <img src="/support/img/14-day-detail.png" alt="Day Detail sheet showing task status, notes and media for one day" loading="lazy">
-                <figcaption>① Day N ② Status chip ③ Date and X/Y tasks ④ A task row ⑤ Its completion mark ⑥ Done — this screen is read-only</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Day N</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>Status chip</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Date and X/Y tasks</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>A task row</span></li><li><span class="cn" aria-hidden="true">5</span><span><span class="sr">5. </span>Its completion mark</span></li><li><span class="cn" aria-hidden="true">6</span><span><span class="sr">6. </span>Done — this screen is read-only</span></li></ol></figcaption>
             </figure>
 
             <ul class="steps">
@@ -683,7 +692,7 @@
 
             <figure class="shot">
                 <img src="/support/img/15-stats.png" alt="Statistics screen with completion ring, trend chart and breakdowns" loading="lazy">
-                <figcaption>① Completion rate ② Its ring ③ Tasks, Active Days, Best Streak ④ Range control: W / M / 3M / Y / All ⑤ Completion Trend chart ⑥ Done</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Completion rate</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>Its ring</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Tasks, Active Days, Best Streak</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>Range control: W / M / 3M / Y / All</span></li><li><span class="cn" aria-hidden="true">5</span><span><span class="sr">5. </span>Completion Trend chart</span></li><li><span class="cn" aria-hidden="true">6</span><span><span class="sr">6. </span>Done</span></li></ol></figcaption>
             </figure>
 
             <ul class="steps">
@@ -711,13 +720,13 @@
 
             <figure class="shot">
                 <img src="/support/img/18-voice-note.png" alt="Voice note recorder with waveform and transport controls" loading="lazy">
-                <figcaption>① Close ② Tap to Record ③ Waveform ④ Timer ⑤ Record button — tap to start, tap again to stop</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Close</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>Tap to Record</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Waveform</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>Timer</span></li><li><span class="cn" aria-hidden="true">5</span><span><span class="sr">5. </span>Record button — tap to start, tap again to stop</span></li></ol></figcaption>
             </figure>
 
             <h3>Browsing</h3>
             <figure class="shot">
                 <img src="/support/img/16-media-gallery.png" alt="Media gallery grid with filter pills and type segments" loading="lazy">
-                <figcaption>① Challenge filter pill ② Day filter pill ③ All / Photos / Videos / Audio / Notes ④ Date group header ⑤ A photo with its Day badge ⑥ Done</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Challenge filter pill</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>Day filter pill</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>All / Photos / Videos / Audio / Notes</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>Date group header</span></li><li><span class="cn" aria-hidden="true">5</span><span><span class="sr">5. </span>A photo with its Day badge</span></li><li><span class="cn" aria-hidden="true">6</span><span><span class="sr">6. </span>Done</span></li></ol></figcaption>
             </figure>
 
             <ul class="steps">
@@ -734,7 +743,7 @@
             <h3>Viewing</h3>
             <figure class="shot">
                 <img src="/support/img/17-photo-viewer.png" alt="Full-screen media viewer with the overflow menu open" loading="lazy">
-                <figcaption>① ✕ close ② ⋯ for Save to Device, Share, Delete ③ The media — pinch to zoom, swipe down to dismiss ④ Its task ⑤ Day N and date ⑥ Everything else finished that day</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>✕ close</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>⋯ for Save to Device, Share, Delete</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>The media — pinch to zoom, swipe down to dismiss</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>Its task</span></li><li><span class="cn" aria-hidden="true">5</span><span><span class="sr">5. </span>Day N and date</span></li><li><span class="cn" aria-hidden="true">6</span><span><span class="sr">6. </span>Everything else finished that day</span></li></ol></figcaption>
             </figure>
 
             <ul class="steps">
@@ -758,7 +767,7 @@
 
             <figure class="shot">
                 <img src="/support/img/19-challenge-switcher.png" alt="My Challenges switcher listing tracking, scheduled and inactive challenges" loading="lazy">
-                <figcaption>① Create New Challenge ② The VIEWING badge on the current one ③ Tracking card: day counter, actions, progress bar ④ A second tracked challenge ⑤ ✕ close</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Create New Challenge</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>The VIEWING badge on the current one</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Tracking card: day counter, actions, progress bar</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>A second tracked challenge</span></li><li><span class="cn" aria-hidden="true">5</span><span><span class="sr">5. </span>✕ close</span></li></ol></figcaption>
             </figure>
 
             <h3>The switcher</h3>
@@ -774,7 +783,7 @@
 
             <figure class="shot" style="clear:both">
                 <img src="/support/img/20-challenge-settings.png" alt="Per-challenge settings with name, schedule, Weekends Off and notifications" loading="lazy">
-                <figcaption>① Challenge Name ② Start Date ③ Duration, 1 to 365 days ④ Day Ends At ⑤ Weekends Off ⑥ Day End Reminder and Remind Me ⑦ Save</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Challenge Name</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>Start Date</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Duration, 1 to 365 days</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>Day Ends At</span></li><li><span class="cn" aria-hidden="true">5</span><span><span class="sr">5. </span>Weekends Off</span></li><li><span class="cn" aria-hidden="true">6</span><span><span class="sr">6. </span>Day End Reminder and Remind Me</span></li><li><span class="cn" aria-hidden="true">7</span><span><span class="sr">7. </span>Save</span></li></ol></figcaption>
             </figure>
 
             <h3>Per-challenge settings</h3>
@@ -800,11 +809,11 @@
             <div class="shot-row">
                 <figure class="shot">
                     <img src="/support/img/20c-challenge-mode-widget.png" alt="Challenge settings showing Show in Widget, Challenge Mode and the Tasks list" loading="lazy">
-                    <figcaption>① Show in Widget ② Challenge Mode: Strict or Flexible ③ Edit shows drag handles ④ Or long-press a task and drag it</figcaption>
+                    <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Show in Widget</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>Challenge Mode: Strict or Flexible</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Edit shows drag handles</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>Or long-press a task and drag it</span></li></ol></figcaption>
                 </figure>
                 <figure class="shot">
                     <img src="/support/img/20b-challenge-tasks.png" alt="Challenge settings scrolled to the Tasks list with Edit, pencil, trash and Add Task" loading="lazy">
-                    <figcaption>① Edit shows drag handles ② Long-press a task and drag to reorder ③ Pencil edits the task ④ Trash deletes it ⑤ Add Task ⑥ Challenge Actions: Duplicate, Complete, Start New Attempt</figcaption>
+                    <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Edit shows drag handles</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>Long-press a task and drag to reorder</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Pencil edits the task</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>Trash deletes it</span></li><li><span class="cn" aria-hidden="true">5</span><span><span class="sr">5. </span>Add Task</span></li><li><span class="cn" aria-hidden="true">6</span><span><span class="sr">6. </span>Challenge Actions: Duplicate, Complete, Start New Attempt</span></li></ol></figcaption>
                 </figure>
             </div>
 
@@ -842,7 +851,7 @@
             </ul>
             <figure class="shot">
                 <img src="/support/img/10-task-menu.png" alt="Long-press menu on a task with Set Reminder highlighted" loading="lazy">
-                <figcaption>Long-press any task on the Challenge tab, then tap ② Set Reminder.</figcaption>
+                <figcaption>Long-press any task on the Challenge tab, then tap <span class="cn" aria-hidden="true">2</span> Set Reminder.</figcaption>
             </figure>
             <p>These fire on their own, with no setting to change:</p>
             <ul class="plain">
@@ -861,7 +870,7 @@
 
             <figure class="shot">
                 <img src="/support/img/24-widget.png" alt="FlexChallenge in the iOS widget gallery showing the small widget preview" loading="lazy">
-                <figcaption>① FlexChallenge in the iOS widget gallery ② What the widget does ③ Small size: name, streak, ring, Day X of Y ④ Dots — swipe for Medium and Large ⑤ Add Widget</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>FlexChallenge in the iOS widget gallery</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>What the widget does</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Small size: name, streak, ring, Day X of Y</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>Dots — swipe for Medium and Large</span></li><li><span class="cn" aria-hidden="true">5</span><span><span class="sr">5. </span>Add Widget</span></li></ol></figcaption>
             </figure>
 
             <ul class="steps">
@@ -901,12 +910,12 @@
 
             <figure class="shot">
                 <img src="/support/img/21b-app-settings-data.png" alt="Settings scrolled to the Data and About sections" loading="lazy">
-                <figcaption>① Data → Backup &amp; Restore ② Version ③ Privacy Policy and Terms of Service</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Data → Backup &amp; Restore</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>Version</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Privacy Policy and Terms of Service</span></li></ol></figcaption>
             </figure>
 
             <figure class="shot">
                 <img src="/support/img/22-backup-restore.png" alt="Backup and Restore screen with Export and Import buttons" loading="lazy">
-                <figcaption>① Export Backup writes one JSON file ② Import Backup reads one back ③ Import replaces everything — read this first ④ ✕ close</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Export Backup writes one JSON file</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>Import Backup reads one back</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Import replaces everything — read this first</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>✕ close</span></li></ol></figcaption>
             </figure>
 
             <ul class="steps">
@@ -927,7 +936,7 @@
 
             <figure class="shot">
                 <img src="/support/img/21-app-settings.png" alt="App settings with media, experience, appearance and subscription sections" loading="lazy">
-                <figcaption>① Media toggles ② Haptic Feedback and Completion Confetti ③ Theme ④ Subscription status, Manage, Restore</figcaption>
+                <figcaption><ol class="callouts"><li><span class="cn" aria-hidden="true">1</span><span><span class="sr">1. </span>Media toggles</span></li><li><span class="cn" aria-hidden="true">2</span><span><span class="sr">2. </span>Haptic Feedback and Completion Confetti</span></li><li><span class="cn" aria-hidden="true">3</span><span><span class="sr">3. </span>Theme</span></li><li><span class="cn" aria-hidden="true">4</span><span><span class="sr">4. </span>Subscription status, Manage, Restore</span></li></ol></figcaption>
             </figure>
 
             <ul class="steps">
