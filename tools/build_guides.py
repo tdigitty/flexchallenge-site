@@ -27,6 +27,13 @@ CSS += """
         .fc-legal .cta a.btn { display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; background: #C8F222; color: #16150F; font-weight: 800; border-radius: 10px; }
         .fc-legal .cta a.btn:hover { text-decoration: none; }
         .fc-legal .related a { font-weight: 600; }
+        .fc-legal table.compare th:nth-child(2), .fc-legal table.compare td:nth-child(2) { background: #E3F0FC; color: var(--text); border-left: 2px solid #0A72CD; border-right: 2px solid #0A72CD; font-weight: 600; }
+        .fc-legal table.compare thead th:nth-child(2) { background: #0A72CD; color: #fff; font-size: 16px; }
+        .fc-legal table.compare tbody tr:last-child td:nth-child(2) { border-bottom: 2px solid #0A72CD; }
+        .fc-legal table.compare .badge { display: block; width: max-content; margin-bottom: 4px; padding: 1px 8px; border-radius: 999px; background: #C8F222; color: #16150F; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+        .fc-legal table.compare.two { min-width: 0; }
+        .fc-legal .y { color: #15803D; font-weight: 800; }
+        .fc-legal .n { color: #B91C1C; font-weight: 800; }
 
         @media (max-width: 540px) {
             .fc-legal .legal-nav { flex-direction: column; gap: 12px; align-items: flex-start; }

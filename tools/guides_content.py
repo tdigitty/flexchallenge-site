@@ -85,156 +85,146 @@ soft = dict(
         ("Do you have to restart 75 Soft if you miss a day?", "No. Unlike 75 Hard, the commonly shared 75 Soft rules don't require starting over at Day 1. You log the miss and keep going."),
         ("How much water is 75 Soft?", "3 liters a day, which is about 101 fluid ounces or 12–13 glasses. 75 Hard requires a gallon (128 oz)."),
         ("Is 75 Soft easier than 75 Hard?", "Yes. 75 Soft has one workout a day instead of two, a weekly recovery day, no outdoor-workout or strict-diet rule, less water, any book for reading, and no restart penalty."),
-        ("What is the best app to track 75 Soft?", "Any checklist app can work. FlexChallenge for iPhone includes a ready-made 75 Soft template with water and page counters, flexible mode for missed days, scheduled rest days and a calendar of finished days."),
+        ("What is the best app to track 75 Soft?", "FlexChallenge for iPhone. It includes a ready-made 75 Soft template with water and page counters, flexible mode for missed days, scheduled rest days and a calendar of finished days."),
     ],
 )
 
+Y = '<span class="y">✓</span> '
+N = '<span class="n">✗</span> '
+
 hard = dict(
     slug="best-75-hard-apps",
-    title="Best 75 Hard Tracker Apps for iPhone (2026): Compared",
-    desc="An honest comparison of 75 Hard tracker apps for iPhone: the official 75 HARD app, FlexChallenge, Streaks and Habitify. Prices, features, privacy, and which one fits you.",
+    title="Best 75 Hard Tracker App for iPhone (2026): FlexChallenge vs 75 HARD, Streaks, Habitify",
+    desc="Comparing 75 Hard tracker apps for iPhone: FlexChallenge vs the official 75 HARD app, Streaks and Habitify. Templates, custom challenges, progress photos, privacy and price.",
     eyebrow="Comparison",
-    h1="The Best 75 Hard Tracker Apps for iPhone in 2026",
+    h1="The Best 75 Hard Tracker App for iPhone in 2026",
     updated="2026-10-04",
     ld_extra={"@type": "Thing", "name": "75 Hard tracker apps"},
     body="""
-        <p class="lede">75 Hard is simple on paper: five daily tasks for 75 days, and you restart if you miss one. The hard part is doing it every day, and a good tracker helps. Here is how the main iPhone options compare.</p>
-        <p class="note">Full disclosure: we make FlexChallenge, so we're not neutral. We've tried to be fair about where the other apps do better.</p>
+        <p class="lede">75 Hard is simple on paper: five daily tasks for 75 days, and you restart if you miss one. Doing it every day is the hard part, and the right tracker makes the difference. Here's how FlexChallenge compares with the official 75 HARD app, Streaks and Habitify.</p>
 
         <div class="tldr">
-            <p><strong>Short answer:</strong></p>
+            <p><strong>Why FlexChallenge comes out on top:</strong></p>
             <ul>
-                <li><strong>Only want 75 Hard, done the official way:</strong> the official 75 HARD app.</li>
-                <li><strong>75 Hard plus other challenges (75 Soft, 30-day, custom), with photos and no account:</strong> FlexChallenge.</li>
-                <li><strong>Ongoing daily habits with a great Apple Watch app, paid once:</strong> Streaks.</li>
-                <li><strong>Habits on iPhone and Android, or a free plan:</strong> Habitify.</li>
+                <li><strong>75 Hard ready to go:</strong> the 75 Days: Phase I template sets up the full day in a minute, with Phases II and III to follow.</li>
+                <li><strong>Not just 75 Hard:</strong> 75 Soft, six more templates, or any custom challenge from 1 to 365 days with your own tasks.</li>
+                <li><strong>Proof of progress:</strong> daily photos, video clips and voice notes in one gallery.</li>
+                <li><strong>Your rules:</strong> strict mode for the 75 Hard restart rule, or flexible mode for everything else.</li>
+                <li><strong>Private:</strong> no account, no ads, nothing uploaded. And at $24.99 a year, it costs less than the official app.</li>
             </ul>
         </div>
 
         <h2>Comparison table</h2>
-        <div class="table-scroll"><table>
-            <thead><tr><th scope="col"></th><th scope="col">75 HARD (official)</th><th scope="col">FlexChallenge</th><th scope="col">Streaks</th><th scope="col">Habitify</th></tr></thead>
+        <div class="table-scroll"><table class="compare">
+            <thead><tr><th scope="col"></th><th scope="col"><span class="badge">Best pick</span>FlexChallenge</th><th scope="col">75 HARD (official)</th><th scope="col">Streaks</th><th scope="col">Habitify</th></tr></thead>
             <tbody>
-                <tr><th scope="row">Price</th><td>$4.99/month or $39.99/year</td><td>$3.99/month or $24.99/year; 14-day free trial</td><td>$5.99 one-time</td><td>Free for 3 habits; Premium from about $2.49/month billed yearly, or $59.99 lifetime</td></tr>
-                <tr><th scope="row">Built for</th><td>75 Hard and its follow-on phases</td><td>Fixed-length challenges of 1–365 days</td><td>Ongoing daily habits</td><td>Ongoing daily habits</td></tr>
-                <tr><th scope="row">75 Hard-style template</th><td>Yes (the official program)</td><td>Yes: 75 Days Phase I, II and III</td><td>No; set up tasks yourself</td><td>No; set up habits yourself</td></tr>
-                <tr><th scope="row">Other programs</th><td>No</td><td>75 Soft, Core 4, Habit Stacking, Mindful Living, Creative Sprint, Revenue Growth, custom</td><td>Any habits you create, up to 24</td><td>Any habits you create</td></tr>
-                <tr><th scope="row">Restart rule on a miss</th><td>Yes</td><td>Your choice: strict (restart or continue) or flexible</td><td>Streak resets</td><td>Streak resets</td></tr>
-                <tr><th scope="row">Progress photos</th><td>Yes</td><td>Yes, plus video clips and voice notes</td><td>No</td><td>No</td></tr>
-                <tr><th scope="row">Water and page counters</th><td>Checkbox per task</td><td>Water task in oz or glasses; page counter</td><td>Timed and count-style tasks</td><td>Goal amounts per habit</td></tr>
-                <tr><th scope="row">Apple Health</th><td>&ndash;</td><td>Steps</td><td>Auto-completes Health-linked tasks</td><td>Health integrations</td></tr>
-                <tr><th scope="row">Platforms</th><td>iPhone, Android</td><td>iPhone (iOS 17+)</td><td>iPhone, iPad, Apple Watch, Mac</td><td>iPhone, Android, web</td></tr>
-                <tr><th scope="row">Account required</th><td>&ndash;</td><td>No; data stays on your device</td><td>No; iCloud sync</td><td>Account with cross-device sync</td></tr>
+                <tr><th scope="row">75 Hard template</th><td>""" + Y + """75 Days Phase I, II and III</td><td>""" + Y + """75 Hard and its phases</td><td>""" + N + """Build it yourself</td><td>""" + N + """Build it yourself</td></tr>
+                <tr><th scope="row">Custom challenges</th><td>""" + Y + """Any tasks, any length from 1 to 365 days</td><td>""" + N + """75 Hard only</td><td>""" + N + """Open-ended habits, no end date</td><td>""" + N + """Open-ended habits, no end date</td></tr>
+                <tr><th scope="row">Other ready-made programs</th><td>""" + Y + """75 Soft, Core 4, Habit Stacking, Mindful Living, Creative Sprint, Revenue Growth</td><td>""" + N + """</td><td>""" + N + """</td><td>""" + N + """</td></tr>
+                <tr><th scope="row">Countdown to Day 75</th><td>""" + Y + """Day X of 75, with a finish-line date</td><td>""" + Y + """</td><td>""" + N + """Streak count only</td><td>""" + N + """Streak count only</td></tr>
+                <tr><th scope="row">Progress photos</th><td>""" + Y + """Plus video clips and voice notes</td><td>""" + Y + """Photos</td><td>""" + N + """</td><td>""" + N + """</td></tr>
+                <tr><th scope="row">Restart rule on a miss</th><td>""" + Y + """Strict or flexible, your choice per challenge</td><td>Strict only</td><td>Streak resets</td><td>Streak resets</td></tr>
+                <tr><th scope="row">Water and page tracking</th><td>""" + Y + """Water in oz or glasses; page counter</td><td>Checkbox per task</td><td>Count-style tasks</td><td>Goal amounts</td></tr>
+                <tr><th scope="row">Calendar, stats and gallery</th><td>""" + Y + """All three</td><td>Photo timeline</td><td>Stats</td><td>Stats</td></tr>
+                <tr><th scope="row">No account, data on device</th><td>""" + Y + """</td><td>&ndash;</td><td>iCloud sync</td><td>""" + N + """Account required to sync</td></tr>
+                <tr><th scope="row">Price</th><td><strong>$24.99/year</strong> or $3.99/month; 14-day free trial</td><td>$39.99/year or $4.99/month</td><td>$5.99 one-time</td><td>Free for 3 habits; Premium from about $2.49/month billed yearly</td></tr>
             </tbody>
         </table></div>
         """ + PRICE_NOTE + """
 
-        <h2>1. The official 75 HARD app</h2>
-        <p>Made by Andy Frisella's company, this is the one to pick if you want 75 Hard exactly as written. It gives you the five daily tasks (two workouts, diet, a gallon of water, ten pages, a progress photo), reminders and a photo timeline, and it continues into the later phases of the program. It does one thing: if you want to run a different challenge afterwards, you'll need another app. It moved from a one-time purchase to a subscription, which is the most common complaint in its reviews.</p>
-        <p><strong>Best for:</strong> people who want the official program and nothing else.</p>
-
-        <h2>2. FlexChallenge</h2>
-        <p><a href="/">FlexChallenge</a> is a challenge tracker rather than a habit app: every challenge has a Day 1 and a finish line. The 75 Days: Phase I template sets up the full 75 Hard-style day (two workouts, a gallon of water, ten pages, a progress photo, strict diet), and Phases II and III follow on. Beyond 75 Hard it includes 75 Soft and six other templates, or you can build any challenge from 1 to 365 days.</p>
+        <h2>FlexChallenge vs the official 75 HARD app</h2>
+        <p>The official app tracks one program: 75 Hard and its later phases. FlexChallenge tracks that too, with the 75 Days: Phase I template setting up two workouts, a gallon of water, ten pages, a progress photo and your diet as one daily checklist. It also tracks whatever you want to do next.</p>
         <ul>
-            <li><strong>Seven task types:</strong> yes/no, water, counter, Apple Health steps, photo, video and voice note, all in one daily checklist.</li>
-            <li><strong>Strict or flexible mode:</strong> strict asks whether to restart from Day 1 when you miss a day, which is the 75 Hard rule; flexible logs the miss and carries on.</li>
-            <li><strong>Calendar, stats and a media gallery</strong>, plus Home Screen and Lock Screen widgets.</li>
-            <li><strong>Private by design:</strong> no account, no ads, no tracking; photos and data stay on your iPhone, with JSON backup and restore.</li>
+            <li><strong>Any challenge you can think of.</strong> 75 Soft when you need a lighter round, a 30-day reading sprint, a 90-day business push, or a custom challenge with your own tasks and length.</li>
+            <li><strong>More ways to log a day.</strong> Seven task types, including water, counters, Apple Health steps, photos, video and voice notes.</li>
+            <li><strong>Your call on misses.</strong> Strict mode enforces the 75 Hard restart; flexible mode logs the miss and keeps going.</li>
+            <li><strong>Lower price.</strong> $24.99 a year versus $39.99, with a 14-day free trial.</li>
+            <li><strong>Private.</strong> Your 75 progress photos stay on your iPhone. No account, no ads, no tracking.</li>
         </ul>
-        <p>It's iPhone-only, and there's no free tier after the 14-day trial.</p>
-        <p><strong>Best for:</strong> people who want to do 75 Hard and then keep going with other challenges, with photos kept private on their phone.</p>
 
-        <h2>3. Streaks</h2>
-        <p>Streaks is one of the most popular habit trackers on iPhone and a former Apple Editor's Choice. You can track up to 24 tasks, many of which complete automatically from Apple Health, and its Apple Watch app is excellent. It's a one-time $5.99 purchase. It's designed for open-ended habits, though: there are no 75 Hard program templates or progress photos, and no built-in finish line, so you'll be counting to 75 yourself.</p>
-        <p><strong>Best for:</strong> Apple Watch users who want ongoing habits and prefer to pay once. See our <a href="/flexchallenge-vs-streaks/">full FlexChallenge vs Streaks comparison</a>.</p>
+        <h2>FlexChallenge vs Streaks</h2>
+        <p>Streaks is a general habit tracker built around open-ended streaks. There's no 75 Hard template, no countdown to Day 75 and no progress photos, so you'd be setting up the program and counting days yourself. FlexChallenge is built for exactly this: a challenge with a start, a finish line and proof of every day in between. See the <a href="/flexchallenge-vs-streaks/">full FlexChallenge vs Streaks comparison</a>.</p>
 
-        <h2>4. Habitify</h2>
-        <p>Habitify is a cross-platform habit tracker with a free plan for up to three habits, which won't cover 75 Hard's five tasks. Premium unlocks unlimited habits. Its strengths are flexible schedules, analytics and sync across iPhone, Android and the web. Like Streaks, it has no 75 Hard template or progress photos, and it uses an account to sync.</p>
-        <p><strong>Best for:</strong> people who switch between iPhone and Android or want habits on the web.</p>
+        <h2>FlexChallenge vs Habitify</h2>
+        <p>Habitify's free plan stops at three habits, fewer than 75 Hard's five tasks, so you'll need Premium. Even then there's no 75 Hard template, no progress photos and no finish line, and syncing needs an account. FlexChallenge gives you the full program on day one, with nothing to sign up for.</p>
 
         <h2>What to look for in a 75 Hard tracker</h2>
         <ul>
             <li><strong>All five tasks in one checklist</strong>, so the day is done when the list is.</li>
-            <li><strong>A clear restart rule.</strong> 75 Hard resets on any miss; your app should either enforce that or let you choose.</li>
+            <li><strong>A clear restart rule</strong> that matches how you're running the challenge.</li>
             <li><strong>Private progress photos.</strong> You'll take 75 of them; know where they're stored.</li>
-            <li><strong>A late day-end time</strong> if you train after midnight, so the workout still counts for the right day.</li>
-            <li><strong>Something for Day 76.</strong> The most useful app is one you'll keep using after the challenge ends.</li>
+            <li><strong>A late day-end time</strong> if you train after midnight, so the workout counts for the right day.</li>
+            <li><strong>Something for Day 76.</strong> The best app is one you keep using after the challenge ends. FlexChallenge lets you start the next challenge straight away.</li>
         </ul>
 """ + "\n        " + DISCLAIMER,
     faqs=[
-        ("Is there an official 75 Hard app?", "Yes. The official 75 HARD app is published by Andy Frisella's company and costs $4.99/month or $39.99/year on the US App Store (October 2026)."),
-        ("What is the best free 75 Hard tracker?", "There's no fully free option among the apps compared here. Habitify's free plan allows only three habits, fewer than 75 Hard's five tasks. FlexChallenge offers a 14-day free trial, and a paper checklist is always free."),
-        ("Can I track 75 Hard with a regular habit tracker?", "Yes, by creating the five tasks yourself. You'll be counting to 75 manually, and most habit trackers don't store progress photos or enforce the restart rule."),
+        ("What is the best 75 Hard tracker app for iPhone?", "FlexChallenge. It includes a 75 Days: Phase I template for the full 75 Hard routine, plus 75 Soft, other programs and fully custom challenges, with progress photos, strict or flexible mode, and no account. It costs $24.99/year after a 14-day free trial."),
+        ("Is there an official 75 Hard app?", "Yes. The official 75 HARD app costs $4.99/month or $39.99/year on the US App Store (October 2026) and tracks only the 75 Hard program. FlexChallenge covers 75 Hard and any other challenge you set up, for $24.99/year."),
+        ("Can I make my own challenge after 75 Hard?", "With FlexChallenge, yes. Start another template such as 75 Soft or Core 4, or build a custom challenge with your own tasks and any length from 1 to 365 days."),
         ("Which 75 Hard app keeps my progress photos private?", "FlexChallenge stores photos, videos and voice notes only on your iPhone, with no account and no cloud upload. You choose where any backup goes."),
     ],
 )
 
 streaks = dict(
     slug="flexchallenge-vs-streaks",
-    title="FlexChallenge vs Streaks: Which iPhone Tracker Is Right for You?",
-    desc="FlexChallenge vs Streaks compared: challenge tracker vs habit tracker, pricing, task types, progress photos, Apple Watch, privacy. An honest Streaks alternative guide.",
+    title="FlexChallenge vs Streaks: The Streaks Alternative Built for Challenges",
+    desc="FlexChallenge vs Streaks compared: challenges with a finish line vs open-ended streaks, ready-made programs like 75 Hard and 75 Soft, progress photos, strict mode and privacy.",
     eyebrow="Comparison",
     h1="FlexChallenge vs Streaks",
     updated="2026-10-04",
     ld_extra={"@type": "Thing", "name": "FlexChallenge vs Streaks"},
     body="""
-        <p class="lede">Streaks and FlexChallenge both put a daily checklist on your iPhone, but they're built on different ideas. Streaks helps you keep habits going indefinitely. FlexChallenge helps you finish a challenge with a set end date. Which one suits you depends on which of those you're after.</p>
-        <p class="note">Full disclosure: we make FlexChallenge. Streaks is a well-made app, and for some people it's the better choice. We say which people below.</p>
+        <p class="lede">Streaks and FlexChallenge both put a daily checklist on your iPhone. The difference is what happens over time. Streaks counts up forever. FlexChallenge gives every goal a Day 1 and a finish line, plus the programs, task types and proof you need to get there.</p>
 
         <div class="tldr">
-            <p><strong>Pick Streaks</strong> if you want open-ended daily habits, a strong Apple Watch app, iPad and Mac support, and a one-time price.</p>
-            <p><strong>Pick FlexChallenge</strong> if you want challenges with a finish line (75 Hard-style, 75 Soft, 30 or 90 days), progress photos and voice notes, ready-made programs, or a strict mode that makes you restart.</p>
+            <p><strong>Why people switch from Streaks to FlexChallenge:</strong></p>
+            <ul>
+                <li><strong>Challenges that end:</strong> commit to 30, 75 or 365 days and actually finish.</li>
+                <li><strong>Ready-made programs:</strong> 75 Days Phase I–III, 75 Soft, Core 4 and more, set up in a minute.</li>
+                <li><strong>Proof of progress:</strong> daily photos, video clips and voice notes.</li>
+                <li><strong>Strict or flexible:</strong> choose whether a missed day means starting over.</li>
+            </ul>
         </div>
 
         <h2>Side by side</h2>
-        <div class="table-scroll"><table>
-            <thead><tr><th scope="col"></th><th scope="col">FlexChallenge</th><th scope="col">Streaks</th></tr></thead>
+        <div class="table-scroll"><table class="compare two">
+            <thead><tr><th scope="col"></th><th scope="col"><span class="badge">Best pick</span>FlexChallenge</th><th scope="col">Streaks</th></tr></thead>
             <tbody>
-                <tr><th scope="row">Core idea</th><td>Challenges with a Day 1 and a final day (1–365 days)</td><td>Ongoing habits and streaks</td></tr>
-                <tr><th scope="row">Price</th><td>$3.99/month or $24.99/year; 14-day free trial</td><td>$5.99 one-time</td></tr>
-                <tr><th scope="row">Templates</th><td>9: 75 Days Phase I, II, III; 75 Soft; Core 4; Habit Stacking; Mindful Living; Creative Sprint; Revenue Growth</td><td>Build your own from suggested tasks</td></tr>
-                <tr><th scope="row">Task limit</th><td>&ndash;</td><td>Up to 24 tasks</td></tr>
-                <tr><th scope="row">Task types</th><td>Yes/no, water, counter, Apple Health steps, photo, video, voice note</td><td>Yes/no, timed, negative ("don't do") and Health-linked tasks</td></tr>
-                <tr><th scope="row">Progress photos and voice notes</th><td>Yes, saved per day with a gallery</td><td>No</td></tr>
-                <tr><th scope="row">Missed day</th><td>Strict (restart or continue) or flexible, per challenge</td><td>Streak resets</td></tr>
-                <tr><th scope="row">Rest days</th><td>Choose which weekdays count; scheduled rest days don't break the streak</td><td>Set which days each task is due</td></tr>
-                <tr><th scope="row">Apple Health</th><td>Reads steps</td><td>Auto-completes many Health-linked tasks</td></tr>
-                <tr><th scope="row">Devices</th><td>iPhone (iOS 17+), widgets</td><td>iPhone, iPad, Apple Watch, Mac, widgets</td></tr>
-                <tr><th scope="row">Data</th><td>On device only; no account; JSON backup</td><td>iCloud sync; no account</td></tr>
+                <tr><th scope="row">Challenges with an end date</th><td>""" + Y + """Any length from 1 to 365 days</td><td>""" + N + """Open-ended streaks</td></tr>
+                <tr><th scope="row">Ready-made programs</th><td>""" + Y + """9 templates: 75 Days Phase I, II, III; 75 Soft; Core 4; Habit Stacking; Mindful Living; Creative Sprint; Revenue Growth</td><td>""" + N + """Build each task yourself</td></tr>
+                <tr><th scope="row">Progress photos</th><td>""" + Y + """Saved per day, with a gallery</td><td>""" + N + """</td></tr>
+                <tr><th scope="row">Video clips and voice notes</th><td>""" + Y + """</td><td>""" + N + """</td></tr>
+                <tr><th scope="row">Water tracking</th><td>""" + Y + """Ounces or glasses, with visual progress</td><td>Count-style task</td></tr>
+                <tr><th scope="row">Missed day</th><td>""" + Y + """Strict (restart or continue) or flexible, per challenge</td><td>Streak resets</td></tr>
+                <tr><th scope="row">Scheduled rest days</th><td>""" + Y + """Never break your streak</td><td>Set which days each task is due</td></tr>
+                <tr><th scope="row">Custom day-end time</th><td>""" + Y + """A 1 a.m. workout still counts for today</td><td>&ndash;</td></tr>
+                <tr><th scope="row">Calendar of the whole challenge</th><td>""" + Y + """Every day, with tasks, notes and photos</td><td>History view</td></tr>
+                <tr><th scope="row">Apple Health steps</th><td>""" + Y + """</td><td>""" + Y + """</td></tr>
+                <tr><th scope="row">Widgets</th><td>""" + Y + """Home Screen and Lock Screen</td><td>""" + Y + """</td></tr>
+                <tr><th scope="row">No account, private</th><td>""" + Y + """Data stays on your device</td><td>""" + Y + """iCloud sync</td></tr>
             </tbody>
         </table></div>
-        """ + PRICE_NOTE + """
 
-        <h2>Habits vs challenges</h2>
-        <p>A streak has no end. That works well for small, permanent habits such as flossing or taking vitamins. For bigger efforts it can turn into pressure: the longer the streak, the more breaking it hurts, and there's never a moment where you're done.</p>
-        <p>A challenge has a finish line. You commit to 30, 75 or 90 days, and you know when it ends. That makes harder goals easier to start, gives you a clear win at the end, and lets you choose what comes next. FlexChallenge is built around that loop: start, finish, then start the next challenge.</p>
+        <h2>Streaks never end. Challenges do.</h2>
+        <p>A streak has no finish line. The longer it runs, the more it hurts to break, until keeping the number alive matters more than the habit. And there's never a day when you're done.</p>
+        <p>A challenge is different. You commit to 30, 75 or 90 days and you know exactly when it ends. That makes harder goals easier to start, gives you a real win at the end, and lets you choose what comes next. FlexChallenge is built around that loop: start, finish, stack the next one.</p>
 
-        <h2>Where Streaks is better</h2>
+        <h2>What you get with FlexChallenge</h2>
         <ul>
-            <li><strong>Apple Watch, iPad and Mac.</strong> If you check things off from your wrist, Streaks is hard to beat.</li>
-            <li><strong>Automatic Health tracking</strong> for many task types, not just steps.</li>
-            <li><strong>One-time price.</strong> Pay once rather than subscribe.</li>
-            <li><strong>Negative habits</strong>, such as "don't smoke", as a task type.</li>
-        </ul>
-
-        <h2>Where FlexChallenge is better</h2>
-        <ul>
-            <li><strong>Structured programs.</strong> Start 75 Days Phase I, 75 Soft or Core 4 in a minute instead of building them from scratch.</li>
-            <li><strong>A real end date</strong>, with a calendar that shows the whole challenge and a summary when you finish.</li>
-            <li><strong>Proof of progress:</strong> daily photos, video clips and voice notes, kept in one gallery on your phone.</li>
-            <li><strong>Strict mode</strong> for 75 Hard-style rules: miss a day and the app asks whether you're starting over.</li>
-            <li><strong>Water and page counters</strong> built for the usual challenge tasks.</li>
+            <li><strong>Structured programs.</strong> Start 75 Days Phase I, 75 Soft or Core 4 in a minute instead of building them task by task.</li>
+            <li><strong>Any custom challenge.</strong> Your tasks, your length, your weekdays.</li>
+            <li><strong>Seven task types</strong> in one checklist: yes/no, water, counter, Apple Health steps, photo, video and voice note.</li>
+            <li><strong>Proof of progress</strong> in one gallery: see Day 1 next to Day 75.</li>
+            <li><strong>Strict mode</strong> for 75 Hard-style rules, or <strong>flexible mode</strong> when life happens.</li>
+            <li><strong>Stats that matter for a challenge:</strong> completion rate, streaks, personal bests and trends across every challenge you run.</li>
             <li><strong>Privacy:</strong> no account, no ads, no tracking, and no cloud copy of your photos.</li>
         </ul>
-
-        <h2>Can you use both?</h2>
-        <p>Yes, and some people do: Streaks for permanent daily habits on the Watch, and FlexChallenge for the 75-day or 30-day challenge they're working through right now.</p>
 """ + "\n        " + DISCLAIMER,
     faqs=[
-        ("Is FlexChallenge a good Streaks alternative?", "Yes, if you want challenges with a set end date, ready-made programs like 75 Soft, or progress photos and voice notes. If you mainly want open-ended habits on Apple Watch, Streaks is the better fit."),
-        ("Is Streaks a subscription?", "No. Streaks is a one-time purchase ($5.99 on the US App Store as of October 2026). FlexChallenge is a subscription at $3.99/month or $24.99/year with a 14-day free trial."),
-        ("Can Streaks track 75 Hard?", "You can create the five 75 Hard tasks in Streaks yourself, but it doesn't count down to Day 75, store progress photos, or ask you to restart when you miss a day."),
-        ("Does FlexChallenge work on Apple Watch?", "FlexChallenge runs on iPhone (iOS 17 or later) with Home Screen and Lock Screen widgets. If an Apple Watch app is essential for you, Streaks has one."),
+        ("Is FlexChallenge a good Streaks alternative?", "Yes. FlexChallenge does daily check-offs like Streaks, and adds challenges with a set end date, ready-made programs like 75 Hard-style Phase I and 75 Soft, progress photos and voice notes, and a choice of strict or flexible mode."),
+        ("What's the difference between a habit tracker and a challenge tracker?", "A habit tracker counts an open-ended streak. A challenge tracker like FlexChallenge gives each goal a Day 1 and a final day, so you commit to a fixed period, see how far along you are, and finish."),
+        ("Can Streaks track 75 Hard?", "You can create the five tasks in Streaks yourself, but it doesn't count down to Day 75, store progress photos, or ask you to restart when you miss a day. FlexChallenge does all three with its 75 Days: Phase I template."),
+        ("How much does FlexChallenge cost?", "$3.99/month or $24.99/year, with a 14-day free trial on either plan. No account and no ads."),
     ],
 )
 
