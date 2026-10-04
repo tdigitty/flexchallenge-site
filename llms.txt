@@ -26,7 +26,7 @@ FlexChallenge has no servers for user data. Challenges, photos, videos, voice no
 
 - [Home](https://flexchallenge.app/): product overview, features, templates, pricing, demo video
 - [FAQ](https://flexchallenge.app/faq/): pricing, free trial, cancelling, refunds, restoring purchases, data storage, backups, step tracking, day-end time, widgets
-- [How to use FlexChallenge](https://flexchallenge.app/support/): step-by-step guide to every screen, with screenshots and troubleshooting
+- [How to use FlexChallenge](https://flexchallenge.app/support/): video walkthrough, annotated screens and troubleshooting
 - [Privacy Policy](https://flexchallenge.app/privacy/)
 - [Terms of Service](https://flexchallenge.app/terms/)
 
