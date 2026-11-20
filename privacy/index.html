@@ -189,12 +189,17 @@
     <div class="legal-wrap">
         <span class="eyebrow">Legal</span>
         <h1>Privacy Policy</h1>
-        <p class="effective">Last updated: September 13, 2026</p>
+        <p class="effective">Last updated: November 19, 2026</p>
 
         <div class="tldr">
             <h2>The Short Version</h2>
             <p><strong>Your challenge data never leaves your device.</strong> FlexChallenge stores everything you create — your challenges, tasks, photos, videos, voice notes, and step data — locally on your iPhone or iPad. There are no accounts, no sign-ups, no cloud sync, no ads, and no cross-app tracking in the app. We can't see your challenge data, and we never will.</p>
-            <p>The one thing that does leave your device is <strong>subscription information</strong>: FlexChallenge is a paid app, and to know whether your subscription is active it exchanges your App Store purchase receipt and an anonymous, randomly generated ID with Apple and with RevenueCat, our subscription-management provider. No name, no email, no health data, and nothing you write or photograph in the app is ever included.</p>
+            <p>Two kinds of information leave your device, both tied only to an anonymous, randomly generated ID:</p>
+            <ul>
+                <li><strong>Subscription information.</strong> FlexChallenge is a paid app. To know whether your subscription is active, it exchanges your App Store purchase receipt with Apple and with RevenueCat, our subscription-management provider.</li>
+                <li><strong>Anonymous usage statistics</strong>, such as how many days you've been active, your streak length, and which kinds of tasks you use. These go to RevenueCat and to PostHog, our product-analytics provider. You can turn this off in <strong>Settings → Data → Share Usage Data</strong>.</li>
+            </ul>
+            <p>No name, no email, no health data, no location, and nothing you write or photograph in the app is ever included.</p>
             <p>Our <strong>website</strong>, flexchallenge.app, is a different story from the app: like most websites it uses standard analytics and advertising cookies (Google Analytics and the Meta Pixel). That is covered in the <a href="#website">Our Website</a> section below, and none of it touches the app.</p>
             <p>The rest of this policy explains exactly what that means.</p>
         </div>
@@ -205,12 +210,12 @@
         <ul>
             <li>No account or sign-up is required, so we never collect your name, email, or any contact identifier.</li>
             <li>The app contains <strong>no advertising frameworks and no cross-app or cross-site tracking</strong>. Our App Store privacy manifest declares tracking as false, with no tracking domains.</li>
-            <li>The only third-party service the app uses is <strong>RevenueCat</strong>, which manages subscription status. What it receives is limited to purchase data and an anonymous app-user ID — see <a href="#purchases">Purchases and Subscriptions</a> below.</li>
+            <li>The app uses two third-party services: <strong>RevenueCat</strong>, which manages subscription status, and <strong>PostHog</strong>, which receives anonymous usage statistics. Both receive only an anonymous app-user ID, never anything that identifies you — see <a href="#purchases">Purchases and Subscriptions</a> and <a href="#analytics">Usage Analytics</a> below.</li>
             <li>We do <strong>not</strong> sell, share, rent, or trade your data, and we never will. We do not sell personal information as that term is defined by the CCPA/CPRA, and we do not share it for cross-context behavioral advertising.</li>
         </ul>
 
         <h3>What our App Store privacy label declares</h3>
-        <p>For transparency, these are the only two data types FlexChallenge declares in its App Store privacy manifest. Both are <strong>not linked to your identity</strong> and <strong>not used for tracking</strong>:</p>
+        <p>For transparency, these are the only data types FlexChallenge declares in its App Store privacy manifest. All are <strong>not linked to your identity</strong> and <strong>not used for tracking</strong>:</p>
         <div class="tbl-scroll">
         <table>
             <thead>
@@ -218,7 +223,9 @@
             </thead>
             <tbody>
                 <tr><td>Purchase history</td><td>App functionality (knowing your subscription is active) and analytics on how well the paywall works</td><td>No</td><td>No</td></tr>
-                <tr><td>User ID (anonymous, app-generated)</td><td>App functionality — it is how your purchase is recognized across reinstalls and devices</td><td>No</td><td>No</td></tr>
+                <tr><td>User ID (anonymous, app-generated)</td><td>App functionality — it is how your purchase is recognized across reinstalls and devices — and analytics</td><td>No</td><td>No</td></tr>
+                <tr><td>Product interaction</td><td>Analytics — which features are used, such as completing a task or a day</td><td>No</td><td>No</td></tr>
+                <tr><td>Other usage data</td><td>Analytics — summary counts such as streak length and days active</td><td>No</td><td>No</td></tr>
             </tbody>
         </table>
         </div>
@@ -260,6 +267,7 @@
 
         <h2>Notifications</h2>
         <p>FlexChallenge can send you local reminders — like task reminders and day-end reminders. These are scheduled entirely on your device using Apple's local notification system. There are no push notification servers and no remote messaging.</p>
+        <p>The tips and encouragement cards shown inside the app (for example, "Finish today for a 7-day streak") are also decided entirely on your device from your own progress. No server picks them.</p>
 
         <h2>Widget and App Group</h2>
         <p>The FlexChallenge home screen widget displays your challenge progress. To do this, the app and widget share data through an Apple "App Group" container — a private storage area on your device that only FlexChallenge and its widget can access. This sharing happens entirely on-device.</p>
@@ -274,12 +282,13 @@
         <p>All payments are processed <strong>entirely by Apple</strong>. We never see, receive, or store your name, payment card, billing address, or any other payment details. The app uses Apple's StoreKit framework on your device to make and verify purchases. Your purchase history with Apple is governed by <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's Privacy Policy</a>.</p>
 
         <h3>RevenueCat</h3>
-        <p>To confirm your subscription is active across reinstalls and devices — and to understand how well our subscription screens work — the app uses <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">RevenueCat</a>, a subscription-management service. RevenueCat is the <strong>only</strong> third party that receives anything from the app.</p>
+        <p>To confirm your subscription is active across reinstalls and devices — and to understand how well our subscription screens work — the app uses <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">RevenueCat</a>, a subscription-management service.</p>
         <p>What RevenueCat receives:</p>
         <ul>
             <li>An <strong>anonymous app user ID</strong>, randomly generated on your device. It is not your name, your email, your Apple Account, or your advertising identifier, and it is not linked to your identity.</li>
             <li>Your <strong>App Store purchase receipt and transaction data</strong> — which plan you bought, when it started and renews, whether you are in a trial, and whether the subscription is active, cancelled, or lapsed.</li>
             <li><strong>Subscriber attributes</strong> describing your progress through the app's signup screens, so we can see where people drop off and whether the trial converts. These are fixed, predefined values only — for example which screen you last reached, which template you picked, which plan was selected, and whether a purchase succeeded or failed. <strong>No free text ever leaves your device</strong>: challenge names, task names, notes, photos, and voice notes are never included. Names of built-in templates from our fixed catalog may be included; anything you typed yourself never is.</li>
+            <li><strong>Usage summaries</strong> (unless you turn off Share Usage Data): numbers and fixed values such as current and longest streak, perfect days, days active, how far into your challenge you are, how many tasks, progress photos, and voice notes you have (counts only, never the content), which built-in task types you use, whether the widget is installed or reminders are scheduled, whether you've allowed notifications, camera, microphone, and photo access, and when you last made a backup.</li>
             <li>Standard technical information RevenueCat's SDK collects to operate, such as device platform, app version, and country.</li>
         </ul>
         <p>What RevenueCat never receives: your name, your email address, any health or step data, any media you capture, and anything you write in the app. None of this information is used for advertising, ad targeting, or cross-app tracking.</p>
@@ -289,6 +298,18 @@
 
         <h3>If your subscription lapses</h3>
         <p>If your subscription ends, FlexChallenge shows a resubscribe screen and the app's features are not accessible until you resubscribe. <strong>Your data is not deleted or uploaded</strong> — it stays on your device exactly as you left it and returns when you resubscribe. If you would rather keep a copy, export a backup before your subscription lapses.</p>
+
+        <h2 id="analytics">Usage Analytics</h2>
+        <p>To learn which features help people stick with their challenges, and where new users get stuck, the app sends anonymous usage events to <a href="https://posthog.com/privacy" target="_blank" rel="noopener">PostHog</a>, a product-analytics service.</p>
+        <p>What PostHog receives:</p>
+        <ul>
+            <li>The same <strong>anonymous app user ID</strong> RevenueCat uses, so the two records match. It is not your name, email, Apple Account, or advertising identifier.</li>
+            <li><strong>Events with fixed values only</strong>: for example, which onboarding screen you reached, that a task was completed (and its type, such as "water" or "counter"), that a day or challenge was completed (day number, challenge length, completion percentage), that a photo or voice note was added (its kind, never the media), and whether you tapped or dismissed an in-app tip.</li>
+            <li>The same usage summaries described for RevenueCat above.</li>
+            <li>Technical details such as app version, iOS version, and device model.</li>
+        </ul>
+        <p>What PostHog never receives: anything you typed (challenge names, task names, notes), any photo, video, or voice note, any health or step data, your location, your name, or your email. We turn off PostHog's IP-based location lookup, session recording, and screen capture.</p>
+        <p><strong>Opting out:</strong> turn off <strong>Settings → Data → Share Usage Data</strong> in the app. PostHog then stops receiving anything, and usage summaries stop going to RevenueCat. Subscription data RevenueCat needs to run your subscription is unaffected.</p>
 
         <h2 id="website">Our Website</h2>
         <p>This section applies only to <strong>flexchallenge.app</strong>, the website — not to the app. Nothing you create in the app is ever sent to the website, and nothing the website collects is ever linked to your challenge data.</p>
@@ -309,12 +330,12 @@
         <p>Because we hold no copies of your data, there is nothing for us to retain or delete on our end. (Backup files you exported yourself remain wherever you saved them, under your control.) Website analytics data is retained by Google and Meta under their own policies; Google Analytics data is set to expire after 14 months.</p>
 
         <h2>Children</h2>
-        <p>FlexChallenge is not directed at children under 13, and we do not knowingly collect personal information from children. The app requires no account and collects no name, email, or contact information from anyone, of any age. The only information that leaves the device is anonymous subscription data tied to the Apple Account that made the purchase — which, under Apple's own rules, belongs to an adult account holder. If you believe a child has provided us with personal information, contact us and we will address it.</p>
+        <p>FlexChallenge is not directed at children under 13, and we do not knowingly collect personal information from children. The app requires no account and collects no name, email, or contact information from anyone, of any age. The only information that leaves the device is anonymous subscription data and anonymous usage statistics (which can be turned off) tied to the Apple Account that made the purchase — which, under Apple's own rules, belongs to an adult account holder. If you believe a child has provided us with personal information, contact us and we will address it.</p>
 
         <h2>Your Privacy Rights</h2>
         <p>Privacy laws like the GDPR (Europe) and CCPA/CPRA (California) give you rights over personal data that companies hold about you — such as access, correction, deletion, and portability.</p>
         <p>Because FlexChallenge requires no account and collects no name, email, or contact information, we hold nothing that identifies you. Your challenge data lives on your device, where you can view, export, or delete it yourself at any time — there is no server copy for us to produce, correct, or delete.</p>
-        <p>The one record associated with your use of the app is the anonymous subscription record held by RevenueCat, keyed to a random ID with no name or email attached. If you want that record accessed or deleted, email us at the address below with the anonymous app user ID shown in the app's settings and we will make the request to RevenueCat on your behalf. We do not sell personal information. The app shares nothing for cross-context behavioral advertising; the website's Meta Pixel may, and you can opt out as described in <a href="#website">Our Website</a>. We will never discriminate against you for exercising any privacy right.</p>
+        <p>The records associated with your use of the app are the anonymous subscription and usage records held by RevenueCat and PostHog, keyed to a random ID with no name or email attached. If you want those records accessed or deleted, use <strong>Contact Support</strong> in the app (it includes your anonymous ID automatically) or email us at the address below, and we will make the request to RevenueCat and PostHog on your behalf. We do not sell personal information. The app shares nothing for cross-context behavioral advertising; the website's Meta Pixel may, and you can opt out as described in <a href="#website">Our Website</a>. We will never discriminate against you for exercising any privacy right.</p>
 
         <h2>Changes to This Policy</h2>
         <p>If we ever change how FlexChallenge handles data — for example, if a future feature involves any data leaving your device — we will update this policy and update the effective date at the top. Material changes will be clearly communicated in the app or in App Store release notes before they take effect.</p>
